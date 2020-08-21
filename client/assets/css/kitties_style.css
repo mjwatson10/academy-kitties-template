@@ -208,22 +208,22 @@
 }
 
 .left-nose{
-    border-radius: 35% 70% 0% 90%;
+    border-radius: 35% 70% 30% 90%;
     background-color: rgb(252, 77, 106);
-    height: 20px;
+    height: 18px;
     width: 15px;
     position: absolute;
-    left: 85px;
+    left: 86px;
     top: -28px;
 }
 
 .right-nose{
-    border-radius: 70% 35% 90% 0%;
+    border-radius: 70% 35% 90% 30%;
     background-color: rgb(252, 77, 106);
-    height: 20px;
+    height: 18px;
     width: 15px;
     position: relative;
-    left: 96px;
+    left: 94px;
     top: -28px;
 }
 
