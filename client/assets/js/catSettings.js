@@ -15,16 +15,16 @@ var defaultDNA = {
     "decorationSidescolor" : 13,
     "animation" :  1,
     "lastNum" :  1
-    }   
+    }
 
 // when page load
 $( document ).ready(function() {
   $('#dnabody').html(defaultDNA.headColor);
-  $('#dnamouth').html(defaultDNA.legsColor);
+  $('#dnalegs').html(defaultDNA.legsColor);
   $('#dnaeyes').html(defaultDNA.eyeColor);
   $('#dnaears').html(defaultDNA.earColor);
-  $('#dnaears').html(defaultDNA.pawColor);
-  $('#dnaears').html(defaultDNA.bellyColor);
+  $('#dnapaws').html(defaultDNA.pawColor);
+  $('#dnabelly').html(defaultDNA.bellyColor);
 
 //   $('#dnashape').html(defaultDNA.eyesShape)
 //   $('#dnadecoration').html(defaultDNA.decorationPattern)
@@ -39,9 +39,11 @@ $( document ).ready(function() {
 function getDna(){
     var dna = ''
     dna += $('#dnabody').html()
-    dna += $('#dnamouth').html()
+    dna += $('#dnalegs').html()
     dna += $('#dnaeyes').html()
     dna += $('#dnaears').html()
+    dna += $('#dnapaws').html()
+    dna += $('#dnabelly').html()
     dna += $('#dnashape').html()
     dna += $('#dnadecoration').html()
     dna += $('#dnadecorationMid').html()

@@ -24,31 +24,31 @@ function headColor(color,code) {
 function legsColor(color,code) {
     $('.front-leg, .back-leg-right, .back-leg-left, .tail').css('color', '#' + color).css('background', '#' + color)
     $('#legscode').html('code: '+code)
-    $('#dnabody').html(code)
+    $('#dnalegs').html(code)
 }
 
 function eyeColor(color,code) {
     $('.left-Eye, .right-Eye').css('background', '#' + color)
     $('#eyescode').html('code: '+code)
-    $('#dnabody').html(code)
+    $('#dnaeyes').html(code)
 }
 
 function earColor(color,code) {
     $('.ear').css('background', '#' + color)
     $('#earscode').html('code: '+code)
-    $('#dnabody').html(code)
+    $('#dnaears').html(code)
 }
 
 function pawColor(color,code) {
     $('.inner-Ear, .paws, .tail-end, .paws-back-left, .paws-back-right').css('background', '#' + color)
     $('#pawscode').html('code: '+code)
-    $('#dnabody').html(code)
+    $('#dnapaws').html(code)
 }
 
 function bellyColor(color,code) {
     $('.lips, .tummy').css('background', '#' + color)
     $('#bellycode').html('code: '+code)
-    $('#dnabody').html(code)
+    $('#dnabelly').html(code)
 }
 
 //###################################################
