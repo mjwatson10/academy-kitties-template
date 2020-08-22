@@ -15,7 +15,7 @@ var defaultDNA = {
     "decorationSidescolor" : 13,
     "animation" :  1,
     "lastNum" :  1
-    }
+    } 
 
 // when page load
 $( document ).ready(function() {
