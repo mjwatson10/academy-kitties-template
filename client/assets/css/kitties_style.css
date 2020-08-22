@@ -266,10 +266,11 @@
 .tail{
     color: rgb(119, 117, 113);
     font-size: 12rem;
-    left: 59px;
-    top: 355px;
+    left: 90px;
+    top: 321px;
     position: absolute;
     border-radius: 50%;
+    letter-spacing: -72px;
     height: 30px;
     transform: scale(1,-1) rotate(-81deg);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

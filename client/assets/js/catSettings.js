@@ -21,7 +21,7 @@ $( document ).ready(function() {
   $('#dnamouth').html(defaultDNA.mouthColor);
   $('#dnaeyes').html(defaultDNA.eyesColor);
   $('#dnaears').html(defaultDNA.earsColor);
-    
+
 //   $('#dnashape').html(defaultDNA.eyesShape)
 //   $('#dnadecoration').html(defaultDNA.decorationPattern)
 //   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
@@ -57,4 +57,29 @@ function renderCat(dna){
 $('#bodycolor').change(()=>{
     var colorVal = $('#bodycolor').val()
     headColor(colors[colorVal],colorVal)
+})
+
+$('#tailcolor').change(()=>{
+    var colorVal = $('#tailcolor').val()
+    legsColor(colors[colorVal],colorVal)
+})
+
+$('#eyes_color').change(()=>{
+    var colorVal = $('#eyes_color').val()
+    eyeColor(colors[colorVal],colorVal)
+})
+
+$('#ears_color').change(()=>{
+    var colorVal = $('#ears_color').val()
+    earColor(colors[colorVal],colorVal)
+})
+
+$('#paws_color').change(()=>{
+    var colorVal = $('#paws_color').val()
+    pawColor(colors[colorVal],colorVal)
+})
+
+$('#belly_color').change(()=>{
+    var colorVal = $('#belly_color').val()
+    bellyColor(colors[colorVal],colorVal)
 })
