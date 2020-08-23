@@ -60,15 +60,23 @@
                     </div>
 
                     <div id="head">
+                      <div class="stripes">
+                        <div class="stripes-top-left">~</div>
+                        <div class="stripes-top-right">~</div>
+                        <div class="stripes-bottom-left">~</div>
+                        <div class="stripes-bottom-right">~</div>
+                      </div>
                         <div class="eyes">
                             <div class="eye">
                                 <div class="left-Eye">
                                     <div class="pupils"></div>
+                                    <div class="eye-borders-left"></div>
                                 </div>
                             </div>
                             <div class="eye">
                                 <div class="right-Eye">
                                     <div class="pupils"></div>
+                                    <div class="eye-borders-right"></div>
                                 </div>
                             </div>
                         </div>
@@ -143,6 +151,26 @@
                 <div class="form-group">
                     <label for="formControlRange"><b>Belly and Mouth</b><span class="badge badge-dark ml-2" id="bellycode"></span></label>
                     <input type="range" min="10" max="98" class="form-control-range" id="belly_color">
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
+                    <input type="range" min="1" max="9" class="form-control-range" id="eyeshape">
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange"><b>Stripes</b><span class="badge badge-dark ml-2" id="stripeName"></span></label>
+                    <input type="range" min="1" max="9" class="form-control-range" id="stripeshape">
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange"><b>Top Stripe Color</b><span class="badge badge-dark ml-2" id="topcode"></span></label>
+                    <input type="range" min="10" max="98" class="form-control-range" id="stripe_top_color">
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange"><b>Bottom Stripe Color</b><span class="badge badge-dark ml-2" id="bottomcode"></span></label>
+                    <input type="range" min="10" max="98" class="form-control-range" id="stripe_bottom_color">
                 </div>
             </div>
 

@@ -23,6 +23,79 @@
     box-shadow: 1px 1px 0px 1px rgb(228, 228, 226);
 }
 
+.stripes{
+    position: relative;
+    top: 30px;
+    display: flex;
+}
+
+.stripes-top-left{
+    /*background-color: white;
+    border-radius: 50% 50% 50% 50%;
+    width: 15px;
+    height: 46px;
+    margin: -23px;
+    position: relative;
+    left: 123px;
+    top: -7px;*/
+    color: white;
+    font-size: 6rem;
+    left: 70px;
+    top: -55px;
+    position: absolute;
+    border-radius: 50%;
+    letter-spacing: -72px;
+    transform: rotate(-61deg);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.stripes-top-right{
+    /*background-color: white;
+    border-radius: 50% 50% 50% 50%;
+    width: 15px;
+    height: 46px;
+    margin: -23px;
+    position: relative;
+    left: 138px;
+    top: -7px;*/
+    color: white;
+    font-size: 6rem;
+    left: 48px;
+    top: -20px;
+    position: absolute;
+    border-radius: 50%;
+    letter-spacing: -72px;
+    height: 30px;
+    transform: scale(1,-1) rotate(-63deg);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.stripes-bottom-left{
+    color: white;
+    font-size: 7rem;
+    left: -26px;
+    top: 37px;
+    position: absolute;
+    border-radius: 50%;
+    letter-spacing: -72px;
+    height: 30px;
+    transform: rotate(-19deg);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.stripes-bottom-right{
+    color: white;
+    font-size: 7rem;
+    left: 118px;
+    top: 150px;
+    position: absolute;
+    border-radius: 50%;
+    letter-spacing: -72px;
+    height: 30px;
+    transform: scale(1,-1) rotate(-19deg);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .tummy{
     background-color: rgb(250, 249, 229);
     width: 50px;
@@ -46,6 +119,40 @@
     height: 75px;
     margin: 19px;
     position: relative;
+}
+
+.eye-borders-left{
+    background-color: none;
+    border-radius: 50%;
+    width: 63px;
+    height: 75px;
+    margin: 19px;
+    position: absolute;
+    left: -26px;
+    top: -25px;
+    position: absolute;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    border-image: initial;
+}
+
+.eye-borders-right{
+    background-color: none;
+    border-radius: 50%;
+    width: 63px;
+    height: 75px;
+    margin: 19px;
+    position: absolute;
+    left: -26px;
+    top: -25px;
+    position: absolute;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    border-image: initial;
 }
 
 .left-Eye{
