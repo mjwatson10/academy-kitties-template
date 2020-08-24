@@ -66,14 +66,16 @@ function renderCat(dna){
     $('#paws_color').val(dna.pawcolor)
     bellyColor(colors[dna.bellycolor],dna.bellycolor)
     $('#belly_color').val(dna.bellycolor)
-    eyeVariation(colors[dna.eyesShape],dna.eyesShape)
+    eyeVariation(dna.eyesShape)
     $('#eyeshape').val(dna.eyesShape)
-    decorationVariation(colors[dna.decorationPattern],dna.decorationPattern)
+    decorationVariation(dna.decorationPattern)
     $('#stripeshape').val(dna.decorationPattern)
     decorationTopColor(colors[dna.decorationTopcolor],dna.decorationTopcolor)
     $('#stripe_top_color').val(dna.decorationTopcolor)
     decorationBottomColor(colors[dna.decorationBottomcolor],dna.decorationBottomcolor)
     $('#stripe_bottom_color').val(dna.decorationBottomcolor)
+    animationVariation(dna.animation)
+    $("#animation").val(dna.animation)
 }
 
 // Changing cat colors
@@ -125,4 +127,9 @@ $('#stripe_top_color').change(()=>{
 $('#stripe_bottom_color').change(()=>{
     var colorVal = $('#stripe_bottom_color').val()
     decorationBottomColor(colors[colorVal],colorVal)
+})
+
+$('#animation').change(()=>{
+    var animationVal = parseInt( $('#animation').val() )
+    animationVariation(animationVal)
 })

@@ -60,7 +60,6 @@ function decorationBottomColor(color,code) {
     $('.stripes-bottom-left, .stripes-bottom-right').css('color', '#' + color)
     $('#bottomcode').html('code: '+code)
     $('#dnadecorationBottom').html(code)
-    console.log('someg');
 }
 
 //###################################################
@@ -114,9 +113,6 @@ function eyeVariation(num) {
             $('#eyeName').html('Forest Whitaker')
             eyesType8()
             break;
-
-        default:
-            console.log("no feature");
     }
 }
 
@@ -171,6 +167,32 @@ function decorationVariation(num) {
 }
 
 
+function animationVariation(num){
+  $('dnaanimation').html(num);
+  switch (num) {
+      case 1:
+          animationType1();
+          break;
+      case 2:
+          animationType2();
+          break;
+    }
+}
+
+
+function animationType1(){
+  resetAnimation();
+  $("#head").addClass("movingHead");
+}
+
+function animationType2(){
+  resetAnimation();
+  console.log("xnsdjanc");
+}
+
+function resetAnimation(){
+  $("#head").removeClass("movingHead");
+}
 
 function normalEyes() {
     $('.eye-borders-left, .eye-borders-right').css('border', 'none')
