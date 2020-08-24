@@ -171,6 +171,7 @@ function animationVariation(num){
   $('dnaanimation').html(num);
   switch (num) {
       case 1:
+          $('#animationName').html('Head Move')
           animationType1();
           break;
       case 2:
@@ -183,15 +184,16 @@ function animationVariation(num){
 function animationType1(){
   resetAnimation();
   $("#head").addClass("movingHead");
+  $(".ears").addClass("movingEars");
 }
 
 function animationType2(){
   resetAnimation();
-  console.log("xnsdjanc");
 }
 
 function resetAnimation(){
   $("#head").removeClass("movingHead");
+  $(".ears").removeClass("movingEars");
 }
 
 function normalEyes() {
