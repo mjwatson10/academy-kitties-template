@@ -36,3 +36,160 @@
       transform: rotate(0deg);
     }
 }
+
+.wigglingNose{
+    animation: wiggleNose 2s infinite;
+}
+
+@keyframes wiggleNose {
+  0% {
+    bottom: 0px;
+  }
+  30% {
+    bottom: 2px;
+  }
+  60% {
+    bottom: -2px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+.blinkingEyes{
+  animation: blinkEyes 5s infinite;
+}
+
+@keyframes blinkEyes {
+  0% {
+    border-top: 0px solid;
+  }
+  0% {
+    border-bottom: 0px solid;
+  }
+  10% {
+    border-top: 0px solid;
+  }
+  10% {
+    border-bottom: 0px solid;
+  }
+  15%{
+    border-top: 38px solid;
+  }
+  15%{
+    border-bottom: 38px solid;
+  }
+  20% {
+    border-top: 0px solid;
+  }
+  20% {
+    border-bottom: 0px solid;
+  }
+  100% {
+    border-top: 0px solid;
+  }
+  100% {
+    border-bottom: 0px solid;
+  }
+}
+
+.tailwagging{
+  animation: tailwag 5s infinite;
+}
+
+@keyframes tailwag {
+  0% {
+    transform: scale(1,-1) rotate(-81deg);
+  }
+  30% {
+    transform: scale(1,-1) rotate(-84deg);
+  }
+  60% {
+    transform: scale(1,-1) rotate(-78deg);
+  }
+  100% {
+    transform: scale(1,-1) rotate(-81deg);
+  }
+}
+
+.tailendwagging{
+  animation: tailendwag 5s infinite;
+}
+
+@keyframes tailendwag {
+  0% {
+    top: 244px;
+  }
+  30% {
+    top: 256px;
+  }
+  60% {
+    top: 239px;
+  }
+  100% {
+    top: 244px;
+  }
+}
+
+.earupdown{
+    animation: earupanddown 5s infinite;
+}
+
+@keyframes earupanddown {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: skewY(2deg) skewX(3deg) rotate(1deg);
+  }
+  60% {
+    transform: skewY(-2deg) skewX(-3deg) rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.eyesmoving{
+    animation: eyesmove 10s infinite;
+}
+
+@keyframes eyesmove {
+  0% {
+    left: 0px;
+  }
+  30% {
+    left: 3px;
+  }
+  50% {
+    left: 0px;
+  }
+  80% {
+    left: -3px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+.pupilsmoving{
+    animation: pupilsmove 10s infinite;
+}
+
+@keyframes pupilsmove {
+  0% {
+    left: 16px;
+  }
+  30% {
+    left: 23px;
+  }
+  50% {
+    left: 16px;
+  }
+  80% {
+    left: 9px;
+  }
+  100% {
+    left: 16px;
+  }
+}

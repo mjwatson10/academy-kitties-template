@@ -132,5 +132,4 @@ $('#stripe_bottom_color').change(()=>{
 $('#animation').change(()=>{
     var animationVal = parseInt( $('#animation').val() )
     animationVariation(animationVal)
-    console.log(animationVal);
 })

@@ -168,14 +168,31 @@ function decorationVariation(num) {
 
 
 function animationVariation(num){
-  $('dnaanimation').html(num);
+  $('#dnaanimation').html(num);
   switch (num) {
       case 1:
           $('#animationName').html('Head Move')
           animationType1();
           break;
       case 2:
+          $('#animationName').html('Wiggle Nose')
           animationType2();
+          break;
+      case 3:
+          $('#animationName').html('Blinking')
+          animationType3();
+          break;
+      case 4:
+          $('#animationName').html('Wag Tail')
+          animationType4();
+          break;
+      case 5:
+          $('#animationName').html('Wiggle Ears')
+          animationType5();
+          break;
+      case 6:
+          $('#animationName').html('Move Eyes')
+          animationType6();
           break;
     }
 }
@@ -189,11 +206,42 @@ function animationType1(){
 
 function animationType2(){
   resetAnimation();
+  $(".nose").addClass("wigglingNose");
+}
+
+function animationType3(){
+  resetAnimation();
+  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");
+}
+
+function animationType4(){
+  resetAnimation();
+  $(".tail").addClass("tailwagging");
+  $(".tail-end").addClass("tailendwagging");
+}
+
+function animationType5(){
+  resetAnimation();
+  $(".ears").addClass("earupdown");
+}
+
+function animationType6(){
+  resetAnimation();
+  $(".left-Eye, .right-Eye").addClass("eyesmoving");
+  $(".pupils").addClass("pupilsmoving");
+  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");
 }
 
 function resetAnimation(){
   $("#head").removeClass("movingHead");
   $(".ears").removeClass("movingEars");
+  $(".nose").removeClass("wigglingNose");
+  $(".eye-borders-left, .eye-borders-right").removeClass("blinkingEyes");
+  $(".tail").removeClass("tailwagging");
+  $(".tail-end").removeClass("tailendwagging");
+  $(".ears").removeClass("earupdown");
+  $(".left-Eye, .right-Eye").removeClass("eyesmoving");
+  $(".pupils").removeClass("pupilsmoving");
 }
 
 function normalEyes() {
