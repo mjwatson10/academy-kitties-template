@@ -125,7 +125,22 @@
             <div class="col-lg-7 cattributes m-2 light-b-shadow">
 
 <!-- Cat colors -->
-<div id="catColors">
+<div class="row">
+
+  <div class="col-sm-11" id="navBar">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-toggle="tab" href="#colorsTab" role="tab" aria-controls="colors" aria-selected="true">Cat Colors</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="exchange-tab" data-toggle="tab" href="#cattributesTab" role="tab" aria-controls="cattributes" aria-selected="false">Cattributes</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="colorsTab" role="tabpanel" aria-labelledby="color-tab">
+
+              <div id="catColors">
                 <div class="form-group">
                     <label for="formControlRange"><b>Head and Body</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
                     <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
@@ -137,18 +152,9 @@
                 </div>
 
                 <div class="form-group">
-                  <div class="row">
-                    <div class="col">
-                          <label for="formControlRange"><b>Eyes</b><span class="badge badge-dark ml-2" id="eyescode"></span></label>
-                          <input type="range" min="10" max="98" class="form-control-range" id="eyes_color">
-                      </div>
-
-                      <div class="col">
-                          <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
-                          <input type="range" min="1" max="9" class="form-control-range" id="eyeshape">
-                      </div>
-                    </div>
-                  </div>
+                    <label for="formControlRange"><b>Eyes</b><span class="badge badge-dark ml-2" id="eyescode"></span></label>
+                    <input type="range" min="10" max="98" class="form-control-range" id="eyes_color">
+                </div>
 
                 <div class="form-group">
                     <label for="formControlRange"><b>Ears</b><span class="badge badge-dark ml-2" id="earscode"></span></label>
@@ -164,11 +170,10 @@
                     <label for="formControlRange"><b>Belly and Mouth</b><span class="badge badge-dark ml-2" id="bellycode"></span></label>
                     <input type="range" min="10" max="98" class="form-control-range" id="belly_color">
                 </div>
-
-                <div class="form-group">
-                    <label for="formControlRange"><b>Stripes</b><span class="badge badge-dark ml-2" id="stripeName"></span></label>
-                    <input type="range" min="1" max="9" class="form-control-range" id="stripeshape">
                 </div>
+                </div>
+
+                <div class="tab-pane fade show active" id="cattributesTab" role="tabpanel" aria-labelledby="cattributes-tab">
 
                 <div class="form-group">
                   <div class="row">
@@ -182,21 +187,29 @@
                           <input type="range" min="10" max="98" class="form-control-range" id="stripe_bottom_color">
                       </div>
                     </div>
-                <div class="form-group">
-                    <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
-                    <input type="range" min="1" max="6" class="form-control-range" id="animation">
-                </div>
+
+                    <div class="form-group">
+                        <label for="formControlRange"><b>Stripes</b><span class="badge badge-dark ml-2" id="stripeName"></span></label>
+                        <input type="range" min="1" max="9" class="form-control-range" id="stripeshape">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
+                        <input type="range" min="1" max="9" class="form-control-range" id="eyeshape">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
+                        <input type="range" min="1" max="6" class="form-control-range" id="animation">
+                    </div>
             </div>
 
             </div>
 
-            </div>
             <br>
 
         </div>
-
-
-
+        </div>
     </div>
     <footer align="left">
         <p>Ivan on Tech Academy Bootcamp July 2020</p>
