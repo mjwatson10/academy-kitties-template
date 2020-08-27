@@ -142,8 +142,8 @@ function getRandomDNA(){
 $("#randomButton").click(function randomCat(){
   const randomDNA = getRandomDNA();
     renderCat(randomDNA)
-  })
+})
 
 $("#defaultButton").click(function defaultCat(){
     renderCat(defaultDNA);
-  })
+})
