@@ -133,3 +133,76 @@ $('#animation').change(()=>{
     var animationVal = parseInt( $('#animation').val() )
     animationVariation(animationVal)
 })
+
+//button functions
+$("#randomButton").click(function randomCat(){
+
+  var randomDNA = {
+      "headcolor" : Math.floor(Math.random() * colors.length),
+      "legscolor" : Math.floor(Math.random() * colors.length),
+      "eyecolor" : Math.floor(Math.random() * colors.length),
+      "earcolor" : Math.floor(Math.random() * colors.length),
+      "pawcolor" : Math.floor(Math.random() * colors.length),
+      "bellycolor" :Math.floor(Math.random() * colors.length),
+      "eyesShape" : Math.floor(Math.random() * 10) + 1,
+      "decorationPattern" : Math.floor(Math.random() * 10) + 1,
+      "decorationTopcolor" : Math.floor(Math.random() * colors.length),
+      "decorationBottomcolor" : Math.floor(Math.random() * colors.length),
+      "animation" :  Math.floor(Math.random() * 6) + 1,
+      "lastNum" :  Math.floor(Math.random() * 10) + 1
+      }
+
+      $( document ).ready(function() {
+        $('#dnabody').html(randomDNA.headColor);
+        $('#dnalegs').html(randomDNA.legsColor);
+        $('#dnaeyes').html(randomDNA.eyeColor);
+        $('#dnaears').html(randomDNA.earColor);
+        $('#dnapaws').html(randomDNA.pawColor);
+        $('#dnabelly').html(randomDNA.bellyColor);
+
+        $('#dnashape').html(randomDNA.eyeVariation)
+        $('#dnadecoration').html(randomDNA.decorationVariation)
+        $('#dnadecorationTop').html(randomDNA.decorationTopcolor)
+        $('#dnadecorationBottom').html(randomDNA.decorationBottomcolor)
+        $('#dnaanimation').html(randomDNA.animation)
+        $('#dnaspecial').html(randomDNA.lastNum)
+
+        renderCat(randomDNA)
+      });
+
+});
+
+$("#defaultButton").click(function defaultCat(){
+  var defaultDNA = {
+      "headcolor" : 36,
+      "legscolor" : 36,
+      "eyecolor" : 66,
+      "earcolor" : 36,
+      "pawcolor" : 13,
+      "bellycolor" :13,
+      "eyesShape" : 1,
+      "decorationPattern" : 1,
+      "decorationTopcolor" : 13,
+      "decorationBottomcolor" : 13,
+      "animation" :  1,
+      "lastNum" :  1
+      }
+
+  $( document ).ready(function() {
+    $('#dnabody').html(defaultDNA.headColor);
+    $('#dnalegs').html(defaultDNA.legsColor);
+    $('#dnaeyes').html(defaultDNA.eyeColor);
+    $('#dnaears').html(defaultDNA.earColor);
+    $('#dnapaws').html(defaultDNA.pawColor);
+    $('#dnabelly').html(defaultDNA.bellyColor);
+
+    $('#dnashape').html(defaultDNA.eyeVariation)
+    $('#dnadecoration').html(defaultDNA.decorationVariation)
+    $('#dnadecorationTop').html(defaultDNA.decorationTopcolor)
+    $('#dnadecorationBottom').html(defaultDNA.decorationBottomcolor)
+    $('#dnaanimation').html(defaultDNA.animation)
+    $('#dnaspecial').html(defaultDNA.lastNum)
+
+    renderCat(defaultDNA)
+  });
+})
