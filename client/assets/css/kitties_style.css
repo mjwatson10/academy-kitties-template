@@ -405,3 +405,16 @@
     left: 89px;
     top: 13px;
 }
+
+/*buttons*/
+#defaultButton{
+  margin: 4px;
+}
+
+#randomButton{
+  margin: 4px;
+}
+
+#createButton{
+  margin: 4px;
+}
