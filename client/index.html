@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/web3.min.js"></script>
+  <script src="./abi.js"></script>
+
 
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/kitties_style.css">
@@ -213,11 +216,18 @@
     <button type="button" class="btn btn-info" id="randomButton">Random Kitty</button>
     <button type="button" class="btn btn-success" id="createButton">Create Kitty</button>
 
+
+    <div class="alert alert-success" role="alert" id="kittyCreation" style="display:none">
+
+    </div>
+
+
     <footer align="left">
         <p>Ivan on Tech Academy Bootcamp July 2020</p>
     </footer>
 
   </body>
+  <script src="./index.js"></script>
   <script src="assets/js/colors.js"></script>
   <script src="assets/js/catSettings.js"></script>
   <script src="assets/js/catFactory.js"></script>

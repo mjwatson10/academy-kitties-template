@@ -41,7 +41,6 @@ contract Kittycontract is IERC721, Ownable {
 
 
 //FUNCTIONS
-
   function createKittyGen0(uint256 _genes) public onlyOwner returns (uint256) {
       require(gen0Counter < CREATION_LIMIT_GEN0);
 
