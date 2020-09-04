@@ -11,7 +11,7 @@ contract Kittycontract is IERC721, Ownable {
         //this gets access the the library Safemath.sol
         using SafeMath for uint256;
 
-        uint256 public constant CREATION_LIMIT_GEN0 = 10;
+        uint256 public constant CREATION_LIMIT_GEN0 = 100;
         string public constant _name = "CyberKitties";
         string public constant _symbol = "CK";
 

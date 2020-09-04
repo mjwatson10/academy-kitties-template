@@ -4,7 +4,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0xD7E54656a0dAf9ab9Cd45fcb8Ac16c96dcab9e80";
+var contractAddress = "0x0404cbDd6E261540085D636d7828C5376B019Fe6";
 
 $(document).ready(function(){
   //call for metamask enable function
@@ -17,18 +17,21 @@ $(document).ready(function(){
       instance.events.Birth().on('data', function(event){
         console.log(event);
 
-        let owner = event.returnVaues.owner;
-        let kittenId = event.returnVaues.kittenId;
-        let momId = event.returnVaues.momId;
-        let dadId = event.returnVaues.dadId;
-        let genes = event.returnVaues.genes;
+        let owner = event.returnValues.owner;
+        let kittenId = event.returnValues.kittenId;
+        let momId = event.returnValues.momId;
+        let dadId = event.returnValues.dadId;
+        let genes = event.returnValues.genes;
 
-        $("kittyCreation").css("display", block);
-        $("kittyCreation").text("owner: " + owner
-                                + "kittyId: " + kiitenId
-                                + "momId: " + momId
-                                + "dadId: " + dadId
-                                + "genes: " + genes)
+
+        $("#kittyCreation").css("display", "block");
+        $("#kittyCreation").text("Owner: " + owner
+                                + " || Kitten Id: " + kittenId
+                                + " || Mom Id: " + momId
+                                + " || Dad Id: " + dadId
+                                + " || Genes: " + genes);
+
+        alert("Congratulations!!! You own a new Kitty")                        
       })
       .on('error', console.error)
 
@@ -39,7 +42,7 @@ $("#createButton").click(function createKitty(){
   var kittyDna = getDna();
   instance.methods.createKittyGen0(kittyDna).send({}, function(error, txHash){
     if (error) {
-      console.log(err);
+      console.log(error);
     } else {
       console.log(txHash);
     }
