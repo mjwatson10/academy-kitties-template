@@ -12,6 +12,7 @@ contract Kittycontract is IERC721, Ownable {
         using SafeMath for uint256;
 
         uint256 public constant CREATION_LIMIT_GEN0 = 100;
+        uint256 public gen0Counter;
         string public constant _name = "CyberKitties";
         string public constant _symbol = "CK";
 
@@ -35,9 +36,8 @@ contract Kittycontract is IERC721, Ownable {
 
         mapping(uint256 => address) public kittyIndexToOwner;
         mapping(address => uint256) ownershipTokenCount;
+        mapping(address => Kitty) public allOwnersKitties;
 
-
-        uint256 public gen0Counter;
 
 
 //FUNCTIONS
@@ -84,16 +84,35 @@ contract Kittycontract is IERC721, Ownable {
           uint256 generation
         )
     {
-      //storage is you to take up less space as oppose to memory because it point to the mapping instead of making a copy
-      Kitty storage kitty = kitties[kittyId];
+      //storage is used to take up less space as oppose to memory because it point to the mapping instead of making a copy
+              Kitty storage kitty = kitties[kittyId];
 
-      genes = kitty.genes;
-      birthTime = uint256(kitty.birthTime);
-      momId = uint256(kitty.momId);
-      dadId = uint256(kitty.dadId);
-      generation = uint256(kitty.generation);
+              genes = kitty.genes;
+              birthTime = uint256(kitty.birthTime);
+              momId = uint256(kitty.momId);
+              dadId = uint256(kitty.dadId);
+              generation = uint256(kitty.generation);
     }
 
+
+    function getKittiesIDs(address kittyOwner) public view returns (uint256[] memory) {
+        uint256 IdCount = ownershipTokenCount[kittyOwner];
+
+        if (IdCount == 0){
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](IdCount);
+            uint256 resultIndex = 0;
+
+            for (uint256 i = 1; i <= kitties.length; i++) {
+                if (kittyIndexToOwner[i] == kittyOwner) {
+                    result[resultIndex] = i;
+                    resultIndex++;
+                }
+            }
+         return result;
+        }
+    }
 
     /**
      * @dev Returns the number of tokens in ``owner``'s account.

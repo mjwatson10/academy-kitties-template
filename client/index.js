@@ -4,13 +4,13 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0x0404cbDd6E261540085D636d7828C5376B019Fe6";
+var contractAddress = "0x46B338494caE36033b4E2ec72cFEe7Ca6EaE9EA3";
 
 $(document).ready(function(){
   //call for metamask enable function
   window.ethereum.enable().then(function(accounts){
       instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
-      users = accounts[0];
+      user = accounts[0];
 
       console.log(instance);
 
@@ -31,7 +31,7 @@ $(document).ready(function(){
                                 + " || Dad Id: " + dadId
                                 + " || Genes: " + genes);
 
-        alert("Congratulations!!! You own a new Kitty")                        
+        alert("Congratulations!!! You own a new Kitty")
       })
       .on('error', console.error)
 
@@ -47,4 +47,36 @@ $("#createButton").click(function createKitty(){
       console.log(txHash);
     }
   });
+});
+
+
+/*on click event(function to display all kitties(){
+  access contract with getKittyIDs(user)
+  loop through all IDs returned from the getKittyIDs() to get each kitty
+  display each kitty on webpage
+})
+*/
+/*$("#myKitties").click(function showMyKitties(){
+
+const myKitties = allMyKittyIDs.mapping(
+  instance.methods.getKitty(user).send({}, function(error, txHash){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(txHash);
+    }
+  }));
+    console.log(myKitties);
+}); */
+
+$("#myKitties").click(function getOwnedKittyIDs(){
+  const allMyKittyIDs = instance.methods.getKittyIDs(user).send({}, function(error, txHash){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(txHash);
+    };
+
+  console.log(allMyKittyIDs); 
+});
 });

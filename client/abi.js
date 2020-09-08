@@ -135,6 +135,47 @@ var abi = [
   },
   {
     "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "allOwnersKitties",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "genes",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint64",
+        "name": "birthTime",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint32",
+        "name": "momId",
+        "type": "uint32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "dadId",
+        "type": "uint32"
+      },
+      {
+        "internalType": "uint16",
+        "name": "generation",
+        "type": "uint16"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
     "inputs": [],
     "name": "gen0Counter",
     "outputs": [
@@ -225,6 +266,27 @@ var abi = [
         "internalType": "uint256",
         "name": "generation",
         "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "kittyOwner",
+        "type": "address"
+      }
+    ],
+    "name": "getKittiesIDs",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
       }
     ],
     "payable": false,
