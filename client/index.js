@@ -4,7 +4,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0x46B338494caE36033b4E2ec72cFEe7Ca6EaE9EA3";
+var contractAddress = "0x306Ade916EAD8Cc6943BA9C53F41A743e9977020";
 
 $(document).ready(function(){
   //call for metamask enable function
@@ -70,13 +70,7 @@ const myKitties = allMyKittyIDs.mapping(
 }); */
 
 $("#myKitties").click(function getOwnedKittyIDs(){
-  const allMyKittyIDs = instance.methods.getKittyIDs(user).send({}, function(error, txHash){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(txHash);
-    };
-
-  console.log(allMyKittyIDs); 
-});
+  const allMyKittyIDs = instance.methods.getKittyIDs(user).call().then({from: user}, function(result){
+    console.log(result);
+  });
 });
