@@ -41,29 +41,3 @@ $("#createButton").click(function createKitty(){
     }
   });
 });
-
-
-/*on click event(function to display all kitties(){
-  access contract with getKittyIDs(user)
-  loop through all IDs returned from the getKittyIDs() to get each kitty
-  display each kitty on webpage
-})
-*/
-/*$("#myKitties").click(function showMyKitties(){
-
-const myKitties = allMyKittyIDs.mapping(
-  instance.methods.getKitty(user).send({}, function(error, txHash){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(txHash);
-    }
-  }));
-    console.log(myKitties);
-}); */
-
-$("#myKitties").click(function getOwnedKittyIDs(){
-  const allMyKittyIDs = instance.methods.getKittyIDs(user).call({from: user}).then(function(result){
-    console.log(result);
-  });
-});

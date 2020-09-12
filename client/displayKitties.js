@@ -13,28 +13,22 @@ $(document).ready(function(){
   })
 })
 
-
-
+/*on click event(function to display all kitties(){
+  access contract with getKittyIDs(user)
+  loop through all IDs returned from the getKittyIDs() to get each kitty
+  display each kitty on webpage
+})
+*/
 $("#loadKitties").click(function(){
-  const showKitties = [];
-  instance.methods.getKittiesIDs(user).call({from: user}).then(function(error, result){
-    if (error) {
-      console.log(error);
-    } else {
-      showKitties = result;
-    }
-    return showKitties;
+  instance.methods.getKittiesIDs(user).call({from: user}).then(function(result){
+      getKittyDNA(result);
   })
 })
 
 function getKittyDNA(_kittyIDs){
   for(var i = 0; i < _kittyIDs.length; i++){
-    instance.methods.getKitty(_kittyIDs[i]).call({from: user}).then(function(err, res){
-      if (err) {
-        console.log(err);
-      } else {
+    instance.methods.getKitty(_kittyIDs[i]).call({from: user}).then(function(res){
         console.log(res);
-      }
     });
   }
 }
