@@ -63,7 +63,6 @@ const myKitties = allMyKittyIDs.mapping(
 }); */
 
 $("#myKitties").click(function getOwnedKittyIDs(){
-  console.log("hello");
   const allMyKittyIDs = instance.methods.getKittyIDs(user).call({from: user}).then(function(result){
     console.log(result);
   });
