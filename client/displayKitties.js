@@ -21,14 +21,26 @@ $(document).ready(function(){
 */
 $("#loadKitties").click(function(){
   instance.methods.getKittiesIDs(user).call({from: user}).then(function(result){
-      getKittyDNA(result);
+
+      kittiesArray = getKittyDNA(result);
+      return kittiesArray;
+
+  }).then(function(){
+    displayAllKitties = '';
+
+      for (var i = 0; i < kittiesArray.length; i++){
+        displayAllKitties += `<div>
+                                  ${kittiesArray[i]}
+                              </div>`;
+      }
+      $("#myOwnedKitties").html(displayAllKitties);
   })
 })
 
 function getKittyDNA(_kittyIDs){
   for(var i = 0; i < _kittyIDs.length; i++){
     instance.methods.getKitty(_kittyIDs[i]).call({from: user}).then(function(res){
-        console.log(res);
+        return res;
     });
   }
 }
