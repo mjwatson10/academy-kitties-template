@@ -19,25 +19,27 @@ $(document).ready(function(){
   display each kitty on webpage
 })
 */
-$("#loadKitties").click(function(){
-  instance.methods.getKittiesIDs(user).call({from: user}).then(function(result){
+$("#loadKitties").click(async function(){
+  const myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
+  const allMyKitties = await getKittyDNA(myKittiesIDs);
+  /*const displayKitties = '';
 
-      kittiesArray = getKittyDNA(result);
-      displayAllKitties = '';
-
-        for (var i = 0; i < kittiesArray.length; i++){
-          displayAllKitties += `<div>
-                                    ${kittiesArray[i]}
-                                </div>`;
-        }
-        $("#myOwnedKitties").html(displayAllKitties);
-  })
+  for (var i = 0; i < allMyKitties.length; i++) {
+    displayKitties += `<div>
+                        ${allMyKitties[i]}
+                      </div>`;
+  }
+  $("#myOwnedKitties").html(displayKitties); */
+  $("#myOwnedKitties").html(allMyKitties[1]);
+  console.log(allMyKitties[1]);
 })
 
-function getKittyDNA(_kittyIDs){
+async function getKittyDNA(_kittyIDs){
+  const kittyArray = [];
+
   for(var i = 0; i < _kittyIDs.length; i++){
-    instance.methods.getKitty(_kittyIDs[i]).call({from: user}).then(function(res){
-        return res;
-    });
+      let kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
+          kittyArray.push(kittyObject);
   }
+  return kittyArray;
 }
