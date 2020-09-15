@@ -22,16 +22,20 @@ $(document).ready(function(){
 $("#loadKitties").click(async function(){
   const myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
   const allMyKitties = await getKittyDNA(myKittiesIDs);
-  /*const displayKitties = '';
 
-  for (var i = 0; i < allMyKitties.length; i++) {
-    displayKitties += `<div>
-                        ${allMyKitties[i]}
-                      </div>`;
-  }
-  $("#myOwnedKitties").html(displayKitties); */
-  $("#myOwnedKitties").html(allMyKitties[1]);
-  console.log(allMyKitties[1]);
+  let displayKitties = '';
+  for (var i = 0; i < allMyKitties.length; i++){
+        displayKitties += `<div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <div>${"DNA: " + allMyKitties[i].genes}</div>
+                                <div>${"Mom: " + allMyKitties[i].momId}</div>
+                                <div>${"Dad: " + allMyKitties[i].dadId}</div>
+                                <div>${"Gen: " + allMyKitties[i].generation}</div>
+                              </div>
+                          </div>`
+
+    }
+  $("#myOwnedKitties").html(displayKitties);
 })
 
 async function getKittyDNA(_kittyIDs){
