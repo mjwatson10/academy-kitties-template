@@ -1,25 +1,12 @@
 
 
-$(document).ready(function(){
-  //call for metamask enable function
-  window.ethereum.enable().then(function(accounts){
-      instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
-      user = accounts[0];
-
-      console.log(instance);
-
-
-
-  })
-})
-
 /*on click event(function to display all kitties(){
   access contract with getKittyIDs(user)
   loop through all IDs returned from the getKittyIDs() to get each kitty
   display each kitty on webpage
 })
 */
-$("#loadKitties").click(async function(){
+$(document).ready(async function(){
   const myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
   const allMyKitties = await getKittyDNA(myKittiesIDs);
 
@@ -33,7 +20,6 @@ $("#loadKitties").click(async function(){
                                 <div>${"Gen: " + allMyKitties[i].generation}</div>
                               </div>
                           </div>`
-
     }
   $("#myOwnedKitties").html(displayKitties);
 })
