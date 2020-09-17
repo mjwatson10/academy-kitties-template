@@ -104,7 +104,7 @@ contract Kittycontract is IERC721, Ownable {
             uint256[] memory result = new uint256[](IdCount);
             uint256 resultIndex = 0;
 
-            for (uint256 i = 1; i <= kitties.length; i++) {
+            for (uint256 i = 1; i < kitties.length; i++) {
                 if (kittyIndexToOwner[i] == kittyOwner) {
                     result[resultIndex] = i;
                     resultIndex++;

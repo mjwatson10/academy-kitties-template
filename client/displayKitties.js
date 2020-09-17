@@ -1,28 +1,30 @@
 
 
-/*on click event(function to display all kitties(){
-  access contract with getKittyIDs(user)
-  loop through all IDs returned from the getKittyIDs() to get each kitty
-  display each kitty on webpage
-})
-*/
 $(document).ready(async function(){
-  const myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
-  const allMyKitties = await getKittyDNA(myKittiesIDs);
+  await connect();
+  await printAllIDs();
 
-  let displayKitties = '';
-  for (var i = 0; i < allMyKitties.length; i++){
-        displayKitties += `<div class="card" style="width: 18rem;">
-                              <div class="card-body">
-                                <div>${"DNA: " + allMyKitties[i].genes}</div>
-                                <div>${"Mom: " + allMyKitties[i].momId}</div>
-                                <div>${"Dad: " + allMyKitties[i].dadId}</div>
-                                <div>${"Gen: " + allMyKitties[i].generation}</div>
-                              </div>
-                          </div>`
-    }
-  $("#myOwnedKitties").html(displayKitties);
+
 })
+
+async function printAllIDs(){
+const myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
+const allMyKitties = await getKittyDNA(myKittiesIDs);
+
+let displayKitties = '';
+for (var i = 0; i < allMyKitties.length; i++){
+      displayKitties += `<div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                              <div>${"DNA: " + allMyKitties[i].genes}</div>
+                              <div>${"Mom: " + allMyKitties[i].momId}</div>
+                              <div>${"Dad: " + allMyKitties[i].dadId}</div>
+                              <div>${"Gen: " + allMyKitties[i].generation}</div>
+                            </div>
+                        </div>`
+  }
+  console.log(displayKitties);
+$("#myOwnedKitties").html(displayKitties);
+}
 
 async function getKittyDNA(_kittyIDs){
   const kittyArray = [];
