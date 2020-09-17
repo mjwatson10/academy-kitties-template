@@ -4,7 +4,6 @@ $(document).ready(async function(){
   await connect();
   await printAllIDs();
 
-
 })
 
 async function printAllIDs(){
