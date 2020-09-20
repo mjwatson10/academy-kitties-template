@@ -20,11 +20,14 @@ async function ownersArray(){
 
 async function cardsData(){
   let ownedKitties = await ownersArray();
+  //let imgThumb = kittyThumbnail();
+  //let _dna = await spreadDna();
 
   let kittyCards = '';
   for (var i = 0; i < ownedKitties.length; i++){
         kittyCards += `<div class="card" style="width: 18rem;">
                               <div class="card-body">
+
                                 <div>${"DNA: " + ownedKitties[i].genes}</div>
                                 <div>${"Gen: " + ownedKitties[i].generation}</div>
                               </div>
@@ -34,19 +37,17 @@ async function cardsData(){
 }
 
 
-async function cardsImage(){
+async function spreadDna(){
     let ownedKitties = await ownersArray();
-    let kittyGenes = await ownedKitties;
-    let imgDna = await dnaOfKitty(ownedKitties);
 
     let dnaArray = [];
-    for (var i = 0; i < imgDna.length; i++){
-          dnaArray.push(imgDna[i].genes)
+    for (var i = 0; i < ownedKitties.length; i++){
+      let imgDna = await dnaOfKitty(ownedKitties[i].genes);
+
+          dnaArray.push(imgDna);
+
       }
-
-    console.log(dnaArray);
-    return dnaArray;
-
+      return renderCat(dnaArray);
 }
 
 
@@ -122,67 +123,64 @@ function _renderCat(dna, id){
   decorationBottomColor(dna.decorationBottomcolor, id)
   _animationVariation(dna.animation, id)
 }
-
-function kittyThumbnail(id){
-  let kittyDiv = `<div class="col-lg-4 pointer fit-content">
-                  <div class="featureBox kittyDiv">
-
-                  <div class="row">
+*/
+function kittyThumbnail(){
+  let kittyDiv = `<div class="row">
                     <div class="col-lg-4 catBox m-2 light-b-shadow">
                       <div class="cat">
 
 
-                      <div class="tail-end`+ id + `"></div>
-                      <div class="tail`+ id + `">J</div>
+                      <div class="tail-end"></div>
+                      <div class="tail">J</div>
 
 
                         <div class="ears earupdown">
-                                <div class="ear`+ id + `" id="left-ear">
-                                    <div class="inner-Ear`+ id + `" id="inner-left-ear"></div>
+                                <div class="ear" id="left-ear">
+                                    <div class="inner-Ear" id="inner-left-ear"></div>
                                 </div>
-                                <div class="ear`+ id + `" id="right-ear">
-                                    <div class="inner-Ear`+ id + `" id="inner-right-ear"></div>
+                                <div class="ear" id="right-ear">
+                                    <div class="inner-Ear" id="inner-right-ear"></div>
                                 </div>
                         </div>
 
-                        <div id="body`+ id + `">
-                                <div class="tummy`+ id + `"></div>
+                        <div id="body">
+                                <div class="tummy"></div>
 
                                 <div class="back-legs">
-                                    <div class="back-leg-left`+ id + `">
-                                        <div class="paws-back-left`+ id + `"></div>
+                                    <div class="back-leg-left">
+                                        <div class="paws-back-left"></div>
                                     </div>
-                                    <div class="back-leg-right`+ id + `">
-                                        <div class="paws-back-right`+ id + `"></div>
+                                    <div class="back-leg-right">
+                                        <div class="paws-back-right"></div>
                                     </div>
                                 </div>
 
                                 <div class="front-legs">
-                                    <div class="front-leg`+ id + `">
-                                        <div class="paws`+ id + `"></div>
+                                    <div class="front-leg">
+                                        <div class="paws"></div>
                                     </div>
-                                    <div class="front-leg`+ id + `">
-                                        <div class="paws`+ id + `"></div>
+                                    <div class="front-leg">
+                                        <div class="paws"></div>
                                     </div>
                                 </div>
                           </div>
 
-                          <div id="head`+ id + `">
+                          <div id="head">
                               <div class="stripes">
-                                <div class="stripes-top-left`+ id + `">~</div>
-                                <div class="stripes-top-right`+ id + `">~</div>
-                                <div class="stripes-bottom-left`+ id + `">~</div>
-                                <div class="stripes-bottom-right`+ id + `">~</div>
+                                <div class="stripes-top-left">~</div>
+                                <div class="stripes-top-right">~</div>
+                                <div class="stripes-bottom-left">~</div>
+                                <div class="stripes-bottom-right">~</div>
                               </div>
                                 <div class="eyes">
                                     <div class="eye">
-                                        <div class="left-Eye eyesmoving`+ id + `">
+                                        <div class="left-Eye eyesmoving">
                                             <div class="pupils pupilsmoving"></div>
                                             <div class="eye-borders-left"></div>
                                         </div>
                                     </div>
                                     <div class="eye">
-                                        <div class="right-Eye eyesmoving`+ id + `">
+                                        <div class="right-Eye eyesmoving">
                                             <div class="pupils pupilsmoving"></div>
                                             <div class="eye-borders-right"></div>
                                         </div>
@@ -191,7 +189,7 @@ function kittyThumbnail(id){
 
                                 <div class="mouth">
                                     <div class="jaw"></div>
-                                    <div class="lips`+ id + `">
+                                    <div class="lips">
                                         <div class="whiskers" id="right-whisker">///</div>
                                     </div>
                                     <div class="lips">
@@ -204,10 +202,7 @@ function kittyThumbnail(id){
                                     <div class="right-nose"></div>
                                 </div>
                             </div>
-                  </div>
-                </div>
-              </div>`
+                          </div>`
 
           $("#myOwnedKitties").append(kittyDiv);
 }
-*/
