@@ -36,9 +36,17 @@ async function cardsData(){
 
 async function cardsImage(){
     let ownedKitties = await ownersArray();
+    let kittyGenes = await ownedKitties;
     let imgDna = await dnaOfKitty(ownedKitties);
 
-    console.log(imgDna);
+    let dnaArray = [];
+    for (var i = 0; i < imgDna.length; i++){
+          dnaArray.push(imgDna[i].genes)
+      }
+
+    console.log(dnaArray);
+    return dnaArray;
+
 }
 
 
