@@ -27,6 +27,7 @@ async function cardsData(){
   for (var i = 0; i < ownedKitties.length; i++){
         kittyCards += `<div class="card" style="width: 18rem;">
                               <div class="card-body">
+                                <div>${imgThumb + _dna[i]}
                                 <div>${"DNA: " + ownedKitties[i].genes}</div>
                                 <div>${"Gen: " + ownedKitties[i].generation}</div>
                               </div>
@@ -44,9 +45,9 @@ async function spreadDna(){
       let imgDna = await dnaOfKitty(ownedKitties[i].genes);
 
           dnaArray.push(imgDna);
-
       }
-      return renderCat(dnaArray);
+      console.log(dnaArray);
+      return renderAllKitties(dnaArray);
 }
 
 
@@ -76,6 +77,35 @@ function dnaOfKitty(dnaStr){
     "animation" :  dnaStr.substring(18,19)
   }
   return _dna;
+}
+
+
+async function renderAllKitties(dna){
+    for (var i = 0; i < dna.length; i++) {
+
+        headColor(colors[dna[i].headcolor],dna[i].headcolor)
+        $('#bodycolor').val(dna[i].headcolor)
+        legsColor(colors[dna[i].legscolor],dna[i].legscolor)
+        $('#tailcolor').val(dna[i].legscolor)
+        eyeColor(colors[dna[i].eyecolor],dna[i].eyecolor)
+        $('#eyes_color').val(dna[i].eyecolor)
+        earColor(colors[dna[i].earcolor],dna[i].earcolor)
+        $('#ears_color').val(dna[i].earcolor)
+        pawColor(colors[dna[i].pawcolor],dna[i].pawcolor)
+        $('#paws_color').val(dna[i].pawcolor)
+        bellyColor(colors[dna[i].bellycolor],dna[i].bellycolor)
+        $('#belly_color').val(dna[i].bellycolor)
+        eyeVariation(dna[i].eyesShape)
+        $('#eyeshape').val(dna[i].eyesShape)
+        decorationVariation(dna[i].decorationPattern)
+        $('#stripeshape').val(dna[i].decorationPattern)
+        decorationTopColor(colors[dna[i].decorationTopcolor],dna[i].decorationTopcolor)
+        $('#stripe_top_color').val(dna[i].decorationTopcolor)
+        decorationBottomColor(colors[dna[i].decorationBottomcolor],dna[i].decorationBottomcolor)
+        $('#stripe_bottom_color').val(dna[i].decorationBottomcolor)
+        animationVariation(dna[i].animation)
+        $("#animation").val(dna[i].animation)
+      }
 }
 
 
