@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 $("#createButton").click(function createKitty(){
   var kittyDna = getDna();
-  instance.methods.createKittyGen0(kittyDna).send({}, function(error, txHash){
+  instance.methods.createKittyGen0(kittyDna.toString(10)).send({}, function(error, txHash){
     if (error) {
       console.log(error);
     } else {
