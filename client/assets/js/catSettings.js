@@ -30,14 +30,15 @@ function getDna(){
     dna += $('#dnapaws').html()
     dna += $('#dnabelly').html()
     dna += $('#dnashape').html()
-    dna += $('#dnatopdecoration').html()
+    dna += $('#dnadecoration').html()
     dna += $('#dnadecorationTop').html()
     dna += $('#dnadecorationBottom').html()
     dna += $('#dnaanimation').html()
     dna += $('#dnaspecial').html()
 
-    return parseInt(dna)
+    return dna;
 }
+
 
 function renderCat(dna){
     headColor(colors[dna.headcolor],dna.headcolor)

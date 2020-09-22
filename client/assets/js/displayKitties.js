@@ -27,7 +27,7 @@ async function cardsData(){
   for (var i = 0; i < ownedKitties.length; i++){
         kittyCards += `<div class="card" style="width: 18rem;">
                               <div class="card-body">
-                                <div>${imgThumb + _dna[i]}
+                                <div>${imgThumb + _dna[i]}</div>
                                 <div>${"DNA: " + ownedKitties[i].genes}</div>
                                 <div>${"Gen: " + ownedKitties[i].generation}</div>
                               </div>
@@ -58,7 +58,9 @@ async function getKittyDNA(_kittyIDs){
       let kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
           kittyArray.push(kittyObject);
   }
+  console.log(kittyArray);
   return kittyArray;
+
 }
 
 
@@ -107,6 +109,8 @@ async function renderAllKitties(dna){
         $("#animation").val(dna[i].animation)
       }
 }
+
+console.log();
 
 
 function kittyThumbnail(){
