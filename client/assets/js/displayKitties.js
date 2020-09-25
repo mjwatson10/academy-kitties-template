@@ -216,45 +216,45 @@ function _decorationVariation(num, id) {
     switch (num) {
         case 1:
             $('#stripeName').html('Basic')
-            normaldecoration()
+
             break;
         case 2:
-            normaldecoration()
+
             $('#stripeName').html('Spread Top')
             stripeType1(id)
             break;
         case 3:
-            normaldecoration()
+
             $('#stripeName').html('Lower Bottom')
             stripeType2(id)
             break;
         case 4:
-            normaldecoration()
+
             $('#stripeName').html('Smaller Top')
             stripeType3(id)
             break;
         case 5:
-            normaldecoration()
+
             $('#stripeName').html('Closer Bottom')
             stripeType4(id)
             break;
         case 6:
-            normaldecoration()
+
             $('#stripeName').html('Raise Bottom')
             stripeType5(id)
             break;
         case 7:
-            normaldecoration()
+
             $('#stripeName').html('Lowest Bottom')
             stripeType6(id)
             break;
         case 8:
-            normaldecoration()
+
             $('#stripeName').html('Closer Top')
             stripeType7(id)
             break;
         case 9:
-            normaldecoration()
+
             $('#stripeName').html('Lowest Top')
             stripeType8(id)
             break;
@@ -294,34 +294,28 @@ function _animationVariation(num, id){
 
 
 function animationType1(id){
-
   $(`#kitty${id} #head`).addClass("movingHead");
   $(`#kitty${id} .ears`).addClass("movingEars");
 }
 
 function animationType2(id){
-
   $(`#kitty${id} .nose`).addClass("wigglingNose");
 }
 
 function animationType3(id){
-
   $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).addClass("blinkingEyes");
 }
 
 function animationType4(id){
-
   $(`#kitty${id} .tail`).addClass("tailwagging");
   $(`#kitty${id} .tail-end`).addClass("tailendwagging");
 }
 
 function animationType5(id){
-
   $(`#kitty${id} .ears`).addClass("earupdown");
 }
 
 function animationType6(id){
-
   $(`#kitty${id} .left-Eye, #kitty${id} .right-Eye`).addClass("eyesmoving");
   $(`#kitty${id} .pupils`).addClass("pupilsmoving");
   $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).addClass("blinkingEyes");
@@ -367,14 +361,6 @@ function eyesType8(id){
 
 
 
-function normaldecoration() {
-    //Remove all style from other decorations
-    //In this way we can also use normalDecoration() to reset the decoration style
-    $(`#kitty${id} .stripes-top-left`).css({ "top": "-55px" }).css({ "left": "70px" })
-    $(`#kitty${id} .stripes-top-right`).css({ "top": "-20px" }).css({ "left": "48px" })
-    $(`#kitty${id} .stripes-bottom-left`).css({ "top": "37px" }).css({ "left": "-26px" })
-    $(`#kitty${id} .stripes-bottom-right`).css({ "top": "150px" }).css({ "left": "118px" })
-}
 
 function stripeType1(id){
     $(`#kitty${id} .stripes-top-left`).css({ "top": "-55px" }).css({ "left": "60" })
