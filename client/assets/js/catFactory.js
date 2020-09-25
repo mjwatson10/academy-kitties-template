@@ -71,46 +71,46 @@ function eyeVariation(num) {
     switch (num) {
         case 1:
             normalEyes()
-            $('#eyeName').html('Basic')
+            $('#eyeName').html('Basic ' + num)
             break;
         case 2:
             normalEyes()
-            $('#eyeName').html('Chill')
+            $('#eyeName').html('Chill ' + num)
             eyesType1()
             break;
         case 3:
             normalEyes()
-            $('#eyeName').html('Grumpy')
+            $('#eyeName').html('Grumpy ' + num)
             eyesType2()
             break;
         case 4:
             normalEyes()
-            $('#eyeName').html('Sleepy')
+            $('#eyeName').html('Sleepy ' + num)
             eyesType3()
             break;
         case 5:
             normalEyes()
-            $('#eyeName').html('Unamused')
+            $('#eyeName').html('Unamused ' + num)
             eyesType4()
             break;
         case 6:
             normalEyes()
-            $('#eyeName').html('Bags')
+            $('#eyeName').html('Bags ' + num)
             eyesType5()
             break;
         case 7:
             normalEyes()
-            $('#eyeName').html('Zombie')
+            $('#eyeName').html('Zombie ' + num)
             eyesType6()
             break;
         case 8:
             normalEyes()
-            $('#eyeName').html('Dayquil Nyquil')
+            $('#eyeName').html('Dayquil Nyquil ' + num)
             eyesType7()
             break;
         case 9:
             normalEyes()
-            $('#eyeName').html('Forest Whitaker')
+            $('#eyeName').html('Forest Whitaker ' + num)
             eyesType8()
             break;
     }
@@ -120,47 +120,47 @@ function decorationVariation(num) {
     $('#dnadecoration').html(num)
     switch (num) {
         case 1:
-            $('#stripeName').html('Basic')
+            $('#stripeName').html('Basic ' + num)
             normaldecoration()
             break;
         case 2:
             normaldecoration()
-            $('#stripeName').html('Spread Top')
+            $('#stripeName').html('Spread Top ' + num)
             stripeType1()
             break;
         case 3:
             normaldecoration()
-            $('#stripeName').html('Lower Bottom')
+            $('#stripeName').html('Lower Bottom ' + num)
             stripeType2()
             break;
         case 4:
             normaldecoration()
-            $('#stripeName').html('Smaller Top')
+            $('#stripeName').html('Smaller Top ' + num)
             stripeType3()
             break;
         case 5:
             normaldecoration()
-            $('#stripeName').html('Closer Bottom')
+            $('#stripeName').html('Closer Bottom ' + num)
             stripeType4()
             break;
         case 6:
             normaldecoration()
-            $('#stripeName').html('Raise Bottom')
+            $('#stripeName').html('Raise Bottom ' + num)
             stripeType5()
             break;
         case 7:
             normaldecoration()
-            $('#stripeName').html('Lowest Bottom')
+            $('#stripeName').html('Lowest Bottom ' + num)
             stripeType6()
             break;
         case 8:
             normaldecoration()
-            $('#stripeName').html('Closer Top')
+            $('#stripeName').html('Closer Top ' + num)
             stripeType7()
             break;
         case 9:
             normaldecoration()
-            $('#stripeName').html('Lowest Top')
+            $('#stripeName').html('Lowest Top ' + num)
             stripeType8()
             break;
     }
@@ -171,27 +171,27 @@ function animationVariation(num){
   $('#dnaanimation').html(num);
   switch (num) {
       case 1:
-          $('#animationName').html('Head Move')
+          $('#animationName').html('Head Move ' + num)
           animationType1();
           break;
       case 2:
-          $('#animationName').html('Wiggle Nose')
+          $('#animationName').html('Wiggle Nose ' + num)
           animationType2();
           break;
       case 3:
-          $('#animationName').html('Blinking')
+          $('#animationName').html('Blinking ' + num)
           animationType3();
           break;
       case 4:
-          $('#animationName').html('Wag Tail')
+          $('#animationName').html('Wag Tail ' + num)
           animationType4();
           break;
       case 5:
-          $('#animationName').html('Wiggle Ears')
+          $('#animationName').html('Wiggle Ears ' + num)
           animationType5();
           break;
       case 6:
-          $('#animationName').html('Move Eyes')
+          $('#animationName').html('Move Eyes ' + num)
           animationType6();
           break;
     }

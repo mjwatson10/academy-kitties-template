@@ -11240,12 +11240,12 @@
         }
       },
       "links": {},
-      "address": "0x79619ad059016F514B3a9Bae3AB4Ac7c6fC73f75",
-      "transactionHash": "0xad01b04428aaf877571fd13ba51efda5126d1d4f9f85442509668f4888a9ccb8"
+      "address": "0x490633f201F9f4e6F7bC94fC25A607d0f9E00A33",
+      "transactionHash": "0xf78cf2907b720fb7c2c1727cf06b14889bb94b509a6bbc4e9ae3209286ef9996"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-09-22T21:55:00.559Z",
+  "updatedAt": "2020-09-24T22:09:17.851Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

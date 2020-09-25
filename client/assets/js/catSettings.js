@@ -124,16 +124,16 @@ $('#animation').change(()=>{
 //button functions
 function getRandomDNA(){
   var randomDNA = {
-      "headcolor" : Math.floor(Math.random() * colors.length),
-      "legscolor" : Math.floor(Math.random() * colors.length),
-      "eyecolor" : Math.floor(Math.random() * colors.length),
-      "earcolor" : Math.floor(Math.random() * colors.length),
-      "pawcolor" : Math.floor(Math.random() * colors.length),
-      "bellycolor" :Math.floor(Math.random() * colors.length),
+      "headcolor" : Math.floor(Math.random() * 89) + 10,
+      "legscolor" : Math.floor(Math.random() * 89) + 10,
+      "eyecolor" : Math.floor(Math.random() * 89) + 10,
+      "earcolor" : Math.floor(Math.random() * 89) + 10,
+      "pawcolor" : Math.floor(Math.random() * 89) + 10,
+      "bellycolor" :Math.floor(Math.random() * 89) + 10,
       "eyesShape" : Math.floor(Math.random() * 10) + 1,
       "decorationPattern" : Math.floor(Math.random() * 10) + 1,
-      "decorationTopcolor" : Math.floor(Math.random() * colors.length),
-      "decorationBottomcolor" : Math.floor(Math.random() * colors.length),
+      "decorationTopcolor" : Math.floor(Math.random() * 89) + 10,
+      "decorationBottomcolor" : Math.floor(Math.random() * 89) + 10,
       "animation" :  Math.floor(Math.random() * 6) + 1,
       "lastNum" :  Math.floor(Math.random() * 10) + 1
       }
