@@ -298,13 +298,13 @@ function _animationVariation(num, id){
 
 
 function animationType1(id){
-  resetAnimation();
+  resetAnimation(id);
   $(`#kitty${id} #head`).addClass("movingHead");
   $(`#kitty${id} .ears`).addClass("movingEars");
 }
 
 function animationType2(id){
-  resetAnimation();
+  resetAnimation(id);
   $(`#kitty${id} .nose`).addClass("wigglingNose");
 }
 
@@ -314,18 +314,18 @@ function animationType3(id){
 }
 
 function animationType4(id){
-  resetAnimation();
+  resetAnimation(id);
   $(`#kitty${id} .tail`).addClass("tailwagging");
   $(`#kitty${id} .tail-end`).addClass("tailendwagging");
 }
 
 function animationType5(id){
-  resetAnimation();
+  resetAnimation(id);
   $(`#kitty${id} .ears`).addClass("earupdown");
 }
 
 function animationType6(id){
-  resetAnimation();
+  resetAnimation(id);
   $(`#kitty${id} .left-Eye, #kitty${id} .right-Eye`).addClass("eyesmoving");
   $(`#kitty${id} .pupils`).addClass("pupilsmoving");
   $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).addClass("blinkingEyes");
