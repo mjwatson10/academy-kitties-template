@@ -23,17 +23,20 @@ async function cardsData(){
   for (var i = 0; i < ownedKitties.length; i++){
     let imgThumb = kittyThumbnail(i);
     let _dna = await dnaOfKitty(ownedKitties[i]);
+    console.log(_dna);
 
-        let kittyCards = `<div class="card" style="width: 18rem;">
-                              <div class="card-body">
-                                    <div>${imgThumb}</div>
-
-                                    <div>${"DNA: " + birth[i].genes}
-                                          <br>
-                                         ${"Gen: " + birth[i].generation}
-                                    </div>
+        let kittyCards = `<div class="col-lg-4">
+                            <div class="card" style="width: 250px;">
+                                  <div class="card-body">
+                                        <div>${imgThumb}
+                                              <br>
+                                             ${"DNA: " + birth[i].genes}
+                                              <br>
+                                             ${"Gen: " + birth[i].generation}
+                                        </div>
+                                  </div>
                               </div>
-                          </div>`
+                            </div>`
             $("#myOwnedKitties").append(kittyCards);
             renderKitty(_dna, i);
         }
@@ -48,7 +51,7 @@ async function getKittyDNA(_kittyIDs){
       let kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
           kittyArray.push(kittyObject.genes);
   }
-  console.log(kittyArray);
+  //console.log(kittyArray);
   return kittyArray;
 
 }
@@ -61,7 +64,6 @@ async function getBirthData(_kittyIDs){
       let _kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
           _kittyArray.push(_kittyObject);
   }
-  console.log("hello " + _kittyArray);
   return _kittyArray;
 }
 
@@ -109,6 +111,8 @@ function renderKitty(dna, id){
         _decorationTopColor(colors[dna.decorationTopcolor],dna.decorationTopcolor, id)
         _decorationBottomColor(colors[dna.decorationBottomcolor],dna.decorationBottomcolor, id)
         _animationVariation(dna.animation, id)
+
+        console.log(dna.decorationPattern, id);
 }
 
 function _headColor(color,code, id) {
@@ -165,46 +169,46 @@ function _eyeVariation(num, id) {
     $('#dnashape').html(num)
     switch (num) {
         case 1:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Basic')
             break;
         case 2:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Chill')
             eyesType1(id)
             break;
         case 3:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Grumpy')
             eyesType2(id)
             break;
         case 4:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Sleepy')
             eyesType3(id)
             break;
         case 5:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Unamused')
             eyesType4(id)
             break;
         case 6:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Bags')
             eyesType5(id)
             break;
         case 7:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Zombie')
             eyesType6(id)
             break;
         case 8:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Dayquil Nyquil')
             eyesType7(id)
             break;
         case 9:
-            normalEyes()
+            normalEyes(id)
             $('#eyeName').html('Forest Whitaker')
             eyesType8(id)
             break;
@@ -216,45 +220,45 @@ function _decorationVariation(num, id) {
     switch (num) {
         case 1:
             $('#stripeName').html('Basic')
-
+            normaldecoration(id)
             break;
         case 2:
-
+            normaldecoration(id)
             $('#stripeName').html('Spread Top')
             stripeType1(id)
             break;
         case 3:
-
+            normaldecoration(id)
             $('#stripeName').html('Lower Bottom')
             stripeType2(id)
             break;
         case 4:
-
+            normaldecoration(id)
             $('#stripeName').html('Smaller Top')
             stripeType3(id)
             break;
         case 5:
-
+            normaldecoration(id)
             $('#stripeName').html('Closer Bottom')
             stripeType4(id)
             break;
         case 6:
-
+            normaldecoration(id)
             $('#stripeName').html('Raise Bottom')
             stripeType5(id)
             break;
         case 7:
-
+            normaldecoration(id)
             $('#stripeName').html('Lowest Bottom')
             stripeType6(id)
             break;
         case 8:
-
+            normaldecoration(id)
             $('#stripeName').html('Closer Top')
             stripeType7(id)
             break;
         case 9:
-
+            normaldecoration(id)
             $('#stripeName').html('Lowest Top')
             stripeType8(id)
             break;
@@ -294,34 +298,50 @@ function _animationVariation(num, id){
 
 
 function animationType1(id){
+  resetAnimation();
   $(`#kitty${id} #head`).addClass("movingHead");
   $(`#kitty${id} .ears`).addClass("movingEars");
 }
 
 function animationType2(id){
+  resetAnimation();
   $(`#kitty${id} .nose`).addClass("wigglingNose");
 }
 
 function animationType3(id){
+  resetAnimation();
   $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).addClass("blinkingEyes");
 }
 
 function animationType4(id){
+  resetAnimation();
   $(`#kitty${id} .tail`).addClass("tailwagging");
   $(`#kitty${id} .tail-end`).addClass("tailendwagging");
 }
 
 function animationType5(id){
+  resetAnimation();
   $(`#kitty${id} .ears`).addClass("earupdown");
 }
 
 function animationType6(id){
+  resetAnimation();
   $(`#kitty${id} .left-Eye, #kitty${id} .right-Eye`).addClass("eyesmoving");
   $(`#kitty${id} .pupils`).addClass("pupilsmoving");
   $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).addClass("blinkingEyes");
 }
 
-
+function resetAnimation(id){
+  $(`#kitty${id} #head`).removeClass("movingHead");
+  $(`#kitty${id} .ears`).removeClass("movingEars");
+  $(`#kitty${id} .nose`).removeClass("wigglingNose");
+  $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).removeClass("blinkingEyes");
+  $(`#kitty${id} .tail`).removeClass("tailwagging");
+  $(`#kitty${id} .tail-end`).removeClass("tailendwagging");
+  $(`#kitty${id} .ears`).removeClass("earupdown");
+  $(`#kitty${id} .left-Eye, #kitty${id} .right-Eye`).removeClass("eyesmoving");
+  $(`#kitty${id} .pupils`).removeClass("pupilsmoving");
+}
 
 function normalEyes(id) {
     $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).css('border', 'none')
@@ -361,6 +381,14 @@ function eyesType8(id){
 
 
 
+function normaldecoration(id) {
+    //Remove all style from other decorations
+    //In this way we can also use normalDecoration() to reset the decoration style
+    $(`#kitty${id} .stripes-top-left`).css({ "top": "-55px" }).css({ "left": "70px" })
+    $(`#kitty${id} .stripes-top-right`).css({ "top": "-20px" }).css({ "left": "48px" })
+    $(`#kitty${id} .stripes-bottom-left`).css({ "top": "37px" }).css({ "left": "-26px" })
+    $(`#kitty${id} .stripes-bottom-right`).css({ "top": "150px" }).css({ "left": "118px" })
+}
 
 function stripeType1(id){
     $(`#kitty${id} .stripes-top-left`).css({ "top": "-55px" }).css({ "left": "60" })
@@ -413,5 +441,5 @@ function stripeType8(id){
     $(`#kitty${id} .stripes-top-left`).css({ "top": "-32px" }).css({ "left": "60" })
     $(`#kitty${id} .stripes-top-right`).css({ "top": "3px" }).css({ "left": "58px" })
     $(`#kitty${id} .stripes-bottom-left`).css({ "top": "32" }).css({ "left": "-16" })
-    $(`#kitty${id} .stripes-bottom-right`).css({ "top": "145" }).css({ "left": "108" })
+    $(`#kitty${id}.stripes-bottom-right`).css({ "top": "145" }).css({ "left": "108" })
 }
