@@ -39,7 +39,18 @@ body {
 #navigation{
   background: linear-gradient(black, #29132e);
   height: 15vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
+
+
+#navigation a {
+  float: left;
+  display: block;
+
+}
+
 
 .nav-head{
   font-size: 15px;
@@ -68,4 +79,5 @@ body {
 
 #middle-cell{
   background-color: white;
+  height: 700px;
 }

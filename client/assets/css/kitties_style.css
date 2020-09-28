@@ -353,21 +353,20 @@
 }
 
 .whiskers{
-    margin: 26px;
     position: relative;
     font-size: 1rem;
 }
 
 #left-whisker{
-    left: 7px;
-    top: -30px;
+    left: 13px;
+    top: 11px;
     transform: rotate(90deg);
 }
 
 #right-whisker{
     transform: scale(1,-1) rotate(90deg);
-    left: -29px;
-    top: -9px;
+    left: -18px;
+    top: -1px;
 }
 
 .tail{
