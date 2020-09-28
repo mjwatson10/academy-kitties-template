@@ -19,7 +19,7 @@ function connect(){
 
 function kittyThumbnail(id){
 
-  let kittyDiv = `<div class="row">
+  let kittyDiv = `<div class="row" id="kitties-Owned">
                     <div class="col-lg-4 catBox m-2 light-b-shadow">
                       <div class="cat" id="kitty${id}">
                       <div class="tail-end"></div>

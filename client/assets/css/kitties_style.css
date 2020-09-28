@@ -421,7 +421,7 @@
 
 
 
-/*index page 2*/
+/*MyKitties.html*/
 
 .flexBox{
   display: flex;
@@ -432,12 +432,4 @@
 
 .card-body{
   width: 684px;
-}
-
-.owner-Kitty{
-
-}
-
-.birth-Data{
-  
 }

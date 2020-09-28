@@ -1,0 +1,56 @@
+
+@font-face{
+  src: url(fonts/DefconZeroPunchItalic-6qVq.otf);
+  font-family: defcon;
+}
+
+@font-face{
+  src: url(fonts/LikelyKittyPersonalUse-PKKym.otf);
+  font-family: kitty;
+}
+
+body {
+    background: white;
+
+}
+
+#top-cell{
+  background-color: #29132e;
+  padding: 50px;
+  height: 800px;
+}
+
+#cyber-font{
+  text-align: center;
+  color: #ff2a6d;
+  font-family: defcon;
+
+}
+
+#cyber-font-header{
+  text-align: center;
+  color: #ff2a6d;
+  font-family: defcon;
+
+}
+
+#kitty-font{
+  text-align: center;
+  color: #05d9eb;
+  font-family: kitty;
+
+}
+
+.nav-head{
+  font-size: 15px;
+  padding-right: 40px;
+}
+
+.nav-link{
+  font-size: 20px;
+}
+
+
+h1{
+  font-size: 120px;
+}

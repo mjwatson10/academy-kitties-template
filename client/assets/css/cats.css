@@ -7,10 +7,7 @@ html {
     box-sizing: border-box;
     overflow-y: scroll;
 }
-body {
-    background: #607d8b;
- 
-}
+
 
 .cat__head {
     position: relative;
@@ -37,7 +34,7 @@ body {
     position: absolute;
     content: '';
     top: 1px;
-    width: 14px;    
+    width: 14px;
     height: 35px;
     background: #ffb74d;
     left: -20px;
@@ -47,7 +44,7 @@ body {
     position: absolute;
     content: '';
     top: 1px;
-    width: 14px;    
+    width: 14px;
     height: 35px;
     background: #ffb74d;
     left: 20px;
