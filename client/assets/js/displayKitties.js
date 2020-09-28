@@ -33,6 +33,10 @@ async function cardsData(){
                                              ${"DNA: " + birth[i].genes}
                                               <br>
                                              ${"Gen: " + birth[i].generation}
+                                              <br>
+                                             ${"Eyes: " + _dna.eyesShape}
+                                              <br>
+                                             ${"Animation: " + _dna.animation}
                                         </div>
                                   </div>
                               </div>
@@ -167,7 +171,7 @@ function _decorationBottomColor(color,code, id) {
 function _eyeVariation(num, id) {
 
     $('#dnashape').html(num)
-    switch (num) {
+    switch (parseInt(num)) {
         case 1:
             normalEyes(id)
             $('#eyeName').html('Basic')
@@ -217,7 +221,7 @@ function _eyeVariation(num, id) {
 
 function _decorationVariation(num, id) {
     $('#dnadecoration').html(num)
-    switch (num) {
+    switch (parseInt(num)) {
         case 1:
             $('#stripeName').html('Basic')
             normaldecoration(id)
@@ -268,7 +272,7 @@ function _decorationVariation(num, id) {
 
 function _animationVariation(num, id){
   $('#dnaanimation').html(num);
-  switch (num) {
+  switch (parseInt(num)) {
       case 1:
           $('#animationName').html('Head Move')
           animationType1(id);
@@ -309,7 +313,7 @@ function animationType2(id){
 }
 
 function animationType3(id){
-  resetAnimation();
+  resetAnimation(id);
   $(`#kitty${id} .eye-borders-left, #kitty${id} .eye-borders-right`).addClass("blinkingEyes");
 }
 

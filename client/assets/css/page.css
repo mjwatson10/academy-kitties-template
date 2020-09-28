@@ -14,11 +14,6 @@ body {
 
 }
 
-#top-cell{
-  background-color: #29132e;
-  padding: 50px;
-  height: 800px;
-}
 
 #cyber-font{
   text-align: center;
@@ -41,6 +36,11 @@ body {
 
 }
 
+#navigation{
+  background: linear-gradient(black, #29132e);
+  height: 15vh;
+}
+
 .nav-head{
   font-size: 15px;
   padding-right: 40px;
@@ -51,6 +51,21 @@ body {
 }
 
 
-h1{
+#cyber-font-home{
   font-size: 120px;
+  text-align: center;
+  color: #ff2a6d;
+  font-family: defcon;
+}
+
+
+#top-cell{
+  background-color: #29132e;
+  padding: 50px;
+  height: 400px;
+}
+
+
+#middle-cell{
+  background-color: white;
 }
