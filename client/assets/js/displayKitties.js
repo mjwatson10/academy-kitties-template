@@ -26,17 +26,13 @@ async function cardsData(){
     console.log(_dna);
 
         let kittyCards = `<div class="col-lg-4">
-                            <div class="card" style="width: 250px;">
+                            <div class="cards" style="width: 250px;">
                                   <div class="card-body">
                                         <div>${imgThumb}
                                               <br>
-                                             ${"DNA: " + birth[i].genes}
+                                             <div class="catGenes">${"DNA: " + birth[i].genes}</div>
                                               <br>
-                                             ${"Gen: " + birth[i].generation}
-                                              <br>
-                                             ${"Eyes: " + _dna.eyesShape}
-                                              <br>
-                                             ${"Animation: " + _dna.animation}
+                                             <div class="catGenes">${"Gen: " + birth[i].generation}</div>
                                         </div>
                                   </div>
                               </div>
@@ -126,7 +122,7 @@ function _headColor(color,code, id) {
 }
 
 function _legsColor(color,code, id) {
-    $(`#kitty${id} .front-leg, #kitty${id} .back-leg-right, #kitty${id} .back-leg-left, #kitty${id} .tail`).css('color', '#' + color).css('background', '#' + color)
+    $(`#kitty${id} .front-leg, #kitty${id} .back-leg-right, #kitty${id} .back-leg-left, #kitty${id} .tail-display-kitties`).css('color', '#' + color).css('background', '#' + color)
     $('#legscode').html('code: '+ code)
     $('#dnalegs').html(code)
 }
@@ -319,7 +315,7 @@ function animationType3(id){
 
 function animationType4(id){
   resetAnimation(id);
-  $(`#kitty${id} .tail`).addClass("tailwagging");
+  $(`#kitty${id} .tail-display-kitties`).addClass("tailwagging");
   $(`#kitty${id} .tail-end`).addClass("tailendwagging");
 }
 

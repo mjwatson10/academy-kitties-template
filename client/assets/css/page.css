@@ -10,8 +10,9 @@
 }
 
 body {
-    background: white;
-
+    margin: 0;
+    padding: 0;
+    background-color: black;
 }
 
 
@@ -22,39 +23,55 @@ body {
 
 }
 
+header{
+  padding-left: 25px;
+}
+
 #cyber-font-header{
   text-align: center;
   color: #ff2a6d;
   font-family: defcon;
-
+  font-size: 15px;
 }
+
+#kitty-font-header{
+  font-size: 30px;
+  color: #05d9eb;
+  font-family: kitty;
+}
+
+#cyber-font-nav{
+  text-align: center;
+  color: #ff2a6d;
+  font-family: defcon;
+}
+
 
 #kitty-font{
   text-align: center;
   color: #05d9eb;
   font-family: kitty;
+  font-size: 25px;
 
 }
 
 #navigation{
   background: linear-gradient(black, #29132e);
-  height: 15vh;
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
 
 #navigation a {
-  float: left;
-  display: block;
-
+  text-align: right;
 }
 
 
 .nav-head{
   font-size: 15px;
   padding-right: 40px;
+}
+
+header{
+  background: linear-gradient(#965b5b, #080408);
 }
 
 .nav-link{
@@ -67,6 +84,31 @@ body {
   text-align: center;
   color: #ff2a6d;
   font-family: defcon;
+  /*text-shadow: 0 0 20px;*/
+}
+
+
+#kitty-font-home{
+  text-align: center;
+  color: #05d9eb;
+  font-family: kitty;
+  font-size: 180px;
+  /*text-shadow: 0 0 900px #ff005b;*/
+}
+
+#beauty{
+  font-size: 30px;
+  text-align: center;
+  color: #ff2a6d;
+  font-family: defcon;
+}
+
+
+.my-kitties-header{
+  text-align: center;
+  color: #05d9eb;
+  font-family: kitty;
+  font-size: 90px;
 }
 
 

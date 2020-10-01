@@ -101,11 +101,14 @@
   0% {
     transform: scale(1,-1) rotate(-81deg);
   }
-  30% {
-    transform: scale(1,-1) rotate(-84deg);
+  20% {
+    transform: scale(1,-1) rotate(-77deg);
   }
-  60% {
-    transform: scale(1,-1) rotate(-78deg);
+  40% {
+    transform: scale(1,-1) rotate(-81deg);
+  }
+  80% {
+    transform: scale(1,-1) rotate(-77deg);
   }
   100% {
     transform: scale(1,-1) rotate(-81deg);
@@ -120,11 +123,14 @@
   0% {
     top: 244px;
   }
-  30% {
-    top: 256px;
+  20% {
+    top: 232px;
   }
-  60% {
-    top: 239px;
+  40% {
+    top: 244px;
+  }
+  80% {
+    top: 232px;
   }
   100% {
     top: 244px;

@@ -372,7 +372,7 @@
 .tail{
     color: rgb(119, 117, 113);
     font-size: 12rem;
-    left: 90px;
+    left: 75px;
     top: 321px;
     position: absolute;
     border-radius: 50%;
@@ -430,5 +430,58 @@
 }
 
 .card-body{
-  width: 684px;
+  width: 248px;
+  padding-left: 13px;
+  background-color: #ff2a6d;
+  font-size: 10px;
+  color: black;
+  border-radius: 00px 40px 0px 440px;
+}
+
+#myOwnedKitties{
+  background: white;
+  padding: 50px;
+  padding-left: 24px;
+  width: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+
+element.style {
+    color: rgb(30, 24, 209);
+    background: rgb(30, 24, 209);
+}
+
+
+.catGenes{
+  color: black;
+}
+
+.cards{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+    background-clip: border-box;
+    border-radius: .25rem;
+}
+
+.tail-display-kitties {
+    color: rgb(119, 117, 113);
+    font-size: 12rem;
+    left: 90px;
+    top: 269px;
+    position: absolute;
+    border-radius: 50%;
+    letter-spacing: -72px;
+    margin-left: -50px;
+    height: 30px;
+    transform: scale(1,-1) rotate(-81deg);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 2px 2px rgb(228, 228, 226);
 }
