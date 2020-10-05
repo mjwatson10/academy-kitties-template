@@ -26,11 +26,12 @@
 <body>
 
 <!--NavBar-->
-<div class="col-sm-12">
-<a class="navbar-brand nav-head" href="index.html"><span id="cyber-font-header">Cyber </span><span id="kitty-font-header">Kitties</span></a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
+<header>
+  <div class="col-sm-12">
+  <a class="navbar-brand nav-head" href="index.html"><span id="cyber-font-header">Cyber </span><span id="kitty-font-header">Kitties</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 </div>
 </header>
 <!--NavBar-->
@@ -67,14 +68,14 @@
 <!--Title Text-->
     <div class="container p-5" style="margin-top: -1vh;margin-bottom: 10vh;">
         <div align="center">
-        <h1 class="c-white">Kitties Factory</h1>
-        <p class="c-white">Create your custom Kitty</p>
+        <h1 id="cyber-factory-header">Kitties Factory</h1>
+        <p id="kitty-factory-header">Create your custom Kitty</p>
     </div>
 
 
 <!--Kitties-->
         <div class="row">
-            <div class="col-lg-4 catBox m-2 light-b-shadow">
+            <div class="col-lg-4 catBox m-2">
               <div class="cat">
 
 
@@ -173,8 +174,9 @@
                     </b>
                 </div>
             </div>
-            <div class="col-lg-7 cattributes m-2 light-b-shadow">
 
+
+<div class="col-lg-7 cattributes m-2">
 <!-- Cat colors -->
 <div class="row">
 
@@ -268,9 +270,11 @@
     <div class="alert alert-success" role="alert" id="kittyCreation" style="display:none">
 
     </div>
+    </div>
+  </div>
 
 
-    <footer align="left">
+    <footer calss="footer" align="center">
         <p>Ivan on Tech Academy Bootcamp July 2020</p>
     </footer>
 

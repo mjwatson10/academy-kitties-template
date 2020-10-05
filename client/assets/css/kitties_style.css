@@ -419,6 +419,21 @@
 }
 
 
+/*factory*/
+
+#cyber-factory-header{
+  text-align: center;
+  color: #580b65;
+  font-family: defcon;
+  font-size: 25px;
+}
+
+#kitty-factory-header{
+  font-size: 50px;
+  color: #05d9eb;
+  font-family: kitty;
+}
+
 
 /*MyKitties.html*/
 
@@ -432,17 +447,32 @@
 .card-body{
   width: 248px;
   padding-left: 13px;
-  background-color: #ff2a6d;
+  background-color: #e5c6ff;
   font-size: 10px;
   color: black;
   border-radius: 00px 40px 0px 440px;
 }
 
 #myOwnedKitties{
-  background: white;
+  background-color: white;
   padding: 50px;
   margin: 0;
   width: 100%;
+  padding-left: 145px;
+}
+
+.title{
+  width: 100%;
+  text-align: center;
+  height: 238px;
+  padding-top: 40px;
+}
+
+
+.my-kitties{
+  width: 100%;
+  margin: -60px;
+  margin-top: 20px;
 }
 
 
@@ -458,6 +488,8 @@ element.style {
 
 .cards{
     position: relative;
+    left: 40px;
+    padding-top: 50px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
