@@ -105,6 +105,40 @@ contract Kittycontract is IERC721, Ownable {
         return newKittenId;
     }
 
+    function breed(uint256 _dadId, uint256 _momId) public returns(uint256){
+      require(_owns(msg.sender, _dadId));
+      require(_owns(msg.sender, _momId));
+
+      // the commas(,,,) allows the function to not have to save un-need arguements, saving memory!!!
+      (uint256 dadDna,,,, uint256 dadGeneration) = getKitty(_dadId);
+      (uint256 momDna,,,, uint256 momGeneration) = getKitty(_momId);
+
+      uint256 newDna = _mixDna(dadDna, momDna);
+
+      uint childGeneration = 0;
+        if(dadGeneration < momGeneration){
+            childGeneration = momGeneration + 1;
+            childGeneration /= 2;
+        } else if(dadGeneration > momGeneration){
+            childGeneration = dadGeneration + 1;
+            childGeneration /= 2;
+        } else{
+            childGeneration = dadGeneration + 1;
+        }
+
+        _createKitty(_momId, _dadId, childGeneration, newDna, msg.sender);
+    }
+
+    function _mixDna(uint256 _dadDna, uint256 _momDna) internal returns(uint256){
+
+      uint256 firstHalf = _dadDna / 10000000000;
+      uint256 secondHalf = _momDna % 1000000000;
+
+      uint256 newDna = firstHalf * 10000000000;
+      newDna = newDna + secondHalf;
+
+      return newDna;
+    }
 
     function getKitty(uint256 kittyId) public view returns(
           uint256 genes,
@@ -202,7 +236,7 @@ contract Kittycontract is IERC721, Ownable {
     */
    function transfer(address to, uint256 tokenId) external{
        require(to != address(0));
-       //address(this) is the contract addres
+       //address(this) is the contract address
        require(to != address(this));
        require(kittyIndexToOwner[tokenId] == msg.sender);
 
