@@ -38,12 +38,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0xdc8e20b655aed8b6554d4147d0ceac88f74489bd53d1f0d0ba4e4a2c1cac8c3a\",\"urls\":[\"bzz-raw://ee65e36f1c9e0792dded634ac906fea52fe6173462ee219c60b4b30d3d49d3ea\",\"dweb:/ipfs/QmSFfCh1mQiYs3kpjNyG9W1AaTdMhXGNM6UjT4k3Q6pu2Z\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x8a7de2def597046b7f5de30dee8e9c414eac75e81227cceaba4d898bf999a918\",\"urls\":[\"bzz-raw://715ce45a662f1f349c65df712ae3acf89f2f28f37b7e4bf87ae642e3758eac45\",\"dweb:/ipfs/Qmdz3aGYsUqon2Fj26X9aqBEi5hgo7uZQvJ64G8kkJ76A4\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.12;\n\ninterface IERC721Receiver {\n  function onERC721Received(address operator, address from, uint tokenId, bytes calldata data) external returns(bytes4);\n}\n",
+  "source": "pragma solidity ^0.5.0;\n\ninterface IERC721Receiver {\n  function onERC721Received(address operator, address from, uint tokenId, bytes calldata data) external returns(bytes4);\n}\n",
   "sourcePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol",
   "ast": {
     "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol",
@@ -59,8 +59,9 @@
         "id": 123,
         "literals": [
           "solidity",
+          "^",
           "0.5",
-          ".12"
+          ".0"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:1"
@@ -260,8 +261,9 @@
         "id": 123,
         "literals": [
           "solidity",
+          "^",
           "0.5",
-          ".12"
+          ".0"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:1"
@@ -453,7 +455,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-10-06T06:17:53.090Z",
+  "updatedAt": "2020-10-06T07:28:33.949Z",
   "devdoc": {
     "methods": {}
   },

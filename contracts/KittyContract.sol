@@ -6,7 +6,7 @@ import "./IERC721Receiver.sol";
 import "./Owner.sol";
 import "./Safemath.sol";
 
-contract Kittycontract is IERC721, Ownable, IERC721Receiver {
+contract Kittycontract is IERC721, Ownable {
 
 
         //this gets access the the library Safemath.sol
