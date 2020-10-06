@@ -18,6 +18,10 @@ contract Kittycontract is IERC721, Ownable {
         string public constant _symbol = "CK";
 
         bytes4 internal constant MAGIC_ERC721_RECEIVED = bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
+        bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+        bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
+
+
 
 //events
         /**
@@ -63,6 +67,10 @@ contract Kittycontract is IERC721, Ownable {
 
 
 //FUNCTIONS
+  function supportsInterface(bytes4 _interfaceId) external view returns(bool){
+    return (_interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
+  }
+
   function createKittyGen0(uint256 _genes) public onlyOwner returns (uint256) {
       require(gen0Counter < CREATION_LIMIT_GEN0);
 
@@ -276,7 +284,11 @@ contract Kittycontract is IERC721, Ownable {
   /// @param _to The new owner
   /// @param _tokenId The NFT to transfer
   /// @param data Additional data with no specified format, sent in call to `_to`
-  function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata data) external;
+  function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory data) public{
+    require(_isApprovedorOwner(msg.sender, _from, _to, _tokenId));
+
+    _safeTransfer(_from, _to, _tokenId, data);
+  }
 
   /// @notice Transfers the ownership of an NFT from one address to another address
   /// @dev This works identically to the other function with an extra data parameter,
@@ -284,7 +296,9 @@ contract Kittycontract is IERC721, Ownable {
   /// @param _from The current owner of the NFT
   /// @param _to The new owner
   /// @param _tokenId The NFT to transfer
-  function safeTransferFrom(address _from, address _to, uint256 _tokenId) external;
+  function safeTransferFrom(address _from, address _to, uint256 _tokenId) public{
+    safeTransferFrom(_from, _to, _tokenId, "");
+  }
 
   function _safeTransfer(address _from, address _to, uint256 _tokenId, bytes memory _data) internal{
     _transfer(_from, _to, _tokenId);
@@ -302,10 +316,7 @@ contract Kittycontract is IERC721, Ownable {
   /// @param _to The new owner
   /// @param _tokenId The NFT to transfer
   function transferFrom(address _from, address _to, uint256 _tokenId) external{
-    require(_to != address(0));
-    require(msg.sender == _from || _approvedFor(msg.sender, _tokenId) || isApprovedForAll(_from, msg.sender));
-    require(_owns(_from, _tokenId));
-    require(_tokenId < kitties.length);
+    require(_isApprovedorOwner(msg.sender, _from, _to, _tokenId));
 
     _transfer(_from, _to, _tokenId);
   }
@@ -327,6 +338,16 @@ contract Kittycontract is IERC721, Ownable {
       size := extcodesize(_to)
     }
     return size > 0;
+  }
+
+  /// function for Requirements of transferfrom and safeTransferFrom
+  function _isApprovedorOwner(address _spender, address _from, address _to, uint256 _tokenId) internal view returns(bool){
+    require(_tokenId < kitties.length); //token must exist
+    require(_to != address(0)); // TO address is not zero address
+    require(_owns(_from, _tokenId)); //From owns the token
+
+    //spender is from OR spender is approved for tokenId OR spener is operator for from
+    return (_spender == _from || _approvedFor(_spender, _tokenId) || isApprovedForAll(_from, _spender));
   }
 
 }

@@ -38,12 +38,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x8a7de2def597046b7f5de30dee8e9c414eac75e81227cceaba4d898bf999a918\",\"urls\":[\"bzz-raw://715ce45a662f1f349c65df712ae3acf89f2f28f37b7e4bf87ae642e3758eac45\",\"dweb:/ipfs/Qmdz3aGYsUqon2Fj26X9aqBEi5hgo7uZQvJ64G8kkJ76A4\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x8194fa5dce954876bcea000ec0db87982b606359759066e87bde7319f91328fe\",\"urls\":[\"bzz-raw://1dfff5a4d8df2335dbab526b349aecd1a5e6ee7aa83b439018b15673fd689d54\",\"dweb:/ipfs/QmXTZbpDoYZCnLeUpLYvV8DcKJekaYGPCU2VSgscJm6ywZ\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n\ninterface IERC721Receiver {\n  function onERC721Received(address operator, address from, uint tokenId, bytes calldata data) external returns(bytes4);\n}\n",
+  "source": "pragma solidity ^0.5.12;\n\ninterface IERC721Receiver {\n  function onERC721Received(address operator, address from, uint tokenId, bytes calldata data) external returns(bytes4);\n}\n",
   "sourcePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol",
   "ast": {
     "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol",
@@ -61,10 +61,10 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:1"
+        "src": "0:24:1"
       },
       {
         "baseContracts": [],
@@ -98,7 +98,7 @@
                   "name": "operator",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "81:16:1",
+                  "src": "82:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -109,7 +109,7 @@
                     "id": 124,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "81:7:1",
+                    "src": "82:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -125,7 +125,7 @@
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "99:12:1",
+                  "src": "100:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -136,7 +136,7 @@
                     "id": 126,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "99:7:1",
+                    "src": "100:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -152,7 +152,7 @@
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "113:12:1",
+                  "src": "114:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -163,7 +163,7 @@
                     "id": 128,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "113:4:1",
+                    "src": "114:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -178,7 +178,7 @@
                   "name": "data",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "127:19:1",
+                  "src": "128:19:1",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -189,7 +189,7 @@
                     "id": 130,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "127:5:1",
+                    "src": "128:5:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -199,7 +199,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "80:67:1"
+              "src": "81:67:1"
             },
             "returnParameters": {
               "id": 135,
@@ -211,7 +211,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "165:6:1",
+                  "src": "166:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -222,7 +222,7 @@
                     "id": 133,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "165:6:1",
+                    "src": "166:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -232,20 +232,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "164:8:1"
+              "src": "165:8:1"
             },
             "scope": 137,
-            "src": "55:118:1",
+            "src": "56:118:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 138,
-        "src": "25:150:1"
+        "src": "26:150:1"
       }
     ],
-    "src": "0:176:1"
+    "src": "0:177:1"
   },
   "legacyAST": {
     "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol",
@@ -263,10 +263,10 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:1"
+        "src": "0:24:1"
       },
       {
         "baseContracts": [],
@@ -300,7 +300,7 @@
                   "name": "operator",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "81:16:1",
+                  "src": "82:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -311,7 +311,7 @@
                     "id": 124,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "81:7:1",
+                    "src": "82:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -327,7 +327,7 @@
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "99:12:1",
+                  "src": "100:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -338,7 +338,7 @@
                     "id": 126,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "99:7:1",
+                    "src": "100:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -354,7 +354,7 @@
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "113:12:1",
+                  "src": "114:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -365,7 +365,7 @@
                     "id": 128,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "113:4:1",
+                    "src": "114:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -380,7 +380,7 @@
                   "name": "data",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "127:19:1",
+                  "src": "128:19:1",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -391,7 +391,7 @@
                     "id": 130,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "127:5:1",
+                    "src": "128:5:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -401,7 +401,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "80:67:1"
+              "src": "81:67:1"
             },
             "returnParameters": {
               "id": 135,
@@ -413,7 +413,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "165:6:1",
+                  "src": "166:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -424,7 +424,7 @@
                     "id": 133,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "165:6:1",
+                    "src": "166:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -434,20 +434,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "164:8:1"
+              "src": "165:8:1"
             },
             "scope": 137,
-            "src": "55:118:1",
+            "src": "56:118:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 138,
-        "src": "25:150:1"
+        "src": "26:150:1"
       }
     ],
-    "src": "0:176:1"
+    "src": "0:177:1"
   },
   "compiler": {
     "name": "solc",
@@ -455,7 +455,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-10-06T07:28:33.949Z",
+  "updatedAt": "2020-10-06T07:37:32.129Z",
   "devdoc": {
     "methods": {}
   },
