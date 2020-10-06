@@ -230,7 +230,9 @@ contract Kittycontract is IERC721, Ownable {
   ///  operator of the current owner.
   /// @param _approved The new approved NFT controller
   /// @param _tokenId The NFT to approve
-  function approve(address _approved, uint256 _tokenId) external onlyOwner{
+  function approve(address _approved, uint256 _tokenId) external{
+    require(_owns(msg.sender, _tokenId));
+
     _approval(_tokenId, _approved);
     emit Approval(msg.sender, _approved, _tokenId);
   }
@@ -245,7 +247,9 @@ contract Kittycontract is IERC721, Ownable {
   ///  multiple operators per owner.
   /// @param _operator Address to add to the set of authorized operators
   /// @param _approved True if the operator is approved, false to revoke approval
-  function setApprovalForAll(address _operator, bool _approved) external onlyOwner{
+  function setApprovalForAll(address _operator, bool _approved) external{
+    require(operator != msg.sender);
+
     _operatorApprovals[msg.sender][_operator] = _approved;
     emit ApprovalForAll(msg.sender, _operator, _approved);
   }
