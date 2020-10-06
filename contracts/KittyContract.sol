@@ -2,10 +2,11 @@ pragma solidity ^0.5.12;
 
 //IECR721.sol is an interface (not a contract)
 import "./IERC721.sol";
+import "./IERC721Receiver.sol";
 import "./Owner.sol";
 import "./Safemath.sol";
 
-contract Kittycontract is IERC721, Ownable {
+contract Kittycontract is IERC721, Ownable, IERC721Receiver {
 
 
         //this gets access the the library Safemath.sol
@@ -16,6 +17,19 @@ contract Kittycontract is IERC721, Ownable {
         string public constant _name = "CyberKitties";
         string public constant _symbol = "CK";
 
+        bytes4 internal constant MAGIC_ERC721_RECEIVED = bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
+
+//events
+        /**
+         * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
+         */
+        event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+
+        /**
+         * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
+         */
+        event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
         event Birth(
               address owner,
               uint256 kittenId,
@@ -24,6 +38,8 @@ contract Kittycontract is IERC721, Ownable {
               uint256 genes
             );
 
+
+//struct
         struct Kitty {
           uint256 genes;
           uint64 birthTime;
@@ -32,12 +48,18 @@ contract Kittycontract is IERC721, Ownable {
           uint16 generation;
         }
 
+//array
         Kitty[] kitties;
 
+//mapping
         mapping(uint256 => address) public kittyIndexToOwner;
         mapping(address => uint256) ownershipTokenCount;
         mapping(address => Kitty) public allOwnersKitties;
+        //gives access to one token
+        mapping(uint256 => address) public kittyIndexToApproved;
 
+        //gives access to all token, ex: my address => operators address => true or false
+        mapping(address => mapping(address => bool)) private _operatorApprovals;
 
 
 //FUNCTIONS
@@ -70,7 +92,7 @@ contract Kittycontract is IERC721, Ownable {
 
         emit Birth(_owner, newKittenId, _momId, _dadId, _genes);
 
-        fromTransfer(address(0), _owner, newKittenId);
+        _transfer(address(0), _owner, newKittenId);
 
         return newKittenId;
     }
@@ -155,6 +177,10 @@ contract Kittycontract is IERC721, Ownable {
         return kittyIndexToOwner[tokenId];
     }
 
+    function _owns(address _claimant, uint256 _tokenId) internal view returns(bool){
+      return kittyIndexToOwner[_tokenId] == _claimant;
+    }
+
     /* @dev Transfers `tokenId` token from `msg.sender` to `to`.
     *
     *
@@ -172,24 +198,135 @@ contract Kittycontract is IERC721, Ownable {
        require(to != address(this));
        require(kittyIndexToOwner[tokenId] == msg.sender);
 
-       fromTransfer(msg.sender, to, tokenId);
+       _transfer(msg.sender, to, tokenId);
    }
 
    //transfers token from original address
-   function fromTransfer(address _from, address _to, uint256 _tokenId) internal {
+   function _transfer(address _from, address _to, uint256 _tokenId) internal {
        ownershipTokenCount[_to]++;
 
        kittyIndexToOwner[_tokenId] = _to;
 
        if (_from != address(0)) {
          ownershipTokenCount[_from]--;
+         delete kittyIndexToApproved[_tokenId];
        }
 
        emit Transfer(_from, _to, _tokenId);
      }
 
 
-
-
-
+  /// @notice Change or reaffirm the approved address for an NFT
+  /// @dev The zero address indicates there is no approved address.
+  ///  Throws unless `msg.sender` is the current NFT owner, or an authorized
+  ///  operator of the current owner.
+  /// @param _approved The new approved NFT controller
+  /// @param _tokenId The NFT to approve
+  function approve(address _approved, uint256 _tokenId) external onlyOwner{
+    _approval(_tokenId, _approved);
+    emit Approval(msg.sender, _approved, _tokenId);
   }
+
+  function _approval(uint256 _tokenId, address _approved) internal {
+    kittyIndexToApproved[_tokenId] = _approved;
+  }
+
+  /// @notice Enable or disable approval for a third party ("operator") to manage
+  ///  all of `msg.sender`'s assets
+  /// @dev Emits the ApprovalForAll event. The contract MUST allow
+  ///  multiple operators per owner.
+  /// @param _operator Address to add to the set of authorized operators
+  /// @param _approved True if the operator is approved, false to revoke approval
+  function setApprovalForAll(address _operator, bool _approved) external onlyOwner{
+    _operatorApprovals[msg.sender][_operator] = _approved;
+    emit ApprovalForAll(msg.sender, _operator, _approved);
+  }
+
+  /// @notice Get the approved address for a single NFT
+  /// @dev Throws if `_tokenId` is not a valid NFT.
+  /// @param _tokenId The NFT to find the approved address for
+  /// @return The approved address for this NFT, or the zero address if there is none
+  function getApproved(uint256 _tokenId) external view returns (address){
+    require(_tokenId < kitties.length);
+
+    return kittyIndexToApproved[_tokenId];
+  }
+
+  /// @notice Query if an address is an authorized operator for another address
+  /// @param _owner The address that owns the NFTs
+  /// @param _operator The address that acts on behalf of the owner
+  /// @return True if `_operator` is an approved operator for `_owner`, false otherwise
+  function isApprovedForAll(address _owner, address _operator) public view returns (bool){
+    return _operatorApprovals[_owner][_operator];
+  }
+
+  function _approvedFor(address _claimant, uint256 _tokenId) internal view returns (bool){
+    return kittyIndexToApproved[_tokenId] == _claimant;
+  }
+
+  /// @notice Transfers the ownership of an NFT from one address to another address
+  /// @dev Throws unless `msg.sender` is the current owner, an authorized
+  ///  operator, or the approved address for this NFT. Throws if `_from` is
+  ///  not the current owner. Throws if `_to` is the zero address. Throws if
+  ///  `_tokenId` is not a valid NFT. When transfer is complete, this function
+  ///  checks if `_to` is a smart contract (code size > 0). If so, it calls
+  ///  `onERC721Received` on `_to` and throws if the return value is not
+  ///  `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`.
+  /// @param _from The current owner of the NFT
+  /// @param _to The new owner
+  /// @param _tokenId The NFT to transfer
+  /// @param data Additional data with no specified format, sent in call to `_to`
+  function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata data) external;
+
+  /// @notice Transfers the ownership of an NFT from one address to another address
+  /// @dev This works identically to the other function with an extra data parameter,
+  ///  except this function just sets data to "".
+  /// @param _from The current owner of the NFT
+  /// @param _to The new owner
+  /// @param _tokenId The NFT to transfer
+  function safeTransferFrom(address _from, address _to, uint256 _tokenId) external;
+
+  function _safeTransfer(address _from, address _to, uint256 _tokenId, bytes memory _data) internal{
+    _transfer(_from, _to, _tokenId);
+    require(_checkERC721Support(_from, _to, _tokenId, _data));
+  }
+
+  /// @notice Transfer ownership of an NFT -- THE CALLER IS RESPONSIBLE
+  ///  TO CONFIRM THAT `_to` IS CAPABLE OF RECEIVING NFTS OR ELSE
+  ///  THEY MAY BE PERMANENTLY LOST
+  /// @dev Throws unless `msg.sender` is the current owner, an authorized
+  ///  operator, or the approved address for this NFT. Throws if `_from` is
+  ///  not the current owner. Throws if `_to` is the zero address. Throws if
+  ///  `_tokenId` is not a valid NFT.
+  /// @param _from The current owner of the NFT
+  /// @param _to The new owner
+  /// @param _tokenId The NFT to transfer
+  function transferFrom(address _from, address _to, uint256 _tokenId) external{
+    require(_to != address(0));
+    require(msg.sender == _from || _approvedFor(msg.sender, _tokenId) || isApprovedForAll(_from, msg.sender));
+    require(_owns(_from, _tokenId));
+    require(_tokenId < kitties.length);
+
+    _transfer(_from, _to, _tokenId);
+  }
+
+  function _checkERC721Support(address _from, address _to, uint256 _tokenId, bytes memory _data) internal returns(bool){
+    if(!_isContract(_to)){
+      return true;
+    }
+
+    //call onERC721Received in the _to _isContract
+    //check return value
+    bytes4 returnData = IERC721Receiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);
+    return returnData == MAGIC_ERC721_RECEIVED;
+  }
+
+  function _isContract(address _to) internal view returns(bool){
+    uint32 size;
+    assembly{
+      size := extcodesize(_to)
+    }
+    return size > 0;
+  }
+
+}
