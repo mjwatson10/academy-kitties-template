@@ -248,7 +248,7 @@ contract Kittycontract is IERC721, Ownable {
   /// @param _operator Address to add to the set of authorized operators
   /// @param _approved True if the operator is approved, false to revoke approval
   function setApprovalForAll(address _operator, bool _approved) external{
-    require(operator != msg.sender);
+    require(_operator != msg.sender);
 
     _operatorApprovals[msg.sender][_operator] = _approved;
     emit ApprovalForAll(msg.sender, _operator, _approved);
