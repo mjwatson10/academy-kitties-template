@@ -464,7 +464,7 @@
 .title{
   width: 100%;
   text-align: center;
-  height: 238px;
+  height: 205px;
   padding-top: 40px;
 }
 
@@ -489,7 +489,6 @@ element.style {
 .cards{
     position: relative;
     left: 40px;
-    padding-top: 50px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
@@ -514,4 +513,109 @@ element.style {
     transform: scale(1,-1) rotate(-81deg);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-shadow: 2px 2px rgb(228, 228, 226);
+}
+
+
+/*Breed.html*/
+.flexBox-breed{
+  display: flex;
+}
+
+.dadKitty{
+  height: 300px;
+  width: 450px;
+  border-radius: 32px 32px 32px 32px;
+  border-width: 0;
+  background-color: #05d9eb;
+  margin: 50px;
+}
+
+.momKitty{
+  height: 300px;
+  width: 450px;
+  border-radius: 32px 32px 32px 32px;
+  border-width: 0;
+  background-color: pink;
+  margin: 50px;
+}
+
+.option_inner{
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  border: 5px solid transparent;
+  position: relative;
+}
+
+.option_item .checkbox{
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  z-index: 1;
+  opacity: 0;
+}
+
+.option_item .option_inner .tickmark{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 20px solid;
+  border-color: #000 transparent transparent #000;
+  display: none;
+}
+
+.option_item .checkbox:checked ~ .option_inner .tickmark{
+  display: block;
+}
+
+.option_item .option_inner .tickmark:before{
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -16px;
+  width: 20px;
+  height: 10px;
+  border: 3px solid red;
+  border-color: transparent transparent #fff #fff;
+  transform: rotate(-45deg);
+}
+
+.option_item .option_inner .tickmark{
+  border-color: #2b0df1 transparent transparent #2b0df1;
+}
+
+.bg-modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.my-breeders{
+  width: 100%;
+  margin: -60px;
+  margin-top: 20px;
+}
+
+#parentKitty{
+  object-fit: contain;
+}
+
+.modal-content{
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  border-radius: 4px;
+  position: relative;
+}
+
+.close{
+  position: absolute;
+  top: 8px;
+  right: 11px;
 }

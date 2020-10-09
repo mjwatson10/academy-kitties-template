@@ -96,6 +96,8 @@ contract Kittycontract is IERC721, Ownable {
           generation: uint16(_generation)
         });
 
+        // kitties.push(_kitty) adds _kitty element to kitties array which returns size of array
+        // to get proper index we must minus 1 from kitties.push(_kitty), ex: if first kitties.push(_kitty) returns 1 and to get first cat id 0 we must minus 1
         uint256 newKittenId = kitties.push(_kitty) - 1;
 
         emit Birth(_owner, newKittenId, _momId, _dadId, _genes);

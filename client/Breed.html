@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Academy Kitties/Breed</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/kitties_style.css">
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" href="assets/css/cats.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/factory.css">
+    <link rel="stylesheet" href="assets/css/frontend.css">
+    <link rel="stylesheet" href="assets/css/page.css">
+  </head>
+
+
+  <body>
+
+    <header>
+      <div class="col-sm-12">
+      <a class="navbar-brand nav-head" href="index.html"><span id="cyber-font-header">Cyber </span><span id="kitty-font-header">Kitties</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    </header>
+    <!--NavBar-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light" id="navigation">
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"><span id="cyber-font-nav">Home</span><span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Factory.html" id="myKitties"><span id="kitty-font">Kitty </span><span id="cyber-font-nav">Factory</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="MyKitties.html" id="myKitties"><span id="kitty-font">My Kitties</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Breed.html" id="myKitties"><span id="cyber-font-nav">Breed</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span id="cyber-font-nav">Code</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://github.com/mjwatson10/academy-kitties/tree/master/contracts" target="_blank"><span id="cyber-font-header">Solidity</span></a>
+              <a class="dropdown-item" href="https://github.com/mjwatson10/academy-kitties/tree/master/client/assets/js" target="_blank"><span id="cyber-font-header">Javascript</span></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="https://github.com/mjwatson10" target="_blank"><span id="cyber-font-header">Main GitHub Repo</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!--Title Text-->
+    <div class="container p-5" style="margin-top: -1vh;margin-bottom: 10vh;">
+        <div align="center">
+        <h1 id="cyber-factory-header">Breed</h1>
+        <p id="kitty-factory-header">Soon to Be Parents</p>
+    </div>
+
+    <!--Parent Kitties-->
+    <div class="col-sm-12 flexBox-breed">
+
+        <button class="dadKitty" id="dadId"></button>
+        <button class="momKitty" id="momId"></button>
+    </div>
+
+
+    <div class="bg-modal">
+      <div class="modal-content">
+        <div class="close">&#10006;</div>
+        <div class="my-breeders">
+          <div class="col-sm-12 flexBox" id = "parents"></div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+  <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+  <script src="assets/bootstrap/js/popper.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="assets/js/web3.min.js"></script>
+  <script src="./abi.js"></script>
+  <script src="./main.js"></script>
+  <script src="assets/js/colors.js"></script>
+  <script src="assets/js/catSettings.js"></script>
+  <script src="assets/js/catFactory.js"></script>
+  <script src="assets/js/displayKitties.js"></script>
+  <script src="assets/js/breeder.js"></script>
+
+</html>
