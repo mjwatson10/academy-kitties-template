@@ -6,25 +6,22 @@ $(document).ready(async function(){
 })
 
 //pop-ups for breeding selection
-$("#dadId").click(function(){
-  $(".bg-modal").css("display", "flex")
+/*$("#dadId").click(function(){
+  $(".modal").css("display", "flex")
 });
 
 $("#momId").click(function(){
-  $(".bg-modal").css("display", "flex")
+  $(".modal").css("display", "flex")
 });
 
 $(".close").click(function(){
-  $(".bg-modal").css("display", "none")
+  $("modal").css("display", "none")
 });
 
-async function checkboxLimit(checkmark){
-  let amountOfKitties = await parentData();
-  let total = 0;
-  for (var i = 0; i < array.length; i++) {
-    array[i]
-  }
-}
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+});*/
+
 
 async function parentData(){
   let ownedKitties = await ownersArray();
@@ -40,7 +37,7 @@ async function parentData(){
                               <input type="checkbox" class="checkbox">
                                 <div class="option_inner">
                                         <div class="cards" style="width: 250px;">
-                                              <div class="card-body">
+                                              <div class="card-body parent-card">
                                                 <div class="tickmark"></div>
                                                     <div id="parentKitty">${imgThumb}
                                                           <br>
@@ -56,4 +53,6 @@ async function parentData(){
             $("#parents").append(kittyCards);
             renderKitty(_dna, i);
         }
+
+
 }

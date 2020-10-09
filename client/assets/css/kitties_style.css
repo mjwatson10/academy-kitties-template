@@ -602,8 +602,9 @@ element.style {
   margin-top: 20px;
 }
 
-#parentKitty{
-  object-fit: contain;
+
+.parent-card{
+  transform: scale(.5);
 }
 
 .modal-content{
