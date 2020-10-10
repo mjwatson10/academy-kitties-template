@@ -22,6 +22,33 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 });*/
 
+//Parents Buttons
+$(document).ready(function(){
+  $('#saveButton').click(function(){
+    let result = $('input[type= "checkbox"]:checked');
+    if (result.length = 1 && result.length < 2) {
+      $('.dadDisplay').html(result.val() + `<br> <p>Daddy</p>`);
+      $('#saveButton').attr("data-dismiss","modal");
+      console.log("daddy");
+    } else {
+      alert("Please choose one Daddy");
+    }
+  });
+});
+
+$(document).ready(function(){
+  $('#saveButton').click(function(){
+    let result = $('input[type= "checkbox"]:checked');
+    if (result.length = 1 && result.length < 2) {
+      $('.momDisplay').html(result.val() + `<br> <p>Mommy</p>`);
+      $('#saveButton').attr("data-dismiss","modal");
+      console.log("daddy");
+    } else {
+      alert("Please choose one Daddy");
+    }
+  });
+});
+
 
 async function parentData(){
   let ownedKitties = await ownersArray();
@@ -34,9 +61,9 @@ async function parentData(){
 
         let kittyCards = `<div class="col-lg-4">
                             <label class="option_item">
-                              <input type="checkbox" class="checkbox">
+                              <input type="checkbox" class="checkbox" id="kittyParent" value="parentData">
                                 <div class="option_inner">
-                                        <div class="cards" style="width: 250px;">
+                                        <div class="cards parent-cards" style="width: 140px;">
                                               <div class="card-body parent-card">
                                                 <div class="tickmark"></div>
                                                     <div id="parentKitty">${imgThumb}
