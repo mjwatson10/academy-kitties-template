@@ -543,7 +543,7 @@ element.style {
   width: 450px;
   border-radius: 32px 32px 32px 32px;
   border-width: 0;
-  background-color: pink;
+  background-color: #fba5b4;
   margin: 50px;
 }
 
@@ -613,4 +613,6 @@ element.style {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  width: 244px;
+  left: 20px;
 }

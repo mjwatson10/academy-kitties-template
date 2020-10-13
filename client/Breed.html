@@ -20,31 +20,6 @@
 
   <body>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Choose Parent</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-12">
-                <div class="flexBox" id="parents"></div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" id="saveButton" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <header>
       <div class="col-sm-12">
       <a class="navbar-brand nav-head" href="index.html"><span id="cyber-font-header">Cyber </span><span id="kitty-font-header">Kitties</span></a>
@@ -53,6 +28,7 @@
       </button>
     </div>
     </header>
+
     <!--NavBar-->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light" id="navigation">
 
@@ -96,11 +72,36 @@
     <!--Modal Buttons-->
     <div class="col-sm-12 flexBox-breed">
         <button class="dadKitty" id="dadId" data-toggle="modal" data-target="#exampleModal">
-          <div class="dadDisplay"></div>
+          <div class="dadDisplay">Choose a Daddy</div>
         </button>
         <button class="momKitty" id="momId" data-toggle="modal" data-target="#exampleModal">
-          <div class="momDisplay"></div>
+          <div class="momDisplay">Choose a Mommy</div>
         </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Choose Parent</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="flexBox" id="parents"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="saveButton" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
 
 
