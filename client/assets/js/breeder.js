@@ -43,7 +43,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
       if (result.length > 0 && result.length < 2) {
         let _mom = await chosenParent(result.val());
-        $('.momDisplay').html(result.val() + `<br> <p>Mommy</p>`);
+        $('.momDisplay').html(_mom + `<br> <p>Mommy</p>`);
         $('#saveButton').attr("data-dismiss","modal");
         console.log("mommy");
       } else {
