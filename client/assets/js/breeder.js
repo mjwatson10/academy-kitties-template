@@ -23,18 +23,18 @@ $('#myModal').on('shown.bs.modal', function () {
 });*/
 
 //Parents Buttons
-/*$('#saveButton').click(async function(){
+$('#saveButton').click(async function(){
     let result = $('input[type= "checkbox"]:checked');
 
     if (result.length > 0 && result.length < 2) {
-      let _dad = await chosenParent(result.val());
-      $('.dadDisplay').html(_dad + `<br> <p>Daddy</p>`);
+      await chosenParent(result.val(), '.dadDisplay');
+      $('#right-whisker').css('top', '10px').css('left', '-16px');
       $('#saveButton').attr("data-dismiss","modal");
       console.log("daddy");
     } else {
       alert("Please choose one Daddy");
     }
-  });*/
+  });
 
 
   $(document).ready(async function(){
@@ -42,8 +42,8 @@ $('#myModal').on('shown.bs.modal', function () {
       let result = $('input[type= "checkbox"]:checked');
 
       if (result.length > 0 && result.length < 2) {
-        let _mom = await chosenParent(result.val());
-        $('.momDisplay').html(_mom + `<br> <p>Mommy</p>`);
+        await chosenParent(result.val(), '.momDisplay');
+        $('#right-whisker').css('top', '10px').css('left', '-16px');
         $('#saveButton').attr("data-dismiss","modal");
         console.log("mommy");
       } else {
@@ -53,22 +53,22 @@ $('#myModal').on('shown.bs.modal', function () {
   });
 
 
-  async function chosenParent(value){
+  async function chosenParent(value, button){
     let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
 
     let _imgThumb = await kittyThumbnail(value);
     let _dna = await dnaOfKitty(_ownedKitties[value]);
 
-  chosenParent = `<div id="parentKitty">${_imgThumb}
+  displayParent = `<div id="parentKitty">${_imgThumb}
                       <br>
                      <div class="catGenes">${"DNA: " + _birth[value].genes}</div>
                       <br>
                      <div class="catGenes">${"Gen: " + _birth[value].generation}</div>
                   </div>`
 
-        renderKitty(_dna, value)
-    return chosenParent;
+        $(button).append(displayParent);
+        renderKitty(_dna, value);
   }
 
 
