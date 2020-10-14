@@ -42,8 +42,8 @@ $('#myModal').on('shown.bs.modal', function () {
       let result = $('input[type= "checkbox"]:checked');
 
       if (result.length > 0 && result.length < 2) {
-
-        $('.momDisplay').html(result.val().generation + `<br> <p>Mommy</p>`);
+        let _mom = await chosenParent(result.val());
+        $('.momDisplay').html(result.val() + `<br> <p>Mommy</p>`);
         $('#saveButton').attr("data-dismiss","modal");
         console.log("mommy");
       } else {
