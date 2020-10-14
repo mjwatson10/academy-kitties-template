@@ -43,7 +43,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
       if (result.length > 0 && result.length < 2) {
 
-        $('.momDisplay').html(result.val() + `<br> <p>Mommy</p>`);
+        $('.momDisplay').html(result.val().generation + `<br> <p>Mommy</p>`);
         $('#saveButton').attr("data-dismiss","modal");
         console.log("mommy");
       } else {
@@ -83,7 +83,7 @@ async function parentData(){
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
-                              <input type="checkbox" class="checkbox" id="kittyParent" value=${birth[i].genes}>
+                              <input type="checkbox" class="checkbox" id="kittyParent" value=${i}>
                                 <div class="option_inner">
                                         <div class="cards parent-cards">
                                               <div class="card-body parent-card">
