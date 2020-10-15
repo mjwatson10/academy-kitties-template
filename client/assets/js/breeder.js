@@ -23,13 +23,12 @@ $('#myModal').on('shown.bs.modal', function () {
 });*/
 
 //Parents Buttons
-$('#saveButton').click(async function(){
-    let result = $('input[type= "checkbox"]:checked');
+$('#saveDad').click(async function(){
+    let result = $('input[type= "radio"]:checked');
 
-    if (result.length > 0 && result.length < 2) {
+    if (result.length > 0) {
       await chosenParent(result.val(), '.dadDisplay');
       $('#right-whisker').css('top', '10px').css('left', '-16px');
-      $('#saveButton').attr("data-dismiss","modal");
       console.log("daddy");
     } else {
       alert("Please choose one Daddy");
@@ -37,19 +36,17 @@ $('#saveButton').click(async function(){
   });
 
 
-  $(document).ready(async function(){
-    $('#saveButton').click(async function(){
-      let result = $('input[type= "checkbox"]:checked');
+$('#saveMom').click(async function(){
+    let result = $('input[type= "radio"]:checked');
+    let val = $('input[value]');
 
-      if (result.length > 0 && result.length < 2) {
-        await chosenParent(result.val(), '.momDisplay');
-        $('#right-whisker').css('top', '10px').css('left', '-16px');
-        $('#saveButton').attr("data-dismiss","modal");
-        console.log("mommy");
-      } else {
-        alert("Please choose one Daddy");
-      }
-    });
+    if (result.length > 0) {
+      await chosenParent(result.val(), '.momDisplay');
+      $('#right-whisker').css('top', '10px').css('left', '-16px');
+      console.log("mommy");
+    } else {
+      alert("Please choose one Daddy");
+    }
   });
 
 
@@ -60,7 +57,7 @@ $('#saveButton').click(async function(){
     let _imgThumb = await kittyThumbnail(value);
     let _dna = await dnaOfKitty(_ownedKitties[value]);
 
-  displayParent = `<div id="parentKitty">${_imgThumb}
+  displayParent = `<div id="parentChosen">${_imgThumb}
                       <br>
                      <div class="catGenes">${"DNA: " + _birth[value].genes}</div>
                       <br>
@@ -83,7 +80,7 @@ async function parentData(){
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
-                              <input type="checkbox" class="checkbox" id="kittyParent" value=${i}>
+                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${i}>
                                 <div class="option_inner">
                                         <div class="cards parent-cards">
                                               <div class="card-body parent-card">
