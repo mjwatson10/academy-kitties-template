@@ -37,7 +37,7 @@ header{
   text-align: center;
   color: #580b65;
   font-family: defcon;
-  font-size: 15px;
+  font-size: 27px;
 }
 
 #kitty-font-header{
@@ -103,7 +103,7 @@ header{
 }
 
 #beauty{
-  font-size: 30px;
+  font-size: 60px;
   text-align: center;
   color: #580b65;
   font-family: defcon;
@@ -114,7 +114,7 @@ header{
   text-align: center;
   color: #05d9eb;
   font-family: kitty;
-  font-size: 40px;
+  font-size: 85px;
 }
 
 

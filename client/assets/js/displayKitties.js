@@ -111,8 +111,6 @@ function renderKitty(dna, id){
         _decorationTopColor(colors[dna.decorationTopcolor],dna.decorationTopcolor, id)
         _decorationBottomColor(colors[dna.decorationBottomcolor],dna.decorationBottomcolor, id)
         _animationVariation(dna.animation, id)
-
-        console.log(dna.decorationPattern, id);
 }
 
 function _headColor(color,code, id) {

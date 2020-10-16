@@ -425,7 +425,7 @@
   text-align: center;
   color: #580b65;
   font-family: defcon;
-  font-size: 25px;
+  font-size: 60px;
 }
 
 #kitty-factory-header{
@@ -627,4 +627,19 @@ element.style {
   width: 235px;
   margin: 20px;
   margin-top: -68px;
+}
+
+#clearDad{
+  margin-left: 120px;
+  margin-top: 20px;
+}
+
+#clearMom{
+  margin-left: 225px;
+  margin-top: 20px;
+}
+
+#breed{
+  margin: 35px;
+  margin-left: 335px;
 }

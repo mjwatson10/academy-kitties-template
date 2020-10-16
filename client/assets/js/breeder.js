@@ -5,48 +5,55 @@ $(document).ready(async function(){
 
 })
 
-//pop-ups for breeding selection
-/*$("#dadId").click(function(){
-  $(".modal").css("display", "flex")
-});
+var dadGenes, dadId, momGenes, momId, childId;
 
-$("#momId").click(function(){
-  $(".modal").css("display", "flex")
-});
-
-$(".close").click(function(){
-  $("modal").css("display", "none")
-});
-
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-});*/
 
 //Parents Buttons
 $('#saveDad').click(async function(){
     let result = $('input[type= "radio"]:checked');
+    let _birth = await birthArray();
 
     if (result.length > 0) {
       await chosenParent(result.val(), '.dadDisplay');
       $('#right-whisker').css('top', '10px').css('left', '-16px');
+      $('#dadId').removeAttr('data-target');
+      $('#clearDad').attr('disabled', false);
       console.log("daddy");
     } else {
       alert("Please choose one Daddy");
     }
+    dadGenes = _birth[result.val()].genes;
+    dadId = _birth[result.val()];
   });
 
 
 $('#saveMom').click(async function(){
     let result = $('input[type= "radio"]:checked');
-    let val = $('input[value]');
+    let _birth = await birthArray();
 
     if (result.length > 0) {
       await chosenParent(result.val(), '.momDisplay');
       $('#right-whisker').css('top', '10px').css('left', '-16px');
+      $('#momId').removeAttr('data-target');
+      $('#clearMom').attr('disabled', false);
       console.log("mommy");
     } else {
       alert("Please choose one Daddy");
     }
+    momGenes = _birth[result.val()].genes;
+    momId = _birth[result.val()];
+  });
+
+//clear buttons
+  $('#clearDad').click(function(){
+    $('.dadDisplay').children().remove();
+    $('#dadId').attr('data-target', '#dadModal');
+  });
+
+
+  $('#clearMom').click(function(){
+    $('.momDisplay').children().remove();
+    $('#momId').attr('data-target', '#momModal');
   });
 
 
@@ -99,6 +106,36 @@ async function parentData(){
             $(".parents").append(kittyCards);
             renderKitty(_dna, i);
         }
+      }
 
+  async function breedParents(_daddy, _mommy){
 
-}
+    if (dadGenes != momGenes) {
+      /*await instance.methods.breed(_daddy, _mommy).call({from: user});
+      let array = await ownersArray();
+      childId = await array.length - 1;*/
+      alert("Let's get busy")
+      console.log(_daddy, _mommy);
+    }else {
+      alert("You can't breed a Kitty with itself, silly!")
+    }
+  }
+
+  $('#breed').click(async function(){
+    await breedParents(dadId, momId);
+
+    /*let _ownedKitties = await ownersArray();
+    let _birth = await birthArray();
+
+    let _imgThumb = await kittyThumbnail(childId);
+    let _dna = await dnaOfKitty(_ownedKitties[childId]);
+
+    displayChild = `<div id="newChild">${_imgThumb}
+                        <br>
+                       <div class="childGenes">${"DNA: " + _birth[value].genes}</div>
+                        <br>
+                       <div class="childGenes">${"Gen: " + _birth[value].generation}</div>
+                    </div>`
+              $('.Child').append(displayChild);
+              renderKitty(_dna, childId);*/
+  });
