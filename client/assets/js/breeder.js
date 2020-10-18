@@ -14,7 +14,7 @@ $('#saveDad').click(async function(){
 
     if (result.length > 0) {
       await chosenParent(result.val(), '.dadDisplay');
-      $('#right-whisker').css('top', '10px').css('left', '-16px');
+      
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
     } else {
@@ -31,7 +31,7 @@ $('#saveMom').click(async function(){
 
     if (result.length > 0) {
       await chosenParent(result.val(), '.momDisplay');
-      $('#right-whisker').css('top', '10px').css('left', '-16px');
+
       $('#momId').removeAttr('data-target');
       $('#clearMom').attr('disabled', false);
     } else {

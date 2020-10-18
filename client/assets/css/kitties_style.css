@@ -629,6 +629,11 @@ element.style {
   margin-top: -68px;
 }
 
+#parentChosen #right-whisker{
+  top: 10px;
+  left: -16px;
+}
+
 #clearDad{
   margin-left: 85px;
   margin-top: 20px;
