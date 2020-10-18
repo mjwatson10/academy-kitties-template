@@ -19,7 +19,17 @@ var defaultDNA = {
 // when page load
 $( document ).ready(function() {
   renderCat(defaultDNA);
+  homepageCat();
 });
+
+function homepageCat(){
+  let _img = kittyThumbnail(0);
+
+  $('.homepageKitty').append(_img);
+
+  resetAnimation();
+  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");
+}
 
 function getDna(){
     var dna = ''
