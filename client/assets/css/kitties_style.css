@@ -630,16 +630,60 @@ element.style {
 }
 
 #clearDad{
-  margin-left: 120px;
+  margin-left: 85px;
   margin-top: 20px;
+  width: 185px;
 }
 
 #clearMom{
-  margin-left: 225px;
+  margin-left: 170px;
   margin-top: 20px;
+  width: 185px;
+}
+
+@font-face{
+  src: url(fonts/DefconZeroPunchItalic-6qVq.otf);
+  font-family: defcon;
+}
+
+@font-face{
+  src: url(fonts/LikelyKittyPersonalUse-PKKym.otf);
+  font-family: kitty;
+}
+
+.clearButton{
+  border-radius: 32px 32px 32px 32px;
+  border-width: 0;
+  background-color: pink;
+  font-family: kitty;
+  font-size: 25px;
+}
+
+.clearButton:focus{
+  outline:0;
+}
+
+.clearText{
+  margin-left: -10px;
 }
 
 #breed{
   margin: 35px;
-  margin-left: 335px;
+  margin-left: 205px;
+  border-radius: 32px 32px 32px 32px;
+  border-width: 0;
+  background-color: #05d9eb;
+  font-family: kitty;
+  font-size: 55px;
+  color: white;
+  width: 285px;
+  height: 75px;
+}
+
+#breed:focus{
+  outline:0;
+}
+
+.child{
+  margin-left: -20px;
 }

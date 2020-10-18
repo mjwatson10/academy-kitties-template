@@ -23,7 +23,6 @@ async function cardsData(){
   for (var i = 0; i < ownedKitties.length; i++){
     let imgThumb = kittyThumbnail(i);
     let _dna = await dnaOfKitty(ownedKitties[i]);
-    console.log(_dna);
 
         let kittyCards = `<div class="col-lg-4">
                             <div class="cards" style="width: 250px;">

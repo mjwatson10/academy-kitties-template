@@ -2,7 +2,6 @@
 $(document).ready(async function(){
   await connect();
   await parentData();
-
 })
 
 var dadGenes, dadId, momGenes, momId, childId;
@@ -18,7 +17,6 @@ $('#saveDad').click(async function(){
       $('#right-whisker').css('top', '10px').css('left', '-16px');
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
-      console.log("daddy");
     } else {
       alert("Please choose one Daddy");
     }
@@ -36,7 +34,6 @@ $('#saveMom').click(async function(){
       $('#right-whisker').css('top', '10px').css('left', '-16px');
       $('#momId').removeAttr('data-target');
       $('#clearMom').attr('disabled', false);
-      console.log("mommy");
     } else {
       alert("Please choose one Daddy");
     }
@@ -48,12 +45,14 @@ $('#saveMom').click(async function(){
   $('#clearDad').click(function(){
     $('.dadDisplay').children().remove();
     $('#dadId').attr('data-target', '#dadModal');
+    $('#clearDad').attr('disabled', true);
   });
 
 
   $('#clearMom').click(function(){
     $('.momDisplay').children().remove();
     $('#momId').attr('data-target', '#momModal');
+    $('#clearMom').attr('disabled', true);
   });
 
 
@@ -83,7 +82,6 @@ async function parentData(){
   for (var i = 0; i < ownedKitties.length; i++){
     let imgThumb = kittyThumbnail(i);
     let _dna = await dnaOfKitty(ownedKitties[i]);
-    console.log(_dna);
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
@@ -111,11 +109,17 @@ async function parentData(){
   async function breedParents(_daddy, _mommy){
 
     if (dadGenes != momGenes) {
-      /*await instance.methods.breed(_daddy, _mommy).call({from: user});
+      instance.methods.breed(_daddy, _mommy).send({from: user}, function(error, txHash){
+        if(error){
+          console.log(error);
+        }else {
+          console.log(txHash);
+          console.log(_daddy, _mommy);
+        }
+      });
       let array = await ownersArray();
-      childId = await array.length - 1;*/
+      childId = await array.length - 1;
       alert("Let's get busy")
-      console.log(_daddy, _mommy);
     }else {
       alert("You can't breed a Kitty with itself, silly!")
     }
