@@ -410,12 +410,24 @@
   margin: 4px;
 }
 
+#defaultButton:hover{
+  background: #06a8e6;
+}
+
 #randomButton{
   margin: 4px;
 }
 
+#randomButton:hover{
+  background: #7e258d;
+}
+
 #createButton{
   margin: 4px;
+}
+
+#createButton:hover{
+  background: #226d40;
 }
 
 
@@ -448,7 +460,7 @@
 }
 
 #randomButton{
-  background: #7e258d;
+  background: #bb31d2;
   height: 60px;
   width: 150px;
 }
