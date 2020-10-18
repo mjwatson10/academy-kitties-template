@@ -434,6 +434,45 @@
   font-family: kitty;
 }
 
+#defaultButton{
+  background: #05d9eb;
+  height: 60px;
+  width: 150px;
+}
+
+.defaultKit{
+  font-family: kitty;
+  margin-left: -8px;
+  margin-top: -6px;
+  font-size: 40px;
+}
+
+#randomButton{
+  background: #7e258d;
+  height: 60px;
+  width: 150px;
+}
+
+.randomKit{
+  font-family: kitty;
+  margin-left: -8px;
+  margin-top: -7px;
+  font-size: 40px;
+}
+
+#createButton{
+  background: #2ac367;
+  height: 60px;
+  width: 191px;
+}
+
+.createKit{
+  font-family: kitty;
+  margin-left: -14px;
+  margin-top: -4px;
+  font-size: 36px;
+}
+
 
 /*MyKitties.html*/
 
@@ -539,8 +578,16 @@ element.style {
   outline:0;
 }
 
+.dadKitty:hover{
+  background: #06a8e6;
+}
+
 .momKitty:focus {
   outline:0;
+}
+
+.momKitty:hover{
+  background: #f9657e;
 }
 
 .momKitty{
@@ -640,10 +687,18 @@ element.style {
   width: 185px;
 }
 
+#clearDad:hover{
+  background: #f9657e;
+}
+
 #clearMom{
   margin-left: 170px;
   margin-top: 20px;
   width: 185px;
+}
+
+#clearMom:hover{
+  background: #f9657e;
 }
 
 @font-face{
@@ -687,6 +742,10 @@ element.style {
 
 #breed:focus{
   outline:0;
+}
+
+#breed:hover{
+  background: #06a8e6;
 }
 
 .child{
