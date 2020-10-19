@@ -219,9 +219,6 @@
     margin-left: 910px;
     margin-top: 0px;
   }
-  50% {
-    margin-left: 510px;
-  }
   70% {
     margin-top: 0px;
   }
@@ -233,7 +230,15 @@
     margin-left: 110px;
     margin-top: 0px;
   }
-  100% {
+  95% {
     margin-left: 510px;
+    margin-top: 0px;
+  }
+  97% {
+    margin-left: 510px;
+    margin-top: -45px;
+  }
+  100% {
+    margin-top: 0px;
   }
 }

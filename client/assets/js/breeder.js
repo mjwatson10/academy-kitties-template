@@ -14,7 +14,7 @@ $('#saveDad').click(async function(){
 
     if (result.length > 0) {
       await chosenParent(result.val(), '.dadDisplay');
-      
+
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
     } else {
