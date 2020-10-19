@@ -21,7 +21,8 @@ $('#saveDad').click(async function(){
       alert("Please choose one Daddy");
     }
     dadGenes = _birth[result.val()].genes;
-    dadId = _birth[result.val()];
+    dadId = result.val();
+    console.log("dad " + dadId);
   });
 
 
@@ -38,7 +39,8 @@ $('#saveMom').click(async function(){
       alert("Please choose one Daddy");
     }
     momGenes = _birth[result.val()].genes;
-    momId = _birth[result.val()];
+    momId = result.val();
+    console.log("mom " + momId);
   });
 
 //clear buttons
@@ -128,6 +130,9 @@ async function parentData(){
   $('#breed').click(async function(){
     await breedParents(dadId, momId);
 
+    let _birth = await birthArray();
+    console.log(_birth[childId].genes);
+
     /*let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
 
@@ -136,10 +141,10 @@ async function parentData(){
 
     displayChild = `<div id="newChild">${_imgThumb}
                         <br>
-                       <div class="childGenes">${"DNA: " + _birth[value].genes}</div>
+                       <div class="childGenes">${"DNA: " + _birth[childId].genes}</div>
                         <br>
-                       <div class="childGenes">${"Gen: " + _birth[value].generation}</div>
+                       <div class="childGenes">${"Gen: " + _birth[childId].generation}</div>
                     </div>`
-              $('.Child').append(displayChild);
+              $('.childImg').append(displayChild);
               renderKitty(_dna, childId);*/
   });
