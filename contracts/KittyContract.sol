@@ -136,7 +136,7 @@ contract Kittycontract is IERC721, Ownable {
       uint256 firstHalf = _dadDna / 10000000000;
       uint256 secondHalf = _momDna % 1000000000;
 
-      uint256 newDna = firstHalf * 10000000000;
+      uint256 newDna = firstHalf * 1000000000;
       newDna = newDna + secondHalf;
 
       return newDna;

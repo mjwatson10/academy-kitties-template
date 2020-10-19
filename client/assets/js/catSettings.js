@@ -27,8 +27,8 @@ function homepageCat(){
 
   $('.homepageKitty').append(_img);
 
-  resetAnimation();
-  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");
+  /*resetAnimation();
+  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");*/
 }
 
 function getDna(){

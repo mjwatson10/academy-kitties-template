@@ -2,8 +2,29 @@
 $(document).ready(async function(){
   await connect();
   await parentData();
+  instance.events.Birth().on('data', function(event){
+    console.log(event);
+
+    let owner = event.returnValues.owner;
+    let kittenId = event.returnValues.kittenId;
+    let momId = event.returnValues.momId;
+    let dadId = event.returnValues.dadId;
+    let genes = event.returnValues.genes;
+
+
+    $(".childData").css("display", "block");
+    $(".childData").text("Owner: " + owner
+                            + " || Kitten Id: " + kittenId
+                            + " || Mom Id: " + momId
+                            + " || Dad Id: " + dadId
+                            + " || Genes: " + genes);
+
+    alert("Congratulations!!! You own a new Kitty")
+  })
+  .on('error', console.error)
 })
 
+//State variables
 var dadGenes, dadId, momGenes, momId, childId;
 
 
@@ -130,10 +151,7 @@ async function parentData(){
   $('#breed').click(async function(){
     await breedParents(dadId, momId);
 
-    let _birth = await birthArray();
-    console.log(_birth[childId].genes);
-
-    /*let _ownedKitties = await ownersArray();
+    let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
 
     let _imgThumb = await kittyThumbnail(childId);
@@ -146,5 +164,5 @@ async function parentData(){
                        <div class="childGenes">${"Gen: " + _birth[childId].generation}</div>
                     </div>`
               $('.childImg').append(displayChild);
-              renderKitty(_dna, childId);*/
+              renderKitty(_dna, childId);
   });
