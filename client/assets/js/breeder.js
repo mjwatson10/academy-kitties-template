@@ -154,7 +154,7 @@ async function parentData(){
 
     let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
-    console.log("child " + _ownedKitties[substring(_childId)]);
+    console.log("child " + _ownedKitties[_childId]);
 
     let _imgThumb = await kittyThumbnail(_childId);
     let _dna = await dnaOfKitty(_ownedKitties[_childId]);
