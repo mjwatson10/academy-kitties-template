@@ -4,7 +4,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0x110160dA1EE4f4AD9Bd0e5d7119f42C47D75b845";
+var contractAddress = "0x77cc05fd320262Ab00e9A9A31982637feD1626D9";
 
 function connect(){
   //call for metamask enable function

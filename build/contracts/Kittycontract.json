@@ -26045,12 +26045,12 @@
         }
       },
       "links": {},
-      "address": "0x110160dA1EE4f4AD9Bd0e5d7119f42C47D75b845",
-      "transactionHash": "0x54c2f4dfad978f851fa3b4a7cb67e457b1999d7d606543fc0a9c8dc3f0bdee26"
+      "address": "0x77cc05fd320262Ab00e9A9A31982637feD1626D9",
+      "transactionHash": "0xc28613e83e0d27d3627b9234741eaeac60fa9a405ac4e3e6524bd2f492c9c909"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-10-19T21:31:06.570Z",
+  "updatedAt": "2020-10-20T00:36:02.066Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

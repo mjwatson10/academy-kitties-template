@@ -3,7 +3,6 @@ $(document).ready(async function(){
   await connect();
   await parentData();
   instance.events.Birth().on('data', function(event){
-    console.log(event);
 
     let owner = event.returnValues.owner;
     let kittenId = event.returnValues.kittenId;
@@ -25,7 +24,7 @@ $(document).ready(async function(){
 })
 
 //State variables
-var dadGenes, dadId, momGenes, momId, childId;
+var dadGenes, dadId, momGenes, momId;
 
 
 //Parents Buttons
@@ -43,7 +42,6 @@ $('#saveDad').click(async function(){
     }
     dadGenes = _birth[result.val()].genes;
     dadId = result.val();
-    console.log("dad " + dadId);
   });
 
 
@@ -61,7 +59,6 @@ $('#saveMom').click(async function(){
     }
     momGenes = _birth[result.val()].genes;
     momId = result.val();
-    console.log("mom " + momId);
   });
 
 //clear buttons
@@ -132,37 +129,42 @@ async function parentData(){
   async function breedParents(_daddy, _mommy){
 
     if (dadGenes != momGenes) {
-      instance.methods.breed(_daddy, _mommy).send({from: user}, function(error, txHash){
+      await instance.methods.breed(_daddy, _mommy).send({from: user}, function(error, txHash){
         if(error){
           console.log(error);
         }else {
           console.log(txHash);
-          console.log(_daddy, _mommy);
         }
       });
       let array = await ownersArray();
       childId = await array.length - 1;
+      console.log(childId);
       alert("Let's get busy")
     }else {
       alert("You can't breed a Kitty with itself, silly!")
     }
+    return childId;
   }
 
   $('#breed').click(async function(){
-    await breedParents(dadId, momId);
+    console.log("dad " + dadGenes);
+    console.log("mom " + momGenes);
+    let _childId = await breedParents(dadId, momId);
+    console.log(_childId);
 
     let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
+    console.log("child " + _ownedKitties[substring(_childId)]);
 
-    let _imgThumb = await kittyThumbnail(childId);
-    let _dna = await dnaOfKitty(_ownedKitties[childId]);
+    let _imgThumb = await kittyThumbnail(_childId);
+    let _dna = await dnaOfKitty(_ownedKitties[_childId]);
 
     displayChild = `<div id="newChild">${_imgThumb}
                         <br>
-                       <div class="childGenes">${"DNA: " + _birth[childId].genes}</div>
+                       <div class="childGenes">${"DNA: " + _birth[_childId].genes}</div>
                         <br>
-                       <div class="childGenes">${"Gen: " + _birth[childId].generation}</div>
+                       <div class="childGenes">${"Gen: " + _birth[_childId].generation}</div>
                     </div>`
               $('.childImg').append(displayChild);
-              renderKitty(_dna, childId);
+              await renderKitty(_dna, _childId);
   });
