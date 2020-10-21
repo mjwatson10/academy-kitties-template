@@ -590,6 +590,8 @@ element.style {
   border-width: 0;
   background-color: #05d9eb;
   margin: 50px;
+  margin-left: 205px;
+  margin-top: inherit;
 }
 
 .dadKitty:focus {
@@ -615,6 +617,7 @@ element.style {
   border-width: 0;
   background-color: #fba5b4;
   margin: 50px;
+  margin-top: inherit;
 }
 
 .option_inner{
@@ -700,7 +703,7 @@ element.style {
 }
 
 #clearDad{
-  margin-left: 85px;
+  margin-left: 240px;
   margin-top: 20px;
   width: 185px;
 }
@@ -747,7 +750,7 @@ element.style {
 
 #breed{
   margin: 35px;
-  margin-left: 205px;
+  margin-left: 365px;
   border-radius: 32px 32px 32px 32px;
   border-width: 0;
   background-color: #05d9eb;
@@ -774,7 +777,8 @@ element.style {
   width: 390px;
   height: 500px;
   background-color: pink;
-  margin-left: 145px;
+  margin-top: 145px;
+  margin-left: -375px;
   border-radius: 40px 40px 0px 440px;
 }
 
@@ -789,6 +793,6 @@ element.style {
 .childData {
   display: block;
   margin-top: 40px;
-  margin-left: -140px;
+  margin-left: -5px;
   font-size: 20px;
 }
