@@ -12,7 +12,7 @@ var defaultDNA = {
     "decorationPattern" : 1,
     "decorationTopcolor" : 13,
     "decorationBottomcolor" : 13,
-    "animation" :  1,
+    "animation" :  3,
     "lastNum" :  1
     }
 
@@ -27,8 +27,8 @@ function homepageCat(){
 
   $('.homepageKitty').append(_img);
 
-  /*resetAnimation();
-  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");*/
+  resetAnimation();
+  $(".eye-borders-left, .eye-borders-right").addClass("blinkingEyes");
 }
 
 function getDna(){

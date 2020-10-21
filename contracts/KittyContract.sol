@@ -136,7 +136,7 @@ contract Kittycontract is IERC721, Ownable {
       uint256 firstHalf = _dadDna / 10000000000;
       uint256 secondHalf = _momDna % 1000000000;
 
-      uint256 newDna = firstHalf * 1000000000;
+      uint256 newDna = firstHalf * 10000000000;
       newDna = newDna + secondHalf;
 
       return newDna;
@@ -170,7 +170,7 @@ contract Kittycontract is IERC721, Ownable {
             uint256[] memory result = new uint256[](IdCount);
             uint256 resultIndex = 0;
 
-            for (uint256 i = 1; i < kitties.length; i++) {
+            for (uint256 i = 0; i < kitties.length; i++) {
                 if (kittyIndexToOwner[i] == kittyOwner) {
                     result[resultIndex] = i;
                     resultIndex++;

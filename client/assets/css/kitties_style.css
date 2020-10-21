@@ -541,7 +541,7 @@ element.style {
 
 .catGenes{
   color: black;
-  width: 217px;
+  width: 220px;
   text-align: left;
 }
 
@@ -774,4 +774,10 @@ element.style {
   width: 500px;
   height: 500px;
   background-color: pink;
+  margin-left: 100px;
+  border-radius: 00px 40px 0px 440px;
+}
+
+#newChild{
+  margin-left: 150px;
 }

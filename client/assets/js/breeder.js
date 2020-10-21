@@ -12,11 +12,11 @@ $(document).ready(async function(){
 
 
     $(".childData").css("display", "block");
+    $(".childData").css("margin-top", "40px");
     $(".childData").text("Owner: " + owner
                             + " || Kitten Id: " + kittenId
                             + " || Mom Id: " + momId
-                            + " || Dad Id: " + dadId
-                            + " || Genes: " + genes);
+                            + " || Dad Id: " + dadId);
 
     alert("Congratulations!!! You own a new Kitty")
   })
@@ -139,7 +139,6 @@ async function parentData(){
       let array = await ownersArray();
       childId = await array.length - 1;
       console.log(childId);
-      alert("Let's get busy")
     }else {
       alert("You can't breed a Kitty with itself, silly!")
     }
