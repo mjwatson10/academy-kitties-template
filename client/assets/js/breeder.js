@@ -34,6 +34,7 @@ $('#saveDad').click(async function(){
 
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
+      $('#breed').attr('disabled', false);
     } else {
       alert("Please choose one Daddy");
     }
@@ -51,6 +52,7 @@ $('#saveMom').click(async function(){
 
       $('#momId').removeAttr('data-target');
       $('#clearMom').attr('disabled', false);
+      $('#breed').attr('disabled', false);
     } else {
       alert("Please choose one Daddy");
     }
@@ -61,6 +63,7 @@ $('#saveMom').click(async function(){
 //clear buttons
   $('#clearDad').click(function(){
     $('.dadDisplay').children().remove();
+    $('#newChild').remove();
     $('#dadId').attr('data-target', '#dadModal');
     $('#clearDad').attr('disabled', true);
   });
@@ -68,6 +71,7 @@ $('#saveMom').click(async function(){
 
   $('#clearMom').click(function(){
     $('.momDisplay').children().remove();
+    $('#newChild').remove();
     $('#momId').attr('data-target', '#momModal');
     $('#clearMom').attr('disabled', true);
   });
@@ -136,8 +140,9 @@ async function parentData(){
       let array = await ownersArray();
       childId = await array.length - 1;
       console.log(childId);
+      $('#breed').attr('disabled', true);
     }else {
-      alert("You can't breed a Kitty with itself, silly!")
+      alert("You need two different Kitties to make a Kitten, silly!")
     }
     return childId;
   }
