@@ -10,9 +10,6 @@ $(document).ready(async function(){
     let dadId = event.returnValues.dadId;
     let genes = event.returnValues.genes;
 
-
-    $(".childData").css("display", "block");
-    $(".childData").css("margin-top", "40px");
     $(".childData").text("Owner: " + owner
                             + " || Kitten Id: " + kittenId
                             + " || Mom Id: " + momId
