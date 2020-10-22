@@ -11,8 +11,8 @@ var defaultDNA = {
     "decorationPattern" : 11,
     "decorationTopcolor" : 13,
     "decorationBottomcolor" : 13,
-    "eyesShape" : 1,
     "animation" :  3,
+    "eyesShape" : 1,
     "lastNum" :  1
     }
 
@@ -42,8 +42,8 @@ function getDna(){
     dna += $('#dnadecoration').html()
     dna += $('#dnadecorationTop').html()
     dna += $('#dnadecorationBottom').html()
-    dna += $('#dnashape').html()
     dna += $('#dnaanimation').html()
+    dna += $('#dnashape').html()
     dna += $('#dnaspecial').html()
 
     return dna;
@@ -69,10 +69,11 @@ function renderCat(dna){
     $('#stripe_top_color').val(dna.decorationTopcolor)
     decorationBottomColor(colors[dna.decorationBottomcolor],dna.decorationBottomcolor)
     $('#stripe_bottom_color').val(dna.decorationBottomcolor)
-    eyeVariation(dna.eyesShape)
-    $('#eyeshape').val(dna.eyesShape)
     animationVariation(dna.animation)
     $("#animation").val(dna.animation)
+    eyeVariation(dna.eyesShape)
+    $('#eyeshape').val(dna.eyesShape)
+
 }
 
 // Changing cat colors
@@ -140,7 +141,7 @@ function getRandomDNA(){
       "earcolor" : Math.floor(Math.random() * 89) + 10,
       "pawcolor" : Math.floor(Math.random() * 89) + 10,
       "bellycolor" :Math.floor(Math.random() * 89) + 10,
-      "eyesShape" : Math.floor(Math.random() * 10) + 1,
+      "eyesShape" : Math.floor(Math.random() * 9) + 1,
       "decorationPattern" : Math.floor(Math.random() * 10) + 10,
       "decorationTopcolor" : Math.floor(Math.random() * 89) + 10,
       "decorationBottomcolor" : Math.floor(Math.random() * 89) + 10,
