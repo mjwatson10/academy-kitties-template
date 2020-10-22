@@ -119,46 +119,46 @@ function eyeVariation(num) {
 function decorationVariation(num) {
     $('#dnadecoration').html(num)
     switch (num) {
-        case 1:
+        case 11:
             $('#stripeName').html('Basic ' + num)
             normaldecoration()
             break;
-        case 2:
+        case 12:
             normaldecoration()
             $('#stripeName').html('Spread Top ' + num)
             stripeType1()
             break;
-        case 3:
+        case 13:
             normaldecoration()
             $('#stripeName').html('Lower Bottom ' + num)
             stripeType2()
             break;
-        case 4:
+        case 14:
             normaldecoration()
             $('#stripeName').html('Smaller Top ' + num)
             stripeType3()
             break;
-        case 5:
+        case 15:
             normaldecoration()
             $('#stripeName').html('Closer Bottom ' + num)
             stripeType4()
             break;
-        case 6:
+        case 16:
             normaldecoration()
             $('#stripeName').html('Raise Bottom ' + num)
             stripeType5()
             break;
-        case 7:
+        case 17:
             normaldecoration()
             $('#stripeName').html('Lowest Bottom ' + num)
             stripeType6()
             break;
-        case 8:
+        case 18:
             normaldecoration()
             $('#stripeName').html('Closer Top ' + num)
             stripeType7()
             break;
-        case 9:
+        case 19:
             normaldecoration()
             $('#stripeName').html('Lowest Top ' + num)
             stripeType8()

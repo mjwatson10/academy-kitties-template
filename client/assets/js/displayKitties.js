@@ -86,11 +86,11 @@ function dnaOfKitty(dnaStr){
     "earcolor" : dnaStr.substring(6,8),
     "pawcolor" : dnaStr.substring(8,10),
     "bellycolor" : dnaStr.substring(10,12),
-    "eyesShape" : dnaStr.substring(12,13),
-    "decorationPattern" : dnaStr.substring(13,14),
+    "decorationPattern" : dnaStr.substring(12,14),
     "decorationTopcolor" : dnaStr.substring(14,16),
     "decorationBottomcolor" : dnaStr.substring(16,18),
-    "animation" :  dnaStr.substring(18,19)
+    "eyesShape" : dnaStr.substring(18,19),
+    "animation" :  dnaStr.substring(19,20)
   }
   return _dna;
 }
@@ -105,10 +105,10 @@ function renderKitty(dna, id){
         _earColor(colors[dna.earcolor],dna.earcolor, id)
         _pawColor(colors[dna.pawcolor],dna.pawcolor, id)
         _bellyColor(colors[dna.bellycolor],dna.bellycolor, id)
-        _eyeVariation(dna.eyesShape, id)
         _decorationVariation(dna.decorationPattern, id)
         _decorationTopColor(colors[dna.decorationTopcolor],dna.decorationTopcolor, id)
         _decorationBottomColor(colors[dna.decorationBottomcolor],dna.decorationBottomcolor, id)
+        _eyeVariation(dna.eyesShape, id)
         _animationVariation(dna.animation, id)
 }
 

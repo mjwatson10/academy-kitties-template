@@ -8,10 +8,10 @@ var defaultDNA = {
     "pawcolor" : 13,
     "bellycolor" :13,
     //Cattributes
-    "eyesShape" : 1,
-    "decorationPattern" : 1,
+    "decorationPattern" : 11,
     "decorationTopcolor" : 13,
     "decorationBottomcolor" : 13,
+    "eyesShape" : 1,
     "animation" :  3,
     "lastNum" :  1
     }
@@ -39,10 +39,10 @@ function getDna(){
     dna += $('#dnaears').html()
     dna += $('#dnapaws').html()
     dna += $('#dnabelly').html()
-    dna += $('#dnashape').html()
     dna += $('#dnadecoration').html()
     dna += $('#dnadecorationTop').html()
     dna += $('#dnadecorationBottom').html()
+    dna += $('#dnashape').html()
     dna += $('#dnaanimation').html()
     dna += $('#dnaspecial').html()
 
@@ -63,14 +63,14 @@ function renderCat(dna){
     $('#paws_color').val(dna.pawcolor)
     bellyColor(colors[dna.bellycolor],dna.bellycolor)
     $('#belly_color').val(dna.bellycolor)
-    eyeVariation(dna.eyesShape)
-    $('#eyeshape').val(dna.eyesShape)
     decorationVariation(dna.decorationPattern)
     $('#stripeshape').val(dna.decorationPattern)
     decorationTopColor(colors[dna.decorationTopcolor],dna.decorationTopcolor)
     $('#stripe_top_color').val(dna.decorationTopcolor)
     decorationBottomColor(colors[dna.decorationBottomcolor],dna.decorationBottomcolor)
     $('#stripe_bottom_color').val(dna.decorationBottomcolor)
+    eyeVariation(dna.eyesShape)
+    $('#eyeshape').val(dna.eyesShape)
     animationVariation(dna.animation)
     $("#animation").val(dna.animation)
 }
@@ -141,7 +141,7 @@ function getRandomDNA(){
       "pawcolor" : Math.floor(Math.random() * 89) + 10,
       "bellycolor" :Math.floor(Math.random() * 89) + 10,
       "eyesShape" : Math.floor(Math.random() * 10) + 1,
-      "decorationPattern" : Math.floor(Math.random() * 10) + 1,
+      "decorationPattern" : Math.floor(Math.random() * 10) + 10,
       "decorationTopcolor" : Math.floor(Math.random() * 89) + 10,
       "decorationBottomcolor" : Math.floor(Math.random() * 89) + 10,
       "animation" :  Math.floor(Math.random() * 6) + 1,
