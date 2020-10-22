@@ -135,6 +135,7 @@ contract Kittycontract is IERC721, Ownable {
       uint256[10] memory geneArray;
 
       uint16 random = uint16(now % 255);
+      uint16 specialRandom = uint16(now % 97);
       uint256 i = 1;
       uint256 index = 9;
 
@@ -157,7 +158,7 @@ contract Kittycontract is IERC721, Ownable {
           if(i != 9){
             newGene = newGene * 100;
           } else if(i == 9){
-            newGene = (newGene * 100) + uint16(now % 97);
+            newGene = newGene + specialRandom;
           }
       }
       return newGene;
