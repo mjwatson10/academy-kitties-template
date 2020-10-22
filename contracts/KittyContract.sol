@@ -152,11 +152,11 @@ contract Kittycontract is IERC721, Ownable {
 
       uint256 newGene;
 
-      for (i = 0; i < 9; i++){
+      for (i = 0; i < 10; i++){
           newGene = newGene + geneArray[i];
-          if(i != 8){
+          if(i != 9){
             newGene = newGene * 100;
-          } else if(i == 8){
+          } else if(i == 9){
             newGene = (newGene * 100) + uint16(now % 97);
           }
       }
