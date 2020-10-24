@@ -65,6 +65,11 @@ contract Kittycontract is IERC721, Ownable {
         //gives access to all token, ex: my address => operators address => true or false
         mapping(address => mapping(address => bool)) private _operatorApprovals;
 
+//CONSTRUCTOR
+  constructor() public {
+    _createKitty(0, 0, 0, uint256(-1), address(0));
+  }
+
 
 //FUNCTIONS
   function supportsInterface(bytes4 _interfaceId) external view returns(bool){
