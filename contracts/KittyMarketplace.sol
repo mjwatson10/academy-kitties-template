@@ -41,7 +41,13 @@ contract KittyMarketplace is Ownable{
     function getOffer(uint256 _tokenId) public view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active){
       Offer storage offer = tokenIdToOffer[_tokenId];
 
-      return (offer.seller, offer.price, offer.index, offer.tokenId, offer.active);
+      return (
+              offer.seller,
+              offer.price,
+              offer.index,
+              offer.tokenId,
+              offer.active
+              );
     }
 
     function getAllTokenOnSale() public view  returns(uint256[] memory listOfOffers){
