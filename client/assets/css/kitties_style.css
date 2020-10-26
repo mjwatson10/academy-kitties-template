@@ -505,7 +505,7 @@
   width: 248px;
   padding-left: 13px;
   background-color: #e5c6ff;
-  font-size: 10px;
+  font-size: 16px;
   color: black;
   border-radius: 40px 40px 0px 440px;
 }
@@ -674,6 +674,7 @@ element.style {
 
 .parent-card{
   transform: scale(.75);
+  font-size: 18px;
 }
 
 .close{
@@ -795,4 +796,43 @@ element.style {
   margin-top: 40px;
   margin-left: -5px;
   font-size: 20px;
+}
+
+
+/*Marketplace.html*/
+
+#currency-field{
+  border: 2px solid #333;
+  border-radius: 5px;
+  margin: 0 0 7px;
+  font-size: 15px;
+  padding: .5rem 1rem;
+  margin-left: 550px;
+}
+
+#submitPrice {
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 5px;
+  color: #333;
+  font-size: 20px;
+  font-family: kitty;
+  font-weight: bold;
+  padding: 0.5rem;
+  width: 100px;
+}
+
+#submitPrice:hover {
+  background: #27a737;
+  border: 2px solid #27a737;
+  color: #fff;
+}
+
+.sell-btn{
+  margin-right: 8px;
+  font-size: 25px;
+}
+
+#priceTitle{
+  margin-left: 650px;
 }

@@ -33,8 +33,13 @@ header{
   padding-left: 25px;
 }
 
+.header-text{
+  display: flex;
+  justify-content: flex-end;
+}
+
 #cyber-font-header{
-  text-align: center;
+  text-align: left;
   color: #580b65;
   font-family: defcon;
   font-size: 27px;

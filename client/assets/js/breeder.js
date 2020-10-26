@@ -30,7 +30,7 @@ $('#saveDad').click(async function(){
     let _birth = await birthArray();
 
     if (result.length > 0) {
-      await chosenParent(result.val(), '.dadDisplay');
+      await chosenKitty(result.val(), '.dadDisplay');
 
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
@@ -48,7 +48,7 @@ $('#saveMom').click(async function(){
     let _birth = await birthArray();
 
     if (result.length > 0) {
-      await chosenParent(result.val(), '.momDisplay');
+      await chosenKitty(result.val(), '.momDisplay');
 
       $('#momId').removeAttr('data-target');
       $('#clearMom').attr('disabled', false);
@@ -77,7 +77,7 @@ $('#saveMom').click(async function(){
   });
 
 
-  async function chosenParent(value, button){
+  async function chosenKitty(value, button){
     let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
 

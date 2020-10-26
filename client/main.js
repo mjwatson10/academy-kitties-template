@@ -2,9 +2,11 @@
 //Web3.givenProvider allows the use of whatever provider MetaMask is giving
 var web3 = new Web3(Web3.givenProvider);
 
+//KittyContract
 var instance;
 var user;
 var contractAddress = "0xB13FF1Cb8b6E1E8e498d6aD5b3F1fA776a93eCBA";
+
 
 function connect(){
   //call for metamask enable function
@@ -13,6 +15,23 @@ function connect(){
       user = accounts[0];
 
       console.log(instance);
+  })
+}
+
+
+//KittyMarketplace
+var instanceMarket;
+var userMarket;
+var contractAddressMarket = "0x216e0464a2330Aa8cF5bEAdF63a9Bd7f7660b612";
+
+
+function connectMarket(){
+  //call for metamask enable function
+  return window.ethereum.enable().then(function(accounts){
+      instanceMarket = new web3.eth.Contract(abi, contractAddressMarket, {from: accounts[0]})
+      userMarket = accounts[0];
+
+      console.log(instanceMarket);
   })
 }
 
