@@ -74,6 +74,12 @@ async function sellKitty(price, id){
 }
 
 
+$("#btn2").click(function(){
+  //  let price = $("#currency-field").val();
+
+    console.log("hello");
+})
+
 
 //currency formatting
 $("input[data-type='currency']").on({
