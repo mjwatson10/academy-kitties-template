@@ -109,7 +109,7 @@ contract KittyMarketplace is Ownable{
       Offer memory offer = tokenIdToOffer[_tokenId];
       require(offer.seller == msg.sender, "You are not selling that Kitty");
 
-      delete offer;
+      delete tokenIdToOffer[_tokenId];
       offers[offer.index].active = false;
 
       emit MarketTransaction("Removed offer", msg.sender, _tokenId);
@@ -128,7 +128,7 @@ contract KittyMarketplace is Ownable{
       require(offer.active == true, "No active order currently available");
 
       //must delete the Kitty from the mapping BEFORE paying out to prevent RE-ENTRY ATTACKS
-      delete offer;
+      delete tokenIdToOffer[_tokenId];
       offers[offer.index].active = false;
 
       //transfer funds to seller
