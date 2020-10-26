@@ -40,7 +40,7 @@ contract KittyMarketplace is Ownable{
 
     function getOffer(uint256 _tokenId) public view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active){
       Offer storage offer = tokenIdToOffer[_tokenId];
-      require(offer.active == true);
+      require(offer.active == true, "This Kitty is not for sale");
 
       return (
               offer.seller,

@@ -28,7 +28,7 @@ var contractAddressMarket = "0x216e0464a2330Aa8cF5bEAdF63a9Bd7f7660b612";
 function connectMarket(){
   //call for metamask enable function
   return window.ethereum.enable().then(function(accounts){
-      instanceMarket = new web3.eth.Contract(abi, contractAddressMarket, {from: accounts[0]})
+      instanceMarket = new web3.eth.Contract(abiMarketplace, contractAddressMarket, {from: accounts[0]})
       userMarket = accounts[0];
 
       console.log(instanceMarket);
