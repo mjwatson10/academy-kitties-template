@@ -57,7 +57,7 @@ async function sellingArray(){
   console.log(alreadyForSell);
 }
 
-/*async function sellKitty(price, id){
+async function sellKitty(price, id){
   let already = await sellingArray;
 
   if (id == already) {
@@ -69,8 +69,9 @@ async function sellingArray(){
       }else {
         console.log(txHash);
       }
-  });
-}*/
+    })
+  }
+}
 
 
 
