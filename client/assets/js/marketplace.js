@@ -78,7 +78,7 @@ $("#submitPrice").click(async function(){
   let setPrice = $("#price-field").val();
 
   await sellKitty(setPrice, sellerId);
-  await sellingKitties(kittyForSale, allKittiesBeingSold, setPrice);
+  await sellingKitties(sellerId, ".allKittiesBeingSold", setPrice);
 
 
     alert(setPrice);

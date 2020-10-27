@@ -77,7 +77,7 @@ $('#saveMom').click(async function(){
   });
 
 
-  async function chosenKitty(value, button){
+  async function chosenKitty(value, placement){
     let _ownedKitties = await ownersArray();
     let _birth = await birthArray();
 
@@ -91,7 +91,7 @@ $('#saveMom').click(async function(){
                      <div class="catGenes">${"Gen: " + _birth[value].generation}</div>
                   </div>`
 
-        $(button).append(displayParent);
+        $(placement).append(displayParent);
         renderKitty(_dna, value);
   }
 
