@@ -97,16 +97,17 @@
     <!--Set Kitty Price-->
     <div class="kitty-being-sold"></div>
 
-    <form method="post" action="#">
-      <label for="currency-field" id="priceTitle">Price:</label>
-      <br>
-      <input type="text" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1,000,000.00">
-      <button type="submit" id="submitPrice">
-        <div class="sell-btn">Sell</div>
-      </button>
-    </form>
 
-    <button type="button" id="btn2" name="button">Hello</button>
+    <label for="currency-field" id="priceTitle">Price:</label>
+      <br>
+    <input type="text" id="price-field" value="" data-type="number" placeholder="1,000,000.00">
+    <button type="submit" id="submitPrice">
+      <div class="sell-btn">Sell</div>
+    </button>
+
+    <div class="allKittiesBeingSold">
+
+    </div>
 
     <div class="footer">
         <footer>
