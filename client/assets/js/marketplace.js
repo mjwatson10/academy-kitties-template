@@ -58,19 +58,15 @@ async function sellingArray(){
 }
 
 async function sellKitty(price, id){
-  let already = await sellingArray;
+    let _price = price.toString(10);
 
-  if (id == already) {
-    alert("This Kitty is already for sell")
-  } else {
-    await instanceMarket.methods.setOffer(price, id).send({from: userMarket}, function(error, txHash){
+    await instanceMarket.methods.setOffer(web3.utils.toWei(_price), id).send({from: userMarket}, function(error, txHash){
       if(error){
         console.log(error);
       }else {
         console.log(txHash);
       }
     })
-  }
 }
 
 
