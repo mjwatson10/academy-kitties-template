@@ -58,9 +58,9 @@ async function sellingArray(){
 }
 
 async function sellKitty(price, id){
-    let _price = price.toString(10);
+    //let _price = price.toString(10);
 
-    await instanceMarket.methods.setOffer(web3.utils.toWei(_price), id).send({from: userMarket}, function(error, txHash){
+    await instanceMarket.methods.setOffer(price, id).send({from: userMarket}, function(error, txHash){
       if(error){
         console.log(error);
       }else {
@@ -72,6 +72,7 @@ async function sellKitty(price, id){
 
 $("#submitPrice").click(async function(){
   let setPrice = $("#price-field").val();
+  setPrice = parseInt(setPrice);
 
   await sellKitty(setPrice, sellerId);
   await sellingKitties(sellerId, ".allKittiesBeingSold", setPrice);
