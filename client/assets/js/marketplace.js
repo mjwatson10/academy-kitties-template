@@ -13,6 +13,7 @@ async function marketplaceOp(){
 
   if (isApprovedOp){
     getInventory();
+    console.log("is approved");
   } else {
     await instance.methods.setApprovalForAll(contractAddressMarket, true).send().on('receipt', function(receipt){
 
