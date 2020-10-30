@@ -2,10 +2,37 @@ $(document).ready(async function(){
   await connect();
   await connectMarket();
   await kittiesToSell();
-  await sellingArray();
+  await marketplaceOp();
 });
 
 var sellingId;
+
+
+async function marketplaceOp(){
+  let isApprovedOp = await instance.methods.isApprovedForAll(user, contractAddressMarket).call();
+
+  if (isApprovedOp){
+    getInventory();
+  } else {
+    await instance.methods.setApprovalForAll(contractAddressMarket, true).send().on('receipt', function(receipt){
+
+      console.log("tx done");
+      getInventory();
+    })
+  }
+}
+
+
+async function getInventory(){
+  let inventoryArray = await instanceMarket.methods.getAllTokenOnSale().call();
+
+  for (var i = 0; i < inventoryArray.length; i++) {
+    if(inventoryArray[i] != 0){
+    saleKittyData(inventoryArray[i])
+    }
+  }
+}
+
 
 async function kittiesToSell(){
   let ownedKitties = await ownersArray();
@@ -50,17 +77,17 @@ $('#sell_Kitty').click(async function(){
   });
 
 
-async function sellingArray(){
+/*async function sellingArray(){
   let alreadyForSell = await instanceMarket.methods.getAllTokenOnSale().call({from: userMarket});
 
   return alreadyForSell;
   console.log(alreadyForSell);
-}
+}*/
 
 async function sellKitty(price, id){
     //let _price = price.toString(10);
 
-    await instanceMarket.methods.setOffer(price, id).send({from: userMarket}, function(error, txHash){
+    await instanceMarket.methods.setOffer(price, id).send({from: user}, function(error, txHash){
       if(error){
         console.log(error);
       }else {
@@ -103,4 +130,30 @@ displayParent = `<div id="parentChosen">${_imgThumb}
 
       $(placement).append(displayParent);
       renderKitty(_dna, value);
+}
+
+
+async function saleKittyData(id){
+  let birth = await birthArray();
+
+
+    let imgThumb = kittyThumbnail(id);
+    let _dna = await dnaOfKitty(id);
+
+        let kittyCards = `<div class="col-lg-4">
+                            <div class="cards" style="width: 250px;">
+                                  <div class="card-body">
+                                        <div>${imgThumb}
+                                              <br>
+                                             <div class="catGenes">${"DNA: " + birth[id].genes}</div>
+                                              <br>
+                                             <div class="catGenes">${"Gen: " + birth[id].generation}</div>
+                                        </div>
+                                  </div>
+                              </div>
+                            </div>`
+            $(".kitty-inventory").append(kittyCards);
+            renderKitty(_dna, i);
+
+
 }
