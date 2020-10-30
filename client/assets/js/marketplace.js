@@ -17,7 +17,7 @@ async function marketplaceOp(){
   } else {
     await instance.methods.setApprovalForAll(contractAddressMarket, true).send().on('receipt', function(receipt){
 
-      console.log("tx done");
+      console.log("tx done, now is approved");
       getInventory();
     })
   }
