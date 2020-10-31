@@ -85,8 +85,6 @@ $('#sell_Kitty').click(async function(){
 }*/
 
 async function sellKitty(price, id){
-    //let _price = price.toString(10);
-
     await instanceMarket.methods.setOffer(price, id).send({from: user}, function(error, txHash){
       if(error){
         console.log(error);
@@ -138,6 +136,8 @@ displayParent = `<div id="parentChosen">${_imgThumb}
 
 
 async function saleKittyData(id){
+  let price = await instanceMarket.methods.getOffer(id).call();
+
   let birth = await birthArray();
   let ownedKitties = await ownersArray();
 
@@ -152,6 +152,8 @@ async function saleKittyData(id){
                                              <div class="catGenes">${"DNA: " + birth[id].genes}</div>
                                               <br>
                                              <div class="catGenes">${"Gen: " + birth[id].generation}</div>
+                                              <br>
+                                             <div class="catGenes">${"Price: " + price.price}</div>
                                         </div>
                                   </div>
                               </div>
