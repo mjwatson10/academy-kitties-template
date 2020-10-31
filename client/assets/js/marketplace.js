@@ -80,7 +80,6 @@ $('#sell_Kitty').click(async function(){
 
 /*async function sellingArray(){
   let alreadyForSell = await instanceMarket.methods.getAllTokenOnSale().call({from: userMarket});
-
   return alreadyForSell;
   console.log(alreadyForSell);
 }*/
@@ -98,13 +97,17 @@ async function sellKitty(price, id){
 }
 
 
+async function refresh(){
+    location.reload(true);
+}
+
+
 $("#submitPrice").click(async function(){
   let setPrice = $("#price-field").val();
-  setPrice = parseInt(setPrice);
 
   await sellKitty(setPrice, sellerId);
   await sellingKitties(sellerId, ".allKittiesBeingSold", setPrice);
-
+  await refresh();
 
     alert(setPrice);
     console.log(sellerId);
@@ -136,10 +139,10 @@ displayParent = `<div id="parentChosen">${_imgThumb}
 
 async function saleKittyData(id){
   let birth = await birthArray();
-
+  let ownedKitties = await ownersArray();
 
     let imgThumb = kittyThumbnail(id);
-    let _dna = await dnaOfKitty(id);
+    let _dna = await dnaOfKitty(ownedKitties[id]);
 
         let kittyCards = `<div class="col-lg-4">
                             <div class="cards" style="width: 250px;">
@@ -154,7 +157,7 @@ async function saleKittyData(id){
                               </div>
                             </div>`
             $(".kitty-inventory").append(kittyCards);
-            renderKitty(_dna, i);
+            renderKitty(_dna, id);
 
 
 }
