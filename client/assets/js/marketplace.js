@@ -136,7 +136,7 @@ displayParent = `<div id="parentChosen">${_imgThumb}
 
 
 async function saleKittyData(id){
-  let price = await instanceMarket.methods.getOffer(id).call();
+  let saleData = await instanceMarket.methods.getOffer(id).call();
 
   let birth = await birthArray();
   let ownedKitties = await ownersArray();
@@ -153,7 +153,7 @@ async function saleKittyData(id){
                                               <br>
                                              <div class="catGenes">${"Gen: " + birth[id].generation}</div>
                                               <br>
-                                             <div class="catGenes">${"Price: " + price.price}</div>
+                                             <div class="catGenes">${"Price: " + saleData.price}</div>
                                         </div>
                                   </div>
                               </div>
