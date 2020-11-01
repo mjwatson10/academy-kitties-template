@@ -94,6 +94,29 @@
     </div>
 
 
+    <div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Please Confirm Transaction on MetaMask</h5>
+            <button type="button" id="seller-close" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="flexBox kitty-for-sale"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!--Set Kitty Price-->
     <div class="kitty-being-sold"></div>
 
@@ -101,15 +124,17 @@
     <label for="currency-field" id="priceTitle">Price:</label>
       <br>
     <input type="text" id="price-field" value="" data-type="number" placeholder="1,000,000.00">
-    <button type="submit" id="submitPrice">
+    <button type="submit" id="submitPrice" data-toggle="modal" data-target="#confirm-modal">
       <div class="sell-btn">Sell</div>
     </button>
 
     <div class="allKittiesBeingSold">
     </div>
 
-    <div class="kitty-inventory">
+    <div class="flexBox kitty-inventory">
     </div>
+
+    <button type="button" name="button" id="buyKittyBtn">Buy</button>
 
     <div class="footer">
         <footer>

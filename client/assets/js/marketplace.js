@@ -102,12 +102,11 @@ async function refresh(){
 
 $("#submitPrice").click(async function(){
   let setPrice = $("#price-field").val();
+  await sellingKitties(sellerId, ".kitty-for-sale", setPrice);
 
   await sellKitty(setPrice, sellerId);
-  await sellingKitties(sellerId, ".allKittiesBeingSold", setPrice);
   await refresh();
 
-    alert(setPrice);
     console.log(sellerId);
 })
 
@@ -127,7 +126,6 @@ displayParent = `<div id="parentChosen">${_imgThumb}
                     <br>
                    <div class="catGenes">${"Price: " + price}</div>
                     <br>
-                   <button id="buyKittyBtn">Buy</button>
                 </div>`
 
       $(placement).append(displayParent);
@@ -145,21 +143,40 @@ async function saleKittyData(id){
     let _dna = await dnaOfKitty(ownedKitties[id]);
 
         let kittyCards = `<div class="col-lg-4">
-                            <div class="cards" style="width: 250px;">
-                                  <div class="card-body">
-                                        <div>${imgThumb}
-                                              <br>
-                                             <div class="catGenes">${"DNA: " + birth[id].genes}</div>
-                                              <br>
-                                             <div class="catGenes">${"Gen: " + birth[id].generation}</div>
-                                              <br>
-                                             <div class="catGenes">${"Price: " + saleData.price}</div>
-                                        </div>
-                                  </div>
-                              </div>
+                            <label class="option_item">
+                              <input type="radio" class="checkbox buying-kitty" name="buyRadio" id="kittyParent" value="${id}">
+                                <div class="option_inner">
+                                        <div class="cards" style="width: 250px;">
+                                              <div class="card-body">
+                                                <div class="tickmark"></div>
+                                                    <div>${imgThumb}
+                                                          <br>
+                                                         <div class="catGenes">${"DNA: " + birth[id].genes}</div>
+                                                          <br>
+                                                         <div class="catGenes">${"Gen: " + birth[id].generation}</div>
+                                                          <br>
+                                                         <div class="catGenes">${"Price: " + saleData.price}</div>
+                                                    </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                </label>
                             </div>`
             $(".kitty-inventory").append(kittyCards);
             renderKitty(_dna, id);
-
-
 }
+
+
+$("#buyKittyBtn").click(async function(){
+  _tokenId = $('input[name= "buyRadio"]:checked').val();
+
+  alert(_tokenId);
+
+  /*let buy = await instanceMarket.methods.buyKitty().send({from: user}, function(error, txHash){
+    if(error){
+      console.log(error);
+    }else {
+      console.log(txHash);
+    }
+  }); */
+});
