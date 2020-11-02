@@ -142,12 +142,12 @@ async function saleKittyData(id){
     let imgThumb = kittyThumbnail(id);
     let _dna = await dnaOfKitty(ownedKitties[id]);
 
-        let kittyCards = `<div class="col-lg-4">
+        let kittyCards = `<div class="col-lg-2">
                             <label class="option_item">
                               <input type="radio" class="checkbox buying-kitty" name="buyRadio" id="kittyParent" value="${id}">
                                 <div class="option_inner">
                                         <div class="cards" style="width: 250px;">
-                                              <div class="card-body">
+                                              <div class="card-body sell-cards">
                                                 <div class="tickmark"></div>
                                                     <div>${imgThumb}
                                                           <br>
@@ -170,13 +170,11 @@ async function saleKittyData(id){
 $("#buyKittyBtn").click(async function(){
   _tokenId = $('input[name= "buyRadio"]:checked').val();
 
-  alert(_tokenId);
-
-  /*let buy = await instanceMarket.methods.buyKitty().send({from: user}, function(error, txHash){
+  let buy = await instanceMarket.methods.buyKitty(_tokenId).send({from: user}, function(error, txHash){
     if(error){
       console.log(error);
     }else {
       console.log(txHash);
     }
-  }); */
+  });
 });

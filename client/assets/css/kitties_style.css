@@ -836,3 +836,13 @@ element.style {
 #priceTitle{
   margin-left: 650px;
 }
+
+.sell-cards{
+  transform: scale(.5);
+}
+
+.flexBox-sell{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  left: 60px;
