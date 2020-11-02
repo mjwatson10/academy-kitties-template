@@ -846,3 +846,9 @@ element.style {
   justify-content: center;
   flex-wrap: wrap;
   left: 60px;
+}
+
+  #buyKittyBtn{
+    margin-left: 750px;
+    
+  }
