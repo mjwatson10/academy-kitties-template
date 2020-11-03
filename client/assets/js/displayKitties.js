@@ -8,6 +8,8 @@ async function ownersArray(){
   let myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
   let allMyKitties = await getKittyDNA(myKittiesIDs);
 
+  console.log("for sale: " + myKittiesIDs);
+
   let displayKitties = [];
   for (var i = 0; i < allMyKitties.length; i++){
         displayKitties.push(allMyKitties[i])
