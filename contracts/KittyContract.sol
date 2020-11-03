@@ -66,9 +66,9 @@ contract Kittycontract is IERC721, Ownable {
         mapping(address => mapping(address => bool)) private _operatorApprovals;
 
 //CONSTRUCTOR
-  /*constructor() public {
+  constructor() public {
     _createKitty(0, 0, 0, uint256(-1), address(0));
-  }*/
+  }
 
 
 //FUNCTIONS
