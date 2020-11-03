@@ -135,15 +135,15 @@ displayParent = `<div id="parentChosen">${_imgThumb}
 
 async function saleKittyData(id){
   let saleData = await instanceMarket.methods.getOffer(id).call();
-  let kitty = await instance.methods.getKitty(id).call();
-  console.log("ID " + id + " Genes: " + kitty.genes);
+  const kittyToSell = await instance.methods.getKitty(id).call();
+  console.log("getKitty ID: " + id + " Genes: " + kittyToSell.genes);
 
   let birth = await birthArray();
-  console.log("ID " + id + " Genes: " + birth[id].genes);
+  console.log("ID: " + id + " Genes: " + birth[id].genes);
   let ownedKitties = await ownersArray();
 
     let imgThumb = kittyThumbnail(id);
-    let _dna = await dnaOfKitty(ownedKitties[id]);
+    let _dna = await dnaOfKitty(kittyToSell.genes);
 
         let kittyCards = `<div class="col-lg-2">
                             <label class="option_item">
@@ -154,9 +154,9 @@ async function saleKittyData(id){
                                                 <div class="tickmark"></div>
                                                     <div>${imgThumb}
                                                           <br>
-                                                         <div class="catGenes">${"DNA: " + birth[id].genes}</div>
+                                                         <div class="catGenes">${"DNA: " + kittyToSell.genes}</div>
                                                           <br>
-                                                         <div class="catGenes">${"Gen: " + birth[id].generation}</div>
+                                                         <div class="catGenes">${"Gen: " + kittyToSell.generation}</div>
                                                           <br>
                                                          <div class="catGenes">${"Price: " + saleData.price}</div>
                                                     </div>

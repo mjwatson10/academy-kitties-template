@@ -12,7 +12,9 @@ async function ownersArray(){
 
   let displayKitties = [];
   for (var i = 0; i < allMyKitties.length; i++){
+    if(allMyKitties[i] != 0){
         displayKitties.push(allMyKitties[i])
+      }
     }
     return displayKitties;
 }
@@ -23,6 +25,7 @@ async function cardsData(){
   let birth = await birthArray();
 
   for (var i = 0; i < ownedKitties.length; i++){
+    if(ownedKitties[i] != 0){
     let imgThumb = kittyThumbnail(i);
     let _dna = await dnaOfKitty(ownedKitties[i]);
 
@@ -41,7 +44,7 @@ async function cardsData(){
             $("#myOwnedKitties").append(kittyCards);
             renderKitty(_dna, i);
         }
-
+      }
 }
 
 
@@ -49,11 +52,13 @@ async function getKittyDNA(_kittyIDs){
   const kittyArray = [];
 
   for(var i = 0; i < _kittyIDs.length; i++){
+    if(_kittyIDs[i] != 0){
       let kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
           kittyArray.push(kittyObject.genes);
-  }
-  //console.log(kittyArray);
-  return kittyArray;
+        }
+      }
+    //console.log(kittyArray);
+    return kittyArray;
 
 }
 
@@ -62,9 +67,11 @@ async function getBirthData(_kittyIDs){
   const _kittyArray = [];
 
   for(var i = 0; i < _kittyIDs.length; i++){
+    if(_kittyIDs[i] != 0){
       let _kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
           _kittyArray.push(_kittyObject);
-  }
+        }
+      }
   return _kittyArray;
 }
 
@@ -74,8 +81,10 @@ async function birthArray(){
 
   let displayKitties = [];
   for (var i = 0; i < allMyKitties.length; i++){
+    if(allMyKitties[i] != 0){
         displayKitties.push(allMyKitties[i])
     }
+  }
     return displayKitties;
 }
 

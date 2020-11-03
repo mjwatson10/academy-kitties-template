@@ -101,8 +101,9 @@ async function parentData(){
   let birth = await birthArray();
 
   for (var i = 0; i < ownedKitties.length; i++){
-    let imgThumb = kittyThumbnail(i);
-    let _dna = await dnaOfKitty(ownedKitties[i]);
+    if(ownedKitties[i] != 0){
+      let imgThumb = kittyThumbnail(i);
+      let _dna = await dnaOfKitty(ownedKitties[i]);
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
@@ -126,6 +127,7 @@ async function parentData(){
             renderKitty(_dna, i);
         }
       }
+    }
 
   async function breedParents(_daddy, _mommy){
 

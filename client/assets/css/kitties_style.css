@@ -541,7 +541,7 @@ element.style {
 
 .catGenes{
   color: black;
-  width: 220px;
+  width: 230px;
   text-align: left;
 }
 
@@ -850,5 +850,5 @@ element.style {
 
   #buyKittyBtn{
     margin-left: 750px;
-    
+
   }
