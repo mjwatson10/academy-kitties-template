@@ -38,14 +38,16 @@ async function getInventory(){
 async function kittiesToSell(){
   let ownedKitties = await ownersArray();
   let birth = await birthArray();
+  let kittyId = await instance.methods.getKittiesIDs(user).call({from: user});
 
   for (var i = 0; i < ownedKitties.length; i++){
     let imgThumb = kittyThumbnail(i);
     let _dna = await dnaOfKitty(ownedKitties[i]);
+    console.log("id: " + i + " data: " + kittyId[i]);
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
-                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${i}>
+                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kittyId[i]}>
                                 <div class="option_inner">
                                         <div class="cards parent-cards">
                                               <div class="card-body parent-card">
@@ -75,6 +77,7 @@ $('#sell_Kitty').click(async function(){
       await chosenKitty(result.val(), '.kitty-being-sold');
       }
      sellerId = result.val();
+     console.log("Modal chosen: " + result.val());
   });
 
 

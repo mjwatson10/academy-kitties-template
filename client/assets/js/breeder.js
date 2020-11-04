@@ -77,25 +77,6 @@ $('#saveMom').click(async function(){
   });
 
 
-  async function chosenKitty(value, placement){
-    let _ownedKitties = await ownersArray();
-    let _birth = await birthArray();
-
-    let _imgThumb = await kittyThumbnail(value);
-    let _dna = await dnaOfKitty(_ownedKitties[value]);
-
-  displayParent = `<div id="parentChosen">${_imgThumb}
-                      <br>
-                     <div class="catGenes">${"DNA: " + _birth[value].genes}</div>
-                      <br>
-                     <div class="catGenes">${"Gen: " + _birth[value].generation}</div>
-                  </div>`
-
-        $(placement).append(displayParent);
-        renderKitty(_dna, value);
-  }
-
-
 async function parentData(){
   let ownedKitties = await ownersArray();
   let birth = await birthArray();

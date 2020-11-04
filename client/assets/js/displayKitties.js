@@ -13,7 +13,7 @@ async function ownersArray(){
   let displayKitties = [];
   for (var i = 0; i < allMyKitties.length; i++){
     if(allMyKitties[i] != 0){
-        displayKitties.push(allMyKitties[i])
+        displayKitties.push(allMyKitties[i]) - 1
       }
     }
     return displayKitties;
@@ -86,6 +86,31 @@ async function birthArray(){
     }
   }
     return displayKitties;
+}
+
+
+async function chosenKitty(value, placement){
+  console.log("Value of chosen: " + value);
+  let _ownedKitties = await ownersArray();
+  let _birth = await birthArray();
+  let kittyId = await instance.methods.getKittiesIDs(user).call({from: user});
+  let valueKittyId = kittyId[value];
+
+  console.log("Id: " + valueKittyId);
+  console.log("Owned Kitties: " + _ownedKitties[value]);
+
+  let _imgThumb = await kittyThumbnail(value);
+  let _dna = await dnaOfKitty(_ownedKitties[value]);
+
+displayParent = `<div id="parentChosen">${_imgThumb}
+                    <br>
+                   <div class="catGenes">${"DNA: " + _birth[value].genes}</div>
+                    <br>
+                   <div class="catGenes">${"Gen: " + _birth[value].generation}</div>
+                </div>`
+
+      $(placement).append(displayParent);
+      renderKitty(_dna, value);
 }
 
 
