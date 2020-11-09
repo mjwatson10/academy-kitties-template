@@ -27,27 +27,27 @@ var dadGenes, dadId, momGenes, momId;
 //Parents Buttons
 $('#saveDad').click(async function(){
     let result = $('input[type= "radio"]:checked');
-    let kitties = await getKittiesForOwner();
+    const kittyId = result.val();
+    kitty = await getKittyContractCall(kittyId);
 
     if (result.length > 0) {
       await chosenKitty(result.val(), '.dadDisplay');
-      const kitty = kitties[result.val()];
 
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
       $('#breed').attr('disabled', false);
-      dadId = kitty;
-      console.log("DadId: " + kitties);
     } else {
       alert("Please choose one Daddy");
     }
+    dadId = kitty.kittyId;
+    console.log("DadId: ", dadId);
   });
 
 
 $('#saveMom').click(async function(){
     let result = $('input[type= "radio"]:checked');
-    let kitties = await getKittiesForOwner();
-    const kitty = kitties[result.val()];
+    const kittyId = result.val();
+    kitty = await getKittyContractCall(kittyId);
 
     if (result.length > 0) {
       await chosenKitty(result.val(), '.momDisplay');
@@ -58,8 +58,8 @@ $('#saveMom').click(async function(){
     } else {
       alert("Please choose one Daddy");
     }
-    momId = kitty;
-    console.log("MomId: " + kitty);
+    momId = kitty.kittyId;
+    console.log("MomId: ", momId);
   });
 
 //clear buttons
@@ -79,7 +79,7 @@ $('#saveMom').click(async function(){
   });
 
 
-//Displays available kitties to breed
+//Displays available kitties to breed in modals
 async function parentData(){
   let kitties = await getKittiesForOwner();
 
@@ -135,7 +135,7 @@ async function parentData(){
       console.log("Chosen Genes: " + kitty.genes);
   }
 
-
+//calls breed function from contract, returns ID of new kitten for click event for #breed button
   async function breedParents(_daddy, _mommy){
 
     if (dadId != momId) {
@@ -147,8 +147,11 @@ async function parentData(){
         }
       });
       let array = await getKittiesForOwner();
-      childId = await array.length - 1;
-      console.log(childId);
+
+      const child = array[array.length - 1];
+      console.log("Child: ", child);
+      childId = child.kittyId;
+      console.log("Child ID: ", childId);
       $('#breed').attr('disabled', true);
     }else {
       alert("You need two different Kitties to make a Kitten, silly!")
@@ -156,12 +159,15 @@ async function parentData(){
     return childId;
   }
 
+
+//click event to run breedParents() functions, displays new kitten card
   $('#breed').click(async function(){
+    console.log("Dad: ", dadId, " Mom: ", momId);
     let _childId = await breedParents(dadId, momId);
     console.log("Child ID: " + _childId);
 
     const kitty = await instance.methods.getKitty(_childId).call({ from: user });
-    console.log("New Kitty: " + kitty.genes);
+    console.log("New Kitty: ", kitty);
 
     let _imgThumb = await kittyThumbnail(_childId);
     let _dna = await dnaOfKitty(kitty.genes);

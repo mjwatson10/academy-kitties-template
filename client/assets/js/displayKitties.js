@@ -8,9 +8,7 @@ $(document).ready(async function(){
 //gets all kitties owned by user by calling getKittiesIDs from contract
 async function getKittiesForOwner(){
   let myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
-  let allMyKitties = await getKittyData(myKittiesIDs);
-
-  console.log("All My Kitties: " + allMyKitties);
+  let allMyKitties = await getKittiesDataArray(myKittiesIDs);
 
     return allMyKitties;
 }
@@ -22,7 +20,6 @@ async function cardsData(){
 
   for (var i = 0; i < kitties.length; i++){
     const kitty = kitties[i];
-    console.log("getKittiesForOwner: " + kitty.genes);
 
     if(kitty != 0){
     let imgThumb = kittyThumbnail(kitty.kittyId);
@@ -47,23 +44,30 @@ async function cardsData(){
 }
 
 
-//get all data getKittiesForOwner()
-async function getKittyData(_kittyIDs){
+//get all kitties data getKittiesForOwner() in an array
+async function getKittiesDataArray(_kittyIDs){
   const kittyArray = [];
 
   for(var i = 0; i < _kittyIDs.length; i++){
     const kittyId = _kittyIDs[i];
     if(kittyId != 0){
-      let kittyObject = await instance.methods.getKitty(kittyId).call({from: user});
-          kittyObject.kittyId = kittyId;
+      let kittyObject = await getKittyContractCall(kittyId);
 
           kittyArray.push(kittyObject);
         }
       }
     //console.log(kittyArray);
     return kittyArray;
-
 }
+
+
+//calls getKitty() from contract
+ async function getKittyContractCall(kittyId){
+   kitty = await instance.methods.getKitty(kittyId).call({from: user});
+   kitty.kittyId = kittyId;
+
+   return kitty;
+ }
 
 
 async function getBirthData(_kittyIDs){
@@ -92,6 +96,7 @@ async function birthArray(){
 }
 
 
+//substring function, seperates dna string, in order for individual colors and attributes to be returned in an object
 function dnaOfKitty(dnaStr){
   dnaStr = dnaStr.toString();
 
@@ -112,7 +117,7 @@ function dnaOfKitty(dnaStr){
 }
 
 
-
+//takes dna object and individual id in order to display specified kitty
 function renderKitty(dna, id){
 
         _headColor(colors[dna.headcolor],dna.headcolor, id)
@@ -128,6 +133,8 @@ function renderKitty(dna, id){
         _eyeVariation(dna.eyesShape, id)
 }
 
+
+//KITTY COLOR & ATTRIBUTE FUNCTIONS
 function _headColor(color,code, id) {
     $(`#kitty${id} #head, #kitty${id} #body`).css('background', '#' + color)  //This changes the color of the cat
     $('#headcode').html('code: '+ code) //This updates text of the badge next to the slider
