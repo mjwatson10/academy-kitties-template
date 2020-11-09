@@ -5,9 +5,8 @@ $(document).ready(async function(){
   await marketplaceOp();
 });
 
-var sellingId;
 
-
+//checking operator(person going to the marketplace) is approved to access marketplace contract, if not making them approved via metamask request
 async function marketplaceOp(){
   let isApprovedOp = await instance.methods.isApprovedForAll(user, contractAddressMarket).call();
 
@@ -23,7 +22,7 @@ async function marketplaceOp(){
   }
 }
 
-
+//displays kitties that are available to buy
 async function getInventory(){
   let inventoryArray = await instanceMarket.methods.getAllTokenOnSale().call();
 
@@ -34,29 +33,29 @@ async function getInventory(){
   }
 }
 
-
+//modal that populates kitties that can be sold
 async function kittiesToSell(){
-  let ownedKitties = await ownersArray();
-  let birth = await birthArray();
-  let kittyId = await instance.methods.getKittiesIDs(user).call({from: user});
+  let kitties = await getKittiesForOwner();
 
-  for (var i = 0; i < ownedKitties.length; i++){
-    let imgThumb = kittyThumbnail(i);
-    let _dna = await dnaOfKitty(ownedKitties[i]);
-    console.log("id: " + i + " data: " + kittyId[i]);
+  for (var i = 0; i < kitties.length; i++){
+    const kitty = kitties[i];
+
+    let imgThumb = kittyThumbnail(kitty.kittyId);
+    let _dna = dnaOfKitty(kitty.genes);
+    console.log("id: " + i + " data: " + kitty.kittyId);
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
-                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kittyId[i]}>
+                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kitty.kittyId}>
                                 <div class="option_inner">
                                         <div class="cards parent-cards">
                                               <div class="card-body parent-card">
                                                 <div class="tickmark"></div>
                                                     <div id="parentKitty">${imgThumb}
                                                           <br>
-                                                         <div class="catGenes">${"DNA: " + birth[i].genes}</div>
+                                                         <div class="catGenes">${"DNA: " + kitty.genes}</div>
                                                           <br>
-                                                         <div class="catGenes">${"Gen: " + birth[i].generation}</div>
+                                                         <div class="catGenes">${"Gen: " + kitty.generation}</div>
                                                     </div>
                                               </div>
                                           </div>
@@ -64,9 +63,10 @@ async function kittiesToSell(){
                               </label>
                             </div>`
             $(".availKitties").append(kittyCards);
-            renderKitty(_dna, i);
+            renderKitty(_dna, kitty.kittyId);
         }
       }
+
 
 
 $('#sell_Kitty').click(async function(){
@@ -87,6 +87,7 @@ $('#sell_Kitty').click(async function(){
   console.log(alreadyForSell);
 }*/
 
+//sends price being set for kitty being sold to contract
 async function sellKitty(price, id){
     await instanceMarket.methods.setOffer(price, id).send({from: user}, function(error, txHash){
       if(error){
@@ -97,35 +98,34 @@ async function sellKitty(price, id){
     })
 }
 
-
+//refreshs page
 async function refresh(){
     location.reload(true);
 }
 
 
+//button that sets price user wants to sell their kitties for
 $("#submitPrice").click(async function(){
+  console.log("seller ID: " + sellerId);
   let setPrice = $("#price-field").val();
   await sellingKitties(sellerId, ".kitty-for-sale", setPrice);
 
   await sellKitty(setPrice, sellerId);
   await refresh();
-
-    console.log(sellerId);
 })
 
 
 async function sellingKitties(value, placement, price){
-  let _ownedKitties = await ownersArray();
-  let _birth = await birthArray();
+  const kittyID = await instance.methods.getKitty(value).call({ from: user });
 
   let _imgThumb = await kittyThumbnail(value);
-  let _dna = await dnaOfKitty(_ownedKitties[value]);
+  let _dna = await dnaOfKitty(kittyID.genes);
 
 displayParent = `<div id="parentChosen">${_imgThumb}
                     <br>
-                   <div class="catGenes">${"DNA: " + _birth[value].genes}</div>
+                   <div class="catGenes">${"DNA: " + kittyID.genes}</div>
                     <br>
-                   <div class="catGenes">${"Gen: " + _birth[value].generation}</div>
+                   <div class="catGenes">${"Gen: " + kittyID.generation}</div>
                     <br>
                    <div class="catGenes">${"Price: " + price}</div>
                     <br>
@@ -143,7 +143,7 @@ async function saleKittyData(id){
 
   let birth = await birthArray();
   console.log("ID: " + id + " Genes: " + birth[id].genes);
-  let ownedKitties = await ownersArray();
+  let kitties = await getKittiesForOwner();
 
     let imgThumb = kittyThumbnail(id);
     let _dna = await dnaOfKitty(kittyToSell.genes);

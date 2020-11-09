@@ -4,57 +4,60 @@ $(document).ready(async function(){
 
 })
 
-async function ownersArray(){
+
+//gets all kitties owned by user by calling getKittiesIDs from contract
+async function getKittiesForOwner(){
   let myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
-  let allMyKitties = await getKittyDNA(myKittiesIDs);
+  let allMyKitties = await getKittyData(myKittiesIDs);
 
-  console.log("for sale: " + myKittiesIDs);
+  console.log("All My Kitties: " + allMyKitties);
 
-  let displayKitties = [];
-  for (var i = 0; i < allMyKitties.length; i++){
-    if(allMyKitties[i] != 0){
-        displayKitties.push(allMyKitties[i]) - 1
-      }
-    }
-    return displayKitties;
+    return allMyKitties;
 }
 
 
+//prints kitty image and data to page that is owned by user
 async function cardsData(){
-  let ownedKitties = await ownersArray();
-  let birth = await birthArray();
+  let kitties = await getKittiesForOwner();
 
-  for (var i = 0; i < ownedKitties.length; i++){
-    if(ownedKitties[i] != 0){
-    let imgThumb = kittyThumbnail(i);
-    let _dna = await dnaOfKitty(ownedKitties[i]);
+  for (var i = 0; i < kitties.length; i++){
+    const kitty = kitties[i];
+    console.log("getKittiesForOwner: " + kitty.genes);
+
+    if(kitty != 0){
+    let imgThumb = kittyThumbnail(kitty.kittyId);
+    let _dna = await dnaOfKitty(kitty.genes);
 
         let kittyCards = `<div class="col-lg-4">
                             <div class="cards" style="width: 250px;">
                                   <div class="card-body">
                                         <div>${imgThumb}
                                               <br>
-                                             <div class="catGenes">${"DNA: " + birth[i].genes}</div>
+                                             <div class="catGenes">${"DNA: " + kitty.genes}</div>
                                               <br>
-                                             <div class="catGenes">${"Gen: " + birth[i].generation}</div>
+                                             <div class="catGenes">${"Gen: " + kitty.generation}</div>
                                         </div>
                                   </div>
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
-            renderKitty(_dna, i);
+            renderKitty(_dna, kitty.kittyId);
         }
       }
 }
 
 
-async function getKittyDNA(_kittyIDs){
+//get all data getKittiesForOwner()
+async function getKittyData(_kittyIDs){
   const kittyArray = [];
 
   for(var i = 0; i < _kittyIDs.length; i++){
-    if(_kittyIDs[i] != 0){
-      let kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
-          kittyArray.push(kittyObject.genes);
+    const kittyId = _kittyIDs[i];
+    if(kittyId != 0){
+      let kittyObject = await instance.methods.getKitty(kittyId).call({from: user});
+          kittyObject.kittyId = kittyId;
+
+          kittyArray.push(kittyObject);
         }
       }
     //console.log(kittyArray);
@@ -89,32 +92,9 @@ async function birthArray(){
 }
 
 
-async function chosenKitty(value, placement){
-  console.log("Value of chosen: " + value);
-  let _ownedKitties = await ownersArray();
-  let _birth = await birthArray();
-  let kittyId = await instance.methods.getKittiesIDs(user).call({from: user});
-  let valueKittyId = kittyId[value];
-
-  console.log("Id: " + valueKittyId);
-  console.log("Owned Kitties: " + _ownedKitties[value]);
-
-  let _imgThumb = await kittyThumbnail(value);
-  let _dna = await dnaOfKitty(_ownedKitties[value]);
-
-displayParent = `<div id="parentChosen">${_imgThumb}
-                    <br>
-                   <div class="catGenes">${"DNA: " + _birth[value].genes}</div>
-                    <br>
-                   <div class="catGenes">${"Gen: " + _birth[value].generation}</div>
-                </div>`
-
-      $(placement).append(displayParent);
-      renderKitty(_dna, value);
-}
-
-
 function dnaOfKitty(dnaStr){
+  dnaStr = dnaStr.toString();
+
   var _dna = {
     "headcolor" : dnaStr.substring(0,2),
     "legscolor" : dnaStr.substring(2,4),

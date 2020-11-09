@@ -27,25 +27,27 @@ var dadGenes, dadId, momGenes, momId;
 //Parents Buttons
 $('#saveDad').click(async function(){
     let result = $('input[type= "radio"]:checked');
-    let _birth = await birthArray();
+    let kitties = await getKittiesForOwner();
 
     if (result.length > 0) {
       await chosenKitty(result.val(), '.dadDisplay');
+      const kitty = kitties[result.val()];
 
       $('#dadId').removeAttr('data-target');
       $('#clearDad').attr('disabled', false);
       $('#breed').attr('disabled', false);
+      dadId = kitty;
+      console.log("DadId: " + kitties);
     } else {
       alert("Please choose one Daddy");
     }
-    dadGenes = _birth[result.val()].genes;
-    dadId = result.val();
   });
 
 
 $('#saveMom').click(async function(){
     let result = $('input[type= "radio"]:checked');
-    let _birth = await birthArray();
+    let kitties = await getKittiesForOwner();
+    const kitty = kitties[result.val()];
 
     if (result.length > 0) {
       await chosenKitty(result.val(), '.momDisplay');
@@ -56,8 +58,8 @@ $('#saveMom').click(async function(){
     } else {
       alert("Please choose one Daddy");
     }
-    momGenes = _birth[result.val()].genes;
-    momId = result.val();
+    momId = kitty;
+    console.log("MomId: " + kitty);
   });
 
 //clear buttons
@@ -77,27 +79,29 @@ $('#saveMom').click(async function(){
   });
 
 
+//Displays available kitties to breed
 async function parentData(){
-  let ownedKitties = await ownersArray();
-  let birth = await birthArray();
+  let kitties = await getKittiesForOwner();
 
-  for (var i = 0; i < ownedKitties.length; i++){
-    if(ownedKitties[i] != 0){
-      let imgThumb = kittyThumbnail(i);
-      let _dna = await dnaOfKitty(ownedKitties[i]);
+  for (var i = 0; i < kitties.length; i++){
+    const kitty = kitties[i];
+
+    if(kitty != 0){
+      let imgThumb = kittyThumbnail(kitty.kittyId);
+      let _dna = await dnaOfKitty(kitty.genes);
 
         let kittyCards = `<div class="col-lg-4 catParent">
                             <label class="option_item">
-                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${i}>
+                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kitty.kittyId}>
                                 <div class="option_inner">
                                         <div class="cards parent-cards">
                                               <div class="card-body parent-card">
                                                 <div class="tickmark"></div>
                                                     <div id="parentKitty">${imgThumb}
                                                           <br>
-                                                         <div class="catGenes">${"DNA: " + birth[i].genes}</div>
+                                                         <div class="catGenes">${"DNA: " + kitty.genes}</div>
                                                           <br>
-                                                         <div class="catGenes">${"Gen: " + birth[i].generation}</div>
+                                                         <div class="catGenes">${"Gen: " + kitty.generation}</div>
                                                     </div>
                                               </div>
                                           </div>
@@ -105,14 +109,36 @@ async function parentData(){
                               </label>
                             </div>`
             $(".parents").append(kittyCards);
-            renderKitty(_dna, i);
+            renderKitty(_dna, kitty.kittyId);
         }
       }
     }
 
+
+  //displays kitty chosen from modal accessing
+  async function chosenKitty(value, placement) {
+
+      const kitty = await instance.methods.getKitty(value).call({ from: user });
+
+      let _imgThumb = await kittyThumbnail(value);
+      let _dna = dnaOfKitty(kitty.genes);
+
+      displayParent = `<div id="parentChosen">${_imgThumb}
+                      <br>
+                     <div class="catGenes">${"DNA: " + kitty.genes /*_birth[value].genes*/}</div>
+                      <br>
+                     <div class="catGenes">${"Gen: " + kitty.generation /*_birth[value].generation*/}</div>
+                  </div>`
+
+      $(placement).append(displayParent);
+      renderKitty(_dna, value);
+      console.log("Chosen Genes: " + kitty.genes);
+  }
+
+
   async function breedParents(_daddy, _mommy){
 
-    if (dadGenes != momGenes) {
+    if (dadId != momId) {
       await instance.methods.breed(_daddy, _mommy).send({from: user}, function(error, txHash){
         if(error){
           console.log(error);
@@ -120,7 +146,7 @@ async function parentData(){
           console.log(txHash);
         }
       });
-      let array = await ownersArray();
+      let array = await getKittiesForOwner();
       childId = await array.length - 1;
       console.log(childId);
       $('#breed').attr('disabled', true);
@@ -131,23 +157,20 @@ async function parentData(){
   }
 
   $('#breed').click(async function(){
-    console.log("dad " + dadGenes);
-    console.log("mom " + momGenes);
     let _childId = await breedParents(dadId, momId);
-    console.log(_childId);
+    console.log("Child ID: " + _childId);
 
-    let _ownedKitties = await ownersArray();
-    let _birth = await birthArray();
-    console.log("child " + _ownedKitties[_childId]);
+    const kitty = await instance.methods.getKitty(_childId).call({ from: user });
+    console.log("New Kitty: " + kitty.genes);
 
     let _imgThumb = await kittyThumbnail(_childId);
-    let _dna = await dnaOfKitty(_ownedKitties[_childId]);
+    let _dna = await dnaOfKitty(kitty.genes);
 
     displayChild = `<div id="newChild">${_imgThumb}
                         <br>
-                       <div class="childGenes">${"DNA: " + _birth[_childId].genes}</div>
+                       <div class="childGenes">${"DNA: " + kitty.genes}</div>
                         <br>
-                       <div class="childGenes">${"Gen: " + _birth[_childId].generation}</div>
+                       <div class="childGenes">${"Gen: " + kitty.generation}</div>
                     </div>`
               $('.childImg').append(displayChild);
               await renderKitty(_dna, _childId);
