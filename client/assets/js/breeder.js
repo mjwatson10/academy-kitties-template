@@ -118,7 +118,7 @@ async function parentData(){
   //displays kitty chosen from modal accessing
   async function chosenKitty(value, placement) {
 
-      const kitty = await instance.methods.getKitty(value).call({ from: user });
+      const kitty = await getKittyContractCall(value);
 
       let _imgThumb = await kittyThumbnail(value);
       let _dna = dnaOfKitty(kitty.genes);

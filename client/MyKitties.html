@@ -62,26 +62,48 @@
 
 
 <!--Title Text-->
-<div>
-    <div class="title">
-        <div align="center">
-        <p class="my-kitties-header">These are all your <span id="beauty">"beautiful" </span>Kitties</p>
-    </div>
-  </div>
+      <div class="title">
+          <div align="center">
+          <p class="my-kitties-header">These are all your <span id="beauty">"beautiful" </span>Kitties</p>
+      </div>
 
 
-    <!--Kitties-->
+<!--Kitties-->
       <div class="my-kitties">
         <div class="col-sm-12 flexBox" id = "myOwnedKitties"></div>
       </div>
 
 
+<!--Sell Modal-->
+      <div class="modal fade" id="sell-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-scrollable modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Set Price in Ether Please</h5>
+              <button type="button" id="seller-close" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="flexBox kitty-for-sale"></div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="footer">
-    <footer>
-        <p>Ivan on Tech Academy Bootcamp July 2020</p>
-    </footer>
-</div>
+
+<!--Footer-->
+    <div class="footer">
+        <footer>
+            <p>Ivan on Tech Academy Bootcamp July 2020</p>
+        </footer>
+    </div>
 
 
   </body>
@@ -91,10 +113,12 @@
 
   <script src="assets/js/web3.min.js"></script>
   <script src="./abi.js"></script>
+  <script src="./abiMarketplace.js"></script>
   <script src="./main.js"></script>
   <script src="assets/js/colors.js"></script>
   <script src="assets/js/catSettings.js"></script>
   <script src="assets/js/catFactory.js"></script>
   <script src="assets/js/displayKitties.js"></script>
+  <script src="assets/js/marketplace.js"></script>
 
 </html>

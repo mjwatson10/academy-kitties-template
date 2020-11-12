@@ -71,21 +71,28 @@ async function kittiesToSell(){
 
 $('#sell_Kitty').click(async function(){
     let result = $('input[type= "radio"]:checked');
-    let _birth = await birthArray();
+    const kittyId = result.val();
+    let kitty = await getKittyContractCall(kittyId);
+    let kittyCheck = await kittyAlreadyForSale(kitty.kittyId)
+    console.log("Kitty Id: ", kitty.kittyId);
+    console.log("Kitty Check: ", kittyCheck);
 
+    if(kittyCheck == kitty.kittyId){
+      alert("This Kitty is already for sale, Sorry")
+    }else{
     if (result.length > 0) {
-      await chosenKitty(result.val(), '.kitty-being-sold');
+      await chosenKitty(kitty.kittyId, '.kitty-being-sold');
       }
-     sellerId = result.val();
-     console.log("Modal chosen: " + result.val());
-  });
+     sellerId = kitty.kittyId;
+     console.log("Seller ID: ", sellerId);
+  }
+})
 
 
-/*async function sellingArray(){
-  let alreadyForSell = await instanceMarket.methods.getAllTokenOnSale().call({from: userMarket});
-  return alreadyForSell;
-  console.log(alreadyForSell);
-}*/
+async function kittyAlreadyForSale(_kittyId){
+  let already = await instanceMarket.methods.getOffer(_kittyId).call({from: user});
+  return already.tokenId;
+}
 
 //sends price being set for kitty being sold to contract
 async function sellKitty(price, id){
@@ -108,30 +115,46 @@ async function refresh(){
 $("#submitPrice").click(async function(){
   console.log("seller ID: " + sellerId);
   let setPrice = $("#price-field").val();
-  await sellingKitties(sellerId, ".kitty-for-sale", setPrice);
 
   await sellKitty(setPrice, sellerId);
   await refresh();
 })
 
 
-async function sellingKitties(value, placement, price){
-  const kittyID = await instance.methods.getKitty(value).call({ from: user });
+//submits price to contract
+async function submitPriceForKitty(_setPrice, _kittyId){
+  await sellKitty(_setPrice, _kittyId);
+  await refresh();
+}
+
+
+//populates modal to set price of kitty you want to sell
+async function modalToSellKitties(value, placement){
+  const kittyID = await getKittyContractCall(value);
 
   let _imgThumb = await kittyThumbnail(value);
   let _dna = await dnaOfKitty(kittyID.genes);
 
-displayParent = `<div id="parentChosen">${_imgThumb}
-                    <br>
-                   <div class="catGenes">${"DNA: " + kittyID.genes}</div>
-                    <br>
-                   <div class="catGenes">${"Gen: " + kittyID.generation}</div>
-                    <br>
-                   <div class="catGenes">${"Price: " + price}</div>
-                    <br>
-                </div>`
+      let displayKitty = `<div id="parentChosen">${_imgThumb}
+                          <br>
+                         <div class="catGenes">${"DNA: " + kittyID.genes}</div>
+                          <br>
+                         <div class="catGenes">${"Gen: " + kittyID.generation}</div>
+                          <br>
+                          <label for="currency-field" id="priceTitle">Price:</label>
+                            <br>
+                          <input type="text" id="price-field" value="" data-type="number" placeholder="1,000,000.00">
+                          <button type="submit" class="set-kitty-price" id="submitPrice${kitty.kittyId}" data-toggle="modal" data-target="#confirm-modal">
+                            <div class="sell-btn-text">Sell</div>
+                          </button>
+                      </div>`
 
-      $(placement).append(displayParent);
+      $(placement).append(displayKitty);
+      $(`#submitPrice${kitty.kittyId}`).click(function(){
+        sellKitty($("#price-field").val(), kitty.kittyId);
+        refresh();
+      })
+
       renderKitty(_dna, value);
 }
 

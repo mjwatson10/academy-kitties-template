@@ -807,10 +807,9 @@ element.style {
   margin: 0 0 7px;
   font-size: 15px;
   padding: .5rem 1rem;
-  margin-left: 550px;
 }
 
-#submitPrice {
+.set-kitty-price {
   background: #fff;
   border: 2px solid #333;
   border-radius: 5px;
@@ -818,23 +817,36 @@ element.style {
   font-size: 20px;
   font-family: kitty;
   font-weight: bold;
-  padding: 0.5rem;
-  width: 100px;
+  width: 78px;
+  margin-top: 13px;
 }
 
-#submitPrice:hover {
+.set-kitty-price:hover {
   background: #27a737;
   border: 2px solid #27a737;
   color: #fff;
 }
 
-.sell-btn{
-  margin-right: 8px;
+.sell-my-kitty{
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 5px;
+  color: #333;
   font-size: 25px;
+  font-family: kitty;
+  font-weight: bold;
+  width: 75px;
 }
 
-#priceTitle{
-  margin-left: 650px;
+.sell-my-kitty:hover {
+  background: #27a737;
+  border: 2px solid #27a737;
+  color: #fff;
+}
+
+.sell-btn-text{
+  margin-right: 8px;
+  font-size: 25px;
 }
 
 .sell-cards{

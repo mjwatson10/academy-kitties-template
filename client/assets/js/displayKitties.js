@@ -33,15 +33,41 @@ async function cardsData(){
                                              <div class="catGenes">${"DNA: " + kitty.genes}</div>
                                               <br>
                                              <div class="catGenes">${"Gen: " + kitty.generation}</div>
+                                              <br>
+                                             <button class="sell-my-kitty" id="sellKittyBtn${kitty.kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>
                                         </div>
                                   </div>
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
+
+            $(`#sellKittyBtn${kitty.kittyId}`).click(async function(){
+                let kittyCheck = await kittyAlreadyForSale(kitty.kittyId);
+                console.log("Check: ", kittyCheck);
+
+                if(kittyCheck != kitty.kittyId){
+                  await modalToSellKitties(kitty.kittyId, ".kitty-for-sale");
+                }else{
+                  alert("This Kitty is already for sale, Sorry");
+                  refresh();
+              }
+            })
+
             renderKitty(_dna, kitty.kittyId);
         }
       }
 }
+
+
+function sellClickedKitty(_kittyId){
+
+  modalToSellKitties(_kittyId, ".kitty-for-sale");
+}
+
+
+$("#seller-close").click(function(){
+  refresh();
+})
 
 
 //get all kitties data getKittiesForOwner() in an array
