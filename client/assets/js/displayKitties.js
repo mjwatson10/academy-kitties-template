@@ -40,14 +40,7 @@ async function cardsData(){
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
-            let check = await sellOrCancel(kitty.kittyId)
-            if (check == kitty.kittyId) {
-              let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${kitty.kittyId}">Remove Offer</div>`
-              $(".sell-or-cancel").append(cxlBtn);
-            } else {
-              let sellBtn = `<button class="sell-my-kitty" id="sellKittyBtn${kitty.kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>`
-              $(".sell-or-cancel").append(sellBtn);
-            }
+
             /*$(`#sellKittyBtn${kitty.kittyId}`).click(async function(){
                 let kittyCheck = await kittyAlreadyForSale(kitty.kittyId);
                 console.log("Check: ", kittyCheck);
@@ -62,6 +55,7 @@ async function cardsData(){
 
             renderKitty(_dna, kitty.kittyId);
         }
+        await sellOrCancel(kitty.kittyId);
       }
 }
 

@@ -98,8 +98,15 @@ async function callGetOffer(_kittyId){
 async function sellOrCancel(_kittyId){
   try{
     let check = await callGetOffer(_kittyId);
+
+    if (check == _kittyId) {
+      let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${kitty.kittyId}">Remove Offer</div>`
+      $(".sell-or-cancel").append(cxlBtn);
+    }
   } catch(err){
     console.log(err);
+    let sellBtn = `<button class="sell-my-kitty" id="sellKittyBtn${kitty.kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>`
+    $(".sell-or-cancel").append(sellBtn);
   }
 }
 
