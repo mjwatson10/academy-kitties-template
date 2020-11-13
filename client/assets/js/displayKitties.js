@@ -1,7 +1,7 @@
 $(document).ready(async function(){
   await connect();
   await cardsData();
-
+  await addBtn();
 })
 
 
@@ -55,7 +55,6 @@ async function cardsData(){
 
             renderKitty(_dna, kitty.kittyId);
         }
-        await sellOrCancel(kitty.kittyId);
       }
 }
 

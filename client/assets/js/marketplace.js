@@ -95,6 +95,7 @@ async function callGetOffer(_kittyId){
 }
 
 
+//adds sell or cancel btn to owned kitties on My Kitties page
 async function sellOrCancel(_kittyId){
   try{
     let check = await callGetOffer(_kittyId);
@@ -108,6 +109,17 @@ async function sellOrCancel(_kittyId){
     let sellBtn = `<button class="sell-my-kitty" id="sellKittyBtn${kitty.kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>`
     $(".sell-or-cancel").append(sellBtn);
   }
+}
+
+
+//loop for sellOrCancel() function
+async function addSellOrCxlBtn(){
+    let kitties = await getKittiesForOwner();
+
+    for (var i = 0; i < kitties.length; i++) {
+      const kitty = kitties[i];
+      await sellOrCancel(kitty.kittyId);
+    }
 }
 
 
