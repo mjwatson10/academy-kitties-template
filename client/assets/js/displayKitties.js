@@ -40,8 +40,8 @@ async function cardsData(){
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
-            //let check = await sellOrCancel(kitty.kittyId)
-            if (1 == kitty.kittyId) {
+            let check = await sellOrCancel(kitty.kittyId)
+            if (check == kitty.kittyId) {
               let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${kitty.kittyId}">Remove Offer</div>`
               $(".sell-or-cancel").append(cxlBtn);
             } else {
