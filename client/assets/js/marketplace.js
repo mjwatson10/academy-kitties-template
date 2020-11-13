@@ -112,7 +112,7 @@ async function sellOrCancel(_kittyId){
 }
 
 
-//loop for sellOrCancel() function
+//loop for sellOrCancel() function 
 async function addSellOrCxlBtn(){
     let kitties = await getKittiesForOwner();
 
