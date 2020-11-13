@@ -89,10 +89,20 @@ $('#sell_Kitty').click(async function(){
 })
 
 
-async function kittyAlreadyForSale(_kittyId){
+async function callGetOffer(_kittyId){
   let already = await instanceMarket.methods.getOffer(_kittyId).call({from: user});
   return already.tokenId;
 }
+
+
+async function sellOrCancel(_kittyId){
+  try{
+    let check = await callGetOffer(_kittyId);
+  } catch(err){
+    console.log(err);
+  }
+}
+
 
 //sends price being set for kitty being sold to contract
 async function sellKitty(price, id){

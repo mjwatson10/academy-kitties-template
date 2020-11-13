@@ -34,14 +34,21 @@ async function cardsData(){
                                               <br>
                                              <div class="catGenes">${"Gen: " + kitty.generation}</div>
                                               <br>
-                                             <button class="sell-my-kitty" id="sellKittyBtn${kitty.kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>
+                                             <div class="sell-or-cancel"></div>
                                         </div>
                                   </div>
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
-
-            $(`#sellKittyBtn${kitty.kittyId}`).click(async function(){
+            //let check = await sellOrCancel(kitty.kittyId)
+            if (1 == kitty.kittyId) {
+              let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${kitty.kittyId}">Remove Offer</div>`
+              $(".sell-or-cancel").append(cxlBtn);
+            } else {
+              let sellBtn = `<button class="sell-my-kitty" id="sellKittyBtn${kitty.kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>`
+              $(".sell-or-cancel").append(sellBtn);
+            }
+            /*$(`#sellKittyBtn${kitty.kittyId}`).click(async function(){
                 let kittyCheck = await kittyAlreadyForSale(kitty.kittyId);
                 console.log("Check: ", kittyCheck);
 
@@ -51,7 +58,7 @@ async function cardsData(){
                   alert("This Kitty is already for sale, Sorry");
                   refresh();
               }
-            })
+            })*/
 
             renderKitty(_dna, kitty.kittyId);
         }
