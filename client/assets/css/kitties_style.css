@@ -541,7 +541,7 @@ element.style {
 
 .catGenes{
   color: black;
-  width: 230px;
+  width: 250px;
   text-align: left;
 }
 
@@ -850,7 +850,15 @@ element.style {
 }
 
 .sell-cards{
-  transform: scale(.5);
+  position: relative;
+  left: 95px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-bottom: 15px;
+  background-clip: border-box;
+  border-radius: .25rem;
+  transform: scale(.85);
 }
 
 .flexBox-sell{
@@ -860,7 +868,36 @@ element.style {
   left: 60px;
 }
 
-  #buyKittyBtn{
-    margin-left: 750px;
+.buyKittyBtn{
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 5px;
+  color: #333;
+  font-size: 25px;
+  font-family: kitty;
+  font-weight: bold;
+  width: 75px;
+}
 
+.buyKittyBtn:hover {
+  background: #27a737;
+  border: 2px solid #27a737;
+  color: #fff;
+}
+
+  .cxl-offer{
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    color: #333;
+    font-size: 13px;
+    font-family: defcon;
+    font-weight: bold;
+    width: 95px;
+  }
+
+  .cxl-offer:hover {
+    background: #ce0000;
+    border: 2px solid #ce0000;
+    color: #fff;
   }

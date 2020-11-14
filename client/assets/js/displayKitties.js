@@ -1,7 +1,7 @@
 $(document).ready(async function(){
   await connect();
   await cardsData();
-  await addBtn();
+  await addSellOrCxlBtn();
 })
 
 
@@ -34,13 +34,14 @@ async function cardsData(){
                                               <br>
                                              <div class="catGenes">${"Gen: " + kitty.generation}</div>
                                               <br>
-                                             <div class="sell-or-cancel"></div>
+                                             <div id="sellOrCxl${kitty.kittyId}"></div>
                                         </div>
                                   </div>
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
-
+//need to figure out how to fix right whisher on ever cat
+            $("#right-whisker").css("top", "9px");
             /*$(`#sellKittyBtn${kitty.kittyId}`).click(async function(){
                 let kittyCheck = await kittyAlreadyForSale(kitty.kittyId);
                 console.log("Check: ", kittyCheck);
@@ -59,9 +60,8 @@ async function cardsData(){
 }
 
 
-function sellClickedKitty(_kittyId){
-
-  modalToSellKitties(_kittyId, ".kitty-for-sale");
+async function fixWhisker(){
+  $("#right-whisker").css("top", "9px");
 }
 
 
