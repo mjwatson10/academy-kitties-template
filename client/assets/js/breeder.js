@@ -21,46 +21,46 @@ $(document).ready(async function(){
 })
 
 //State variables
-var dadGenes, dadId, momGenes, momId;
+  var dadGenes, dadId, momGenes, momId;
 
 
 //Parents Buttons
-$('#saveDad').click(async function(){
-    let result = $('input[type= "radio"]:checked');
-    const kittyId = result.val();
-    kitty = await getKittyContractCall(kittyId);
+  $('#saveDad').click(async function(){
+      let result = $('input[type= "radio"]:checked');
+      const kittyId = result.val();
+      kitty = await getKittyContractCall(kittyId);
 
-    if (result.length > 0) {
-      await chosenKitty(result.val(), '.dadDisplay');
+      if (result.length > 0) {
+        await chosenKitty(result.val(), '.dadDisplay');
 
-      $('#dadId').removeAttr('data-target');
-      $('#clearDad').attr('disabled', false);
-      $('#breed').attr('disabled', false);
-    } else {
-      alert("Please choose one Daddy");
-    }
-    dadId = kitty.kittyId;
-    console.log("DadId: ", dadId);
-  });
+        $('#dadId').removeAttr('data-target');
+        $('#clearDad').attr('disabled', false);
+        $('#breed').attr('disabled', false);
+      } else {
+        alert("Please choose one Daddy");
+      }
+      dadId = kitty.kittyId;
+      console.log("DadId: ", dadId);
+    });
 
 
-$('#saveMom').click(async function(){
-    let result = $('input[type= "radio"]:checked');
-    const kittyId = result.val();
-    kitty = await getKittyContractCall(kittyId);
+  $('#saveMom').click(async function(){
+      let result = $('input[type= "radio"]:checked');
+      const kittyId = result.val();
+      kitty = await getKittyContractCall(kittyId);
 
-    if (result.length > 0) {
-      await chosenKitty(result.val(), '.momDisplay');
+      if (result.length > 0) {
+        await chosenKitty(result.val(), '.momDisplay');
 
-      $('#momId').removeAttr('data-target');
-      $('#clearMom').attr('disabled', false);
-      $('#breed').attr('disabled', false);
-    } else {
-      alert("Please choose one Daddy");
-    }
-    momId = kitty.kittyId;
-    console.log("MomId: ", momId);
-  });
+        $('#momId').removeAttr('data-target');
+        $('#clearMom').attr('disabled', false);
+        $('#breed').attr('disabled', false);
+      } else {
+        alert("Please choose one Daddy");
+      }
+      momId = kitty.kittyId;
+      console.log("MomId: ", momId);
+    });
 
 //clear buttons
   $('#clearDad').click(function(){
@@ -80,42 +80,42 @@ $('#saveMom').click(async function(){
 
 
 //Displays available kitties to breed in modals
-async function parentData(){
-  let kitties = await getKittiesForOwner();
+  async function parentData(){
+    let kitties = await getKittiesForOwner();
 
-  for (var i = 0; i < kitties.length; i++){
-    const kitty = kitties[i];
+    for (var i = 0; i < kitties.length; i++){
+      const kitty = kitties[i];
 
-    if(kitty != 0){
-      let imgThumb = kittyThumbnail(kitty.kittyId);
-      let _dna = await dnaOfKitty(kitty.genes);
+      if(kitty != 0){
+        let imgThumb = kittyThumbnail(kitty.kittyId);
+        let _dna = await dnaOfKitty(kitty.genes);
 
-        let kittyCards = `<div class="col-lg-4 catParent">
-                            <label class="option_item">
-                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kitty.kittyId}>
-                                <div class="option_inner">
-                                        <div class="cards parent-cards">
-                                              <div class="card-body parent-card">
-                                                <div class="tickmark"></div>
-                                                    <div id="parentKitty">${imgThumb}
-                                                          <br>
-                                                         <div class="catGenes">${"DNA: " + kitty.genes}</div>
-                                                          <br>
-                                                         <div class="catGenes">${"Gen: " + kitty.generation}</div>
-                                                    </div>
-                                              </div>
-                                          </div>
-                                  </div>
-                              </label>
-                            </div>`
-            $(".parents").append(kittyCards);
-            renderKitty(_dna, kitty.kittyId);
+          let kittyCards = `<div class="col-lg-4 catParent">
+                              <label class="option_item">
+                                <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kitty.kittyId}>
+                                  <div class="option_inner">
+                                          <div class="cards parent-cards">
+                                                <div class="card-body parent-card">
+                                                  <div class="tickmark"></div>
+                                                      <div id="parentKitty">${imgThumb}
+                                                            <br>
+                                                           <div class="catGenes">${"DNA: " + kitty.genes}</div>
+                                                            <br>
+                                                           <div class="catGenes">${"Gen: " + kitty.generation}</div>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </label>
+                              </div>`
+              $(".parents").append(kittyCards);
+              renderKitty(_dna, kitty.kittyId);
+          }
         }
       }
-    }
 
 
-  //displays kitty chosen from modal accessing
+//displays kitty chosen from modal accessing
   async function chosenKitty(value, placement) {
 
       const kitty = await getKittyContractCall(value);

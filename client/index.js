@@ -7,6 +7,7 @@ $(document).ready(function(){
 
       console.log(instance);
 
+      //birthing event
       instance.events.Birth().on('data', function(event){
         console.log(event);
 
@@ -30,15 +31,3 @@ $(document).ready(function(){
 
   })
 })
-
-$("#createButton").click(function createKitty(){
-  var kittyDna = getDna();
-  instance.methods.createKittyGen0(kittyDna.toString(10)).send({}, function(error, txHash){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(txHash);
-      console.log(kittyDna);
-    }
-  });
-});
