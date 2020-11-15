@@ -59,9 +59,11 @@ async function sellOrCancel(_kittyId){
   $(`#sellKittyBtn${_kittyId}`).click(async function(){
     await modalToSellKitties(_kittyId, ".kitty-for-sale");
   });
-
+  //click event to remove sell offer from contract
   $(`#cxlKittyOffer${_kittyId}`).click(async function(){
     await removeOffer(_kittyId);
+    $(`#cxlKittyOffer${_kittyId}`).remove();
+    await refresh();
   })
 }
 
@@ -117,13 +119,13 @@ async function modalToSellKitties(value, placement){
 
       $(placement).append(displayKitty);
       //button that sets price user wants to sell their kitties for
-      $(`#submitPrice${kitty.kittyId}`).click(function(){
+      $(`#submitPrice${kitty.kittyId}`).click(async function(){
         let setPrice = $("#price-field").val();
         let priceToWei = web3.utils.toWei(setPrice, "ether")
-        console.log("Asking Price: ", priceToWei);
 
-        sellKitty(priceToWei, kitty.kittyId);
-        refresh();
+        await sellKitty(priceToWei, kitty.kittyId);
+        $(`#sellKittyBtn${kitty.kittyId}`).remove();
+        await refresh();
       })
 
       renderKitty(_dna, value);
