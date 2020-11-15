@@ -543,6 +543,7 @@ element.style {
   color: black;
   width: 250px;
   text-align: left;
+  margin-left: -24px;
 }
 
 .cards{
@@ -557,6 +558,7 @@ element.style {
     margin-bottom: 15px;
     background-clip: border-box;
     border-radius: .25rem;
+    transform: scale(.9);
 }
 
 .tail-display-kitties {
@@ -900,4 +902,17 @@ element.style {
     background: #ce0000;
     border: 2px solid #ce0000;
     color: #fff;
+  }
+
+  #kitty-marketplace-header{
+    font-size: 70px;
+    color: #05d9eb;
+    font-family: kitty;
+  }
+
+  #cyber-marketplace-header{
+    text-align: center;
+    color: #580b65;
+    font-family: defcon;
+    font-size: 20px;
   }
