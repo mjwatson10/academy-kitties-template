@@ -40,19 +40,8 @@ async function cardsData(){
                               </div>
                             </div>`
             $("#myOwnedKitties").append(kittyCards);
-//need to figure out how to fix right whisher on ever cat
+            //need to figure out how to fix right whisher on ever cat
             $(`#kitty${kitty.kittyId} #right-whisker`).css("top", "9px");
-            /*$(`#sellKittyBtn${kitty.kittyId}`).click(async function(){
-                let kittyCheck = await kittyAlreadyForSale(kitty.kittyId);
-                console.log("Check: ", kittyCheck);
-
-                if(kittyCheck != kitty.kittyId){
-                  await modalToSellKitties(kitty.kittyId, ".kitty-for-sale");
-                }else{
-                  alert("This Kitty is already for sale, Sorry");
-                  refresh();
-              }
-            })*/
 
             renderKitty(_dna, kitty.kittyId);
         }

@@ -111,7 +111,7 @@ async function modalToSellKitties(value, placement){
                           <br>
                          <label for="currency-field" id="priceTitle">Price:</label>
                           <br>
-                         <input type="text" id="price-field" value="" data-type="number" placeholder="1,000,000.00">
+                         <input type="text" id="price-field" value="" data-type="number" placeholder="0.01 Ether">
                          <button type="submit" class="set-kitty-price" id="submitPrice${kitty.kittyId}" data-toggle="modal" data-target="#confirm-modal">
                             <div class="sell-btn-text">Sell</div>
                          </button>
