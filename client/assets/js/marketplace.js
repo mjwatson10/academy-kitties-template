@@ -2,7 +2,6 @@ $(document).ready(async function(){
   await connect();
   await connectMarket();
   await marketplaceOp();
-  await _addBuyOrCxlBtn();
 });
 
 
@@ -135,9 +134,16 @@ async function modalToSellKitties(value, placement){
 
 
 //calls contract for a specified kitty's data and it's offer details
-async function saleKittyData(_kittyid){
-  let saleData = await instanceMarket.methods.getOffer(_kittyid).call();
+async function saleKittyData(_kittyId){
+  let saleData = await instanceMarket.methods.getOffer(_kittyId).call();
   const kittyToSell = await instance.methods.getKitty(saleData.tokenId).call();
+
+  let buttonAdded;
+  if (saleData.seller.toLowerCase() === user.toLowerCase()) {
+    buttonAdded = `<button class="cxl-offer" id="cxlKittyOffer${_kittyId}">Remove Offer</div>`
+  } else {
+    buttonAdded = `<button type="button" name="button" class="buyKittyBtn" id="buyKitty${_kittyId}">Buy</button>`
+  }
 
     let imgThumb = kittyThumbnail(saleData.tokenId);
     let _dna = await dnaOfKitty(kittyToSell.genes);
@@ -153,7 +159,7 @@ async function saleKittyData(_kittyid){
                                                <br>
                                               <div class="catGenes">${"Price: " + web3.utils.fromWei(saleData.price, "ether") + " Eth"}</div>
                                                <br>
-                                              <div id="buyOrCxl${kitty.kittyId}"></div>
+                                              ${buttonAdded}
                                         </div>
                                   </div>
                               </div>
@@ -166,18 +172,19 @@ async function saleKittyData(_kittyid){
 
 //add buy or remove off btn at marketplace depending on whether the kitties are owned by user
 async function buyOrCancel(_kittyId){
-    let inventoryArray = await instanceMarket.methods.getAllTokenOnSale().call();
+    let kittyIDsOnSale = await instanceMarket.methods.getAllTokenOnSale().call();
+    let saleData = await instanceMarket.methods.getOffer(_kittyId).call();
 
-    for (var i = 0; i < inventoryArray.length; i++) {
-      const kitty = inventoryArray[i];
-      if (kitty.tokenId == _kittyId) {
-        let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${_kittyId}">Remove Offer</div>`
-        $(`#buyOrCxl${_kittyId}`).append(cxlBtn);
-      } else {
-        let saleData = await instanceMarket.methods.getOffer(_kittyId).call();
-        let buyBtn = `<button type="button" name="button" class="buyKittyBtn" id="buyKitty${saleData.tokenId}">Buy</button>`
-        $(`#buyOrCxl${_kittyId}`).append(buyBtn);
-      }
+    let result = kittyIDsOnSale.some(function(kittyIDsOnSale){
+      return kittyIDsOnSale === _kittyId;
+    });
+
+    if (result === true) {
+      let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${_kittyId}">Remove Offer</div>`
+      $(`#buyOrCxl${_kittyId}`).append(cxlBtn);
+    }else {
+      let buyBtn = `<button type="button" name="button" class="buyKittyBtn" id="buyKitty${saleData.tokenId}">Buy</button>`
+      $(`#buyOrCxl${_kittyId}`).append(buyBtn);
     }
 }
 

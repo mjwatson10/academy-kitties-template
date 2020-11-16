@@ -29779,12 +29779,12 @@
         }
       },
       "links": {},
-      "address": "0x0B299b4379380879d454B5A2384dC2e4b3CD7A23",
-      "transactionHash": "0x1eb3590d0dfe4d854e8d12726766d93b24603f4be3b58e10eec5e166716e51d9"
+      "address": "0x1e940dA0D43CeD50457Dc37A29c3f0A59334efb2",
+      "transactionHash": "0x914d37dd81558adc1f2a703efc3f910d4c05b8a0591f1e7cfa244ca7c723eeae"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-11-14T01:37:46.183Z",
+  "updatedAt": "2020-11-16T23:39:24.843Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
