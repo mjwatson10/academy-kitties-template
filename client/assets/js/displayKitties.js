@@ -71,7 +71,6 @@ async function getKittiesDataArray(_kittyIDs){
           kittyArray.push(kittyObject);
         }
       }
-    //console.log(kittyArray);
     return kittyArray;
 }
 
@@ -452,29 +451,3 @@ function stripeType8(id){
     $(`#kitty${id} .stripes-bottom-left`).css({ "top": "32" }).css({ "left": "-16" })
     $(`#kitty${id}.stripes-bottom-right`).css({ "top": "145" }).css({ "left": "108" })
 }
-
-
-// async function getBirthData(_kittyIDs){
-//   const _kittyArray = [];
-//
-//   for(var i = 0; i < _kittyIDs.length; i++){
-//     if(_kittyIDs[i] != 0){
-//       let _kittyObject = await instance.methods.getKitty(_kittyIDs[i]).call({from: user});
-//           _kittyArray.push(_kittyObject);
-//         }
-//       }
-//   return _kittyArray;
-// }
-//
-// async function birthArray(){
-//   let myKittiesIDs = await instance.methods.getKittiesIDs(user).call({from: user});
-//   let allMyKitties = await getBirthData(myKittiesIDs);
-//
-//   let displayKitties = [];
-//   for (var i = 0; i < allMyKitties.length; i++){
-//     if(allMyKitties[i] != 0){
-//         displayKitties.push(allMyKitties[i])
-//     }
-//   }
-//     return displayKitties;
-// }

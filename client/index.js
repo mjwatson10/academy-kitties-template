@@ -5,8 +5,6 @@ $(document).ready(function(){
       instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
       user = accounts[0];
 
-      console.log(instance);
-
       //birthing event
       instance.events.Birth().on('data', function(event){
         console.log(event);

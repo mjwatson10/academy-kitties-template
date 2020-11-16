@@ -167,7 +167,6 @@ $("#createButton").click(function createKitty(){
       console.log(error);
     } else {
       console.log(txHash);
-      console.log(kittyDna);
     }
   });
 });

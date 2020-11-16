@@ -1,8 +1,8 @@
 $(document).ready(async function(){
   await connect();
   await connectMarket();
-  //await kittiesToSell();
   await marketplaceOp();
+  await _addBuyOrCxlBtn();
 });
 
 
@@ -12,11 +12,9 @@ async function marketplaceOp(){
 
   if (isApprovedOp){
     getInventory();
-    console.log("is approved");
   } else {
     await instance.methods.setApprovalForAll(contractAddressMarket, true).send().on('receipt', function(receipt){
 
-      console.log("tx done, now is approved");
       getInventory();
     })
   }
@@ -123,9 +121,13 @@ async function modalToSellKitties(value, placement){
         let setPrice = $("#price-field").val();
         let priceToWei = web3.utils.toWei(setPrice, "ether")
 
-        await sellKitty(priceToWei, kitty.kittyId);
-        $(`#sellKittyBtn${kitty.kittyId}`).remove();
-        await refresh();
+        if (setPrice > 0) {
+          await sellKitty(priceToWei, kitty.kittyId);
+          $(`#sellKittyBtn${kitty.kittyId}`).remove();
+          await refresh();
+        }else {
+          alert("You can't sell Kitty for 0 or negative Ether, Silly")
+        }
       })
 
       renderKitty(_dna, value);
@@ -151,7 +153,7 @@ async function saleKittyData(_kittyid){
                                                <br>
                                               <div class="catGenes">${"Price: " + web3.utils.fromWei(saleData.price, "ether") + " Eth"}</div>
                                                <br>
-                                              <button type="button" name="button" class="buyKittyBtn" id="buyKitty${saleData.tokenId}">Buy</button>
+                                              <div id="buyOrCxl${kitty.kittyId}"></div>
                                         </div>
                                   </div>
                               </div>
@@ -161,10 +163,39 @@ async function saleKittyData(_kittyid){
             renderKitty(_dna, saleData.tokenId);
 }
 
+
+//add buy or remove off btn at marketplace depending on whether the kitties are owned by user
+async function buyOrCancel(_kittyId){
+    let inventoryArray = await instanceMarket.methods.getAllTokenOnSale().call();
+
+    for (var i = 0; i < inventoryArray.length; i++) {
+      const kitty = inventoryArray[i];
+      if (kitty.tokenId == _kittyId) {
+        let cxlBtn = `<button class="cxl-offer" id="cxlKittyOffer${_kittyId}">Remove Offer</div>`
+        $(`#buyOrCxl${_kittyId}`).append(cxlBtn);
+      } else {
+        let saleData = await instanceMarket.methods.getOffer(_kittyId).call();
+        let buyBtn = `<button type="button" name="button" class="buyKittyBtn" id="buyKitty${saleData.tokenId}">Buy</button>`
+        $(`#buyOrCxl${_kittyId}`).append(buyBtn);
+      }
+    }
+}
+
+
+//loop for buyOrCancel() function
+async function _addBuyOrCxlBtn(){
+    let kitties = await getKittiesForOwner();
+
+    for (var i = 0; i < kitties.length; i++) {
+      const kitty = kitties[i];
+      await buyOrCancel(kitty.kittyId);
+    }
+}
+
+
 //function for click event to buy kitty and call contract
 async function buyAKitty(_kittyId, price){
   $(`#buyKitty${_kittyId}`).click(async function(){
-    console.log("price: ", price);
     let buy = await instanceMarket.methods.buyKitty(_kittyId).send({from: user, value: price}, function(error, txHash){
       if(error){
         console.log(error);
@@ -187,76 +218,3 @@ async function removeOffer(_kittyId){
     }
   });
 }
-
-
-//button that sets price user wants to sell their kitties for
-/*$("#submitPrice").click(async function(){
-  console.log("seller ID: " + sellerId);
-  let setPrice = $("#price-field").val();
-  console.log("Asking Price: ", setPrice);
-
-  await sellKitty(setPrice, sellerId);
-  await refresh();
-})*/
-
-
-//submits price to contract
-/*async function submitPriceForKitty(_setPrice, _kittyId){
-  await sellKitty(_setPrice, _kittyId);
-  await refresh();
-}*/
-
-
-//modal that populates kitties that can be sold
-/*async function kittiesToSell(){
-  let kitties = await getKittiesForOwner();
-
-  for (var i = 0; i < kitties.length; i++){
-    const kitty = kitties[i];
-
-    let imgThumb = kittyThumbnail(kitty.kittyId);
-    let _dna = dnaOfKitty(kitty.genes);
-    console.log("id: " + i + " data: " + kitty.kittyId);
-
-        let kittyCards = `<div class="col-lg-4 catParent">
-                            <label class="option_item">
-                              <input type="radio" class="checkbox" name="radioKitty" id="kittyParent" value=${kitty.kittyId}>
-                                <div class="option_inner">
-                                        <div class="cards parent-cards">
-                                              <div class="card-body parent-card">
-                                                <div class="tickmark"></div>
-                                                    <div id="parentKitty">${imgThumb}
-                                                          <br>
-                                                         <div class="catGenes">${"DNA: " + kitty.genes}</div>
-                                                          <br>
-                                                         <div class="catGenes">${"Gen: " + kitty.generation}</div>
-                                                    </div>
-                                              </div>
-                                          </div>
-                                  </div>
-                              </label>
-                            </div>`
-            $(".availKitties").append(kittyCards);
-            renderKitty(_dna, kitty.kittyId);
-        }
-      }*/
-
-
-
-/*$('#sell_Kitty').click(async function(){
-    let result = $('input[type= "radio"]:checked');
-    const kittyId = result.val();
-    let kitty = await getKittyContractCall(kittyId);
-    console.log("Kitty Id: ", kitty.kittyId);
-    console.log("Kitty Check: ", kittyCheck);
-
-    if(kittyCheck == kitty.kittyId){
-      alert("This Kitty is already for sale, Sorry")
-    }else{
-    if (result.length > 0) {
-      await chosenKitty(kitty.kittyId, '.kitty-being-sold');
-      }
-     sellerId = kitty.kittyId;
-     console.log("Seller ID: ", sellerId);
-  }
-})*/
