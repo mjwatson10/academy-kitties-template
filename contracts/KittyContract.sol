@@ -146,9 +146,9 @@ contract Kittycontract is IERC721, Ownable {
 
       for(i = 1; i <= 532; i = i * 2){
         if(random & i !=0){
-          geneArray[index] = uint16(_dadDna % 100);
-        } else {
           geneArray[index] = uint16(_momDna % 100);
+        } else {
+          geneArray[index] = uint16(_dadDna % 100);
         }
         _dadDna = _dadDna / 100;
         _momDna = _momDna / 100;
