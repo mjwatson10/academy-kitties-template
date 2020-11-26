@@ -97,7 +97,7 @@ const truffleAssert = require("truffle-assertions");
       });
 
       it("should not mix the kitties dna together because sender is not contract owner of kitties", async function(){
-        const instance = await Kittycontract.deployed();
+        const instance = await Kittycontract.new();
         const dad = await instance.createKittyGen0("84336244549310576265");
         const mom = await instance.createKittyGen0("69367694223415461144");
 
@@ -105,9 +105,23 @@ const truffleAssert = require("truffle-assertions");
       });
 
       it("should transfer kitty to new account", async function(){
-        const instance = await Kittycontract.deployed();
-        const dad = await instance.createKittyGen0("84336244549310576265");
+        const instance = await Kittycontract.new();
+        await instance.createKittyGen0("84336244549310576265");
 
         await truffleAssert.passes(instance.transfer(accounts[2], 1));
+      });
+
+      it("should approve token on new address", async function(){
+        const instance = await Kittycontract.new();
+        await instance.createKittyGen0("84336244549310576265");
+
+        await truffleAssert.passes(instance.approve(accounts[2], 1));
+      });
+
+      it("should not approve token on new address because account trying to approve is not owner of token", async function(){
+        const instance = await Kittycontract.new();
+        await instance.createKittyGen0("84336244549310576265");
+
+        await truffleAssert.fails(instance.approve(accounts[2], 1, {from:accounts[3]}));
       });
     })
