@@ -73,20 +73,41 @@ const truffleAssert = require("truffle-assertions");
         assert(kittyId.toString(10) === "1");
       });
 
-      it("Should be approved on new address", async function(){
+      // it("Should be approved on new address", async function(){
+      //   const instance = await Kittycontract.new();
+      //   const kitty = await instance.createKittyGen0("84336244549310576265");
+      //   const getKitty = await instance.getKitty(1);
+      //   console.log("Get Kitty: ", getKitty.genes.toString(10));
+      //
+      //   const approve = await instance.approve(accounts[2], 1);
+      //   const getApproved = await instance.getApproved(1);
+      //   console.log("Who's Approved: ", getApproved);
+      //   console.log("Address 1:", accounts[1].toString(10));
+      //   console.log("Address 2:", accounts[2].toString(10));
+      //   const approvalCheck = await instance.isApprovedForAll(accounts[1], accounts[2]);
+      //   console.log("Approve: ", approvalCheck);
+      //
+      //   assert(approvalCheck === true);
+      // });
+
+      it("should not create Gen 0 kitty because sender is not contract owner", async function(){
         const instance = await Kittycontract.new();
-        const kitty = await instance.createKittyGen0("84336244549310576265");
-        const getKitty = await instance.getKitty(1);
-        console.log("Get Kitty: ", getKitty.genes.toString(10));
 
-        const approve = await instance.approve(accounts[2], 1);
-        const getApproved = await instance.getApproved(2);
-        console.log("Who's Approved: ", getApproved);
-        console.log("Address 1:", accounts[1].toString(10));
-        console.log("Address 2:", accounts[2].toString(10));
-        // const approvalCheck = await instance.isApprovedForAll(accounts[1], accounts[2]);
-        // console.log("Approve: ", approvalCheck);
+        await truffleAssert.fails(instance.createKittyGen0("84336244549310576265", {from: accounts[2]}));
+      });
 
-        assert(approvalCheck === true);
+      it("should not mix the kitties dna together because sender is not contract owner of kitties", async function(){
+        const instance = await Kittycontract.deployed();
+        const dad = await instance.createKittyGen0("84336244549310576265");
+        const mom = await instance.createKittyGen0("69367694223415461144");
+
+        await truffleAssert.fails(instance.breed(1, 2, {from: accounts[2]}));
+      });
+
+      it("should transfer kitty to new account", async function(){
+        const instance = await Kittycontract.deployed();
+        const dad = await instance.createKittyGen0("84336244549310576265");
+
+        await truffleAssert.passes(instance.transfer(accounts[2], 1));
       });
     })

@@ -1,0 +1,192 @@
+{
+  "contractName": "Contract",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Test_Contract.sol\":\"Contract\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721.sol\":{\"keccak256\":\"0xe6b750f30aeb9386641e76878882ebad5d225371ad226a28f4a9b8e440a7fc72\",\"urls\":[\"bzz-raw://6cdc1f27dea4582fc9d2c5028a77f10f71f0fe0575033652544739dbdafa04e8\",\"dweb:/ipfs/QmNqYPAjQA2VSm5usLgCGYvAp2cVuM7UFLVP3qU7HXGfdR\"]},\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x8194fa5dce954876bcea000ec0db87982b606359759066e87bde7319f91328fe\",\"urls\":[\"bzz-raw://1dfff5a4d8df2335dbab526b349aecd1a5e6ee7aa83b439018b15673fd689d54\",\"dweb:/ipfs/QmXTZbpDoYZCnLeUpLYvV8DcKJekaYGPCU2VSgscJm6ywZ\"]},\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/KittyContract.sol\":{\"keccak256\":\"0x912b5990e0e704a9a23256eeede6fa9b18c36f26ce6f0bc16450dbe69dfb3473\",\"urls\":[\"bzz-raw://86331a993fde5912b10430b4610bc1670be156d972aa7b32ce7813d90408a687\",\"dweb:/ipfs/QmWsVxmSKVhQnGJRkHoANzb9LwKWmpdbKoxHCirfueTUdq\"]},\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Owner.sol\":{\"keccak256\":\"0xfec8b9846c452bf07399b515c88b463670e7f8c1e4439e85fe1f5a30758d9a40\",\"urls\":[\"bzz-raw://f6eb993bce5a700eae8de97f76efa2b9c378602861d6303ca28f7e18e1570f54\",\"dweb:/ipfs/Qmd9Gd76zpgWfAxp1zQYE7iVE2KGAFxCZ8khfEyHVAqyFH\"]},\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Safemath.sol\":{\"keccak256\":\"0x5bdc732cadd8e0884c71e7bde89db64ea02beb92284433649014601b9ffb41c0\",\"urls\":[\"bzz-raw://006c27cf8e20ac8bbdc60512bd7b1c6a44f446ff6c9b3932d868356c3d2860ef\",\"dweb:/ipfs/QmSNxFNS3q6VsAsiRZKeburrPbnMD92bajobgKiDQNF34S\"]},\"/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Test_Contract.sol\":{\"keccak256\":\"0xdbe81c25b8ac9c8b92b65d6125928c8271747c63d8a6f99ca35642a915a87220\",\"urls\":[\"bzz-raw://4052dcc647009272c9170adf0451533384188cd209bd6cd3a729c138e511b565\",\"dweb:/ipfs/Qmc2a7y5fpFKrvu3soyqpWCrZkyob7CLsZFgRhojWrX1Sy\"]}},\"version\":1}",
+  "bytecode": "0x6080604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603e8060516000396000f3fe6080604052600080fdfea265627a7a723158202692047a8ad3400e995017fa72248ebe313fc55789d3a884c57544fd69c57b4964736f6c634300050c0032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a723158202692047a8ad3400e995017fa72248ebe313fc55789d3a884c57544fd69c57b4964736f6c634300050c0032",
+  "sourceMap": "79:33:9:-;;;470:10:7;462:5;;:18;;;;;;;;;;;;;;;;;;79:33:9;;;;;;",
+  "deployedSourceMap": "79:33:9:-;;;;;",
+  "source": "pragma solidity ^0.5.12;\n\nimport \"./KittyContract.sol\";\nimport \"./Owner.sol\";\n\ncontract Contract is Ownable{\n\n\n}\n",
+  "sourcePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Test_Contract.sol",
+  "ast": {
+    "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Test_Contract.sol",
+    "exportedSymbols": {
+      "Contract": [
+        2995
+      ]
+    },
+    "id": 2996,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2990,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:9"
+      },
+      {
+        "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/KittyContract.sol",
+        "file": "./KittyContract.sol",
+        "id": 2991,
+        "nodeType": "ImportDirective",
+        "scope": 2996,
+        "sourceUnit": 1283,
+        "src": "26:29:9",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Owner.sol",
+        "file": "./Owner.sol",
+        "id": 2992,
+        "nodeType": "ImportDirective",
+        "scope": 2996,
+        "sourceUnit": 2802,
+        "src": "56:21:9",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2993,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2801,
+              "src": "100:7:9",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$2801",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 2994,
+            "nodeType": "InheritanceSpecifier",
+            "src": "100:7:9"
+          }
+        ],
+        "contractDependencies": [
+          2801
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2995,
+        "linearizedBaseContracts": [
+          2995,
+          2801
+        ],
+        "name": "Contract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 2996,
+        "src": "79:33:9"
+      }
+    ],
+    "src": "0:113:9"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Test_Contract.sol",
+    "exportedSymbols": {
+      "Contract": [
+        2995
+      ]
+    },
+    "id": 2996,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2990,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:9"
+      },
+      {
+        "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/KittyContract.sol",
+        "file": "./KittyContract.sol",
+        "id": 2991,
+        "nodeType": "ImportDirective",
+        "scope": 2996,
+        "sourceUnit": 1283,
+        "src": "26:29:9",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/CalvinCutlass/Desktop/Coding/coding_2020/ivan_bootcamp/week_7/academy-kitties/contracts/Owner.sol",
+        "file": "./Owner.sol",
+        "id": 2992,
+        "nodeType": "ImportDirective",
+        "scope": 2996,
+        "sourceUnit": 2802,
+        "src": "56:21:9",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2993,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2801,
+              "src": "100:7:9",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$2801",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 2994,
+            "nodeType": "InheritanceSpecifier",
+            "src": "100:7:9"
+          }
+        ],
+        "contractDependencies": [
+          2801
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2995,
+        "linearizedBaseContracts": [
+          2995,
+          2801
+        ],
+        "name": "Contract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 2996,
+        "src": "79:33:9"
+      }
+    ],
+    "src": "0:113:9"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.0",
+  "updatedAt": "2020-11-24T00:07:54.361Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
