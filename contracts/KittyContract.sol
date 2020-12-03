@@ -92,7 +92,7 @@ contract Kittycontract is IERC721, Ownable {
         uint256 _generation,
         uint256 _genes,
         address _owner
-    ) private returns (uint256) {
+    ) internal returns (uint256) {
         Kitty memory _kitty = Kitty({
           genes: _genes,
           birthTime: uint64(now),
