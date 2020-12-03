@@ -188,7 +188,7 @@ const truffleAssert = require("truffle-assertions");
         truffleAssert.passes(await proxyInstance.setApprovalForAll(accounts[2], true, {from: user}));
       });
 
-      it.only("should pass to approve operator because operator is not sender", async function(){
+      it.only("should NOT pass to approve operator because operator is sender", async function(){
         const proxyInstance = await ProxyContract.new();
 
         const kitty1 = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
