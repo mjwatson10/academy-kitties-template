@@ -185,16 +185,16 @@ const truffleAssert = require("truffle-assertions");
         const kitty1 = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
         const kitty2 = await proxyInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
 
-        truffleAssert.passes(await proxyInstance.setApprovalForAll(accounts[2], true, {from: user}));
+        await truffleAssert.passes(proxyInstance.setApprovalForAll(accounts[2], true, {from: user}));
       });
 
-      it.only("should NOT pass to approve operator because operator is sender", async function(){
+      it("should NOT pass to approve operator because operator is sender", async function(){
         const proxyInstance = await ProxyContract.new();
 
         const kitty1 = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
         const kitty2 = await proxyInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
 
-        truffleAssert.fails(await proxyInstance.setApprovalForAll(user, true, {from: user}));
+        await truffleAssert.fails(proxyInstance.setApprovalForAll(user, true, {from: accounts[1]}));
       });
 
       it("should not create more than 100 Gen 0 kitties", async function(){
@@ -213,7 +213,7 @@ const truffleAssert = require("truffle-assertions");
         assert.equal(owner, user);
       });
 
-      it("should confirm address does own kitty", async function(){
+      it.only("should confirm address does own kitty", async function(){
         const proxyInstance = await ProxyContract.new();
 
         await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
@@ -222,12 +222,27 @@ const truffleAssert = require("truffle-assertions");
         assert(owns === true);
       });
 
-      it("should confirm address does NOT own kitty", async function(){
+      it.only("should confirm address does NOT own kitty", async function(){
         const proxyInstance = await ProxyContract.new();
 
         await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
         const owns = await proxyInstance.owns(accounts[2], 1);
 
         assert(owns === false);
+      });
+
+      it.only("should return contract address as true", async function(){
+        const proxyInstance = await ProxyContract.new();
+
+        contractTest = await proxyInstance.isContract(proxyInstance.address);
+        console.log("Contract Test: ", contractTest);
+        assert.equal(contractTest, true);
+      });
+
+      it.only("should return non contract address as false", async function(){
+        const proxyInstance = await ProxyContract.new();
+
+        contractTest = await proxyInstance.isContract(user);
+        assert.equal(contractTest, false);
       });
     })

@@ -40,5 +40,7 @@ contract Test is Kittycontract {
         return _owns(_claimant, _tokenId);
       }
 
-
+      function isContract(address _to) public returns (bool){
+        return _isContract(_to);
+      }
 }
