@@ -363,6 +363,7 @@ contract Kittycontract is IERC721, Ownable {
   /// @param _from The current owner of the NFT
   /// @param _to The new owner
   /// @param _tokenId The NFT to transfer
+        //this is just using the above function safeTransferFrom without the bytes memory data parameter
   function safeTransferFrom(address _from, address _to, uint256 _tokenId) public{
     safeTransferFrom(_from, _to, _tokenId, "");
   }

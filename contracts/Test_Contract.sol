@@ -40,7 +40,11 @@ contract Test is Kittycontract {
         return _owns(_claimant, _tokenId);
       }
 
-      function isContract(address _to) public returns (bool){
+      function isContract(address _to) public view returns (bool){
         return _isContract(_to);
+      }
+
+      function isApprovedorOwner(address _spender, address _from, address _to, uint256 _tokenId) public view returns(bool){
+        return _isApprovedorOwner(_spender, _from, _to, _tokenId);
       }
 }
