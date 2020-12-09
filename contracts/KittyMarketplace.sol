@@ -51,7 +51,7 @@ contract KittyMarketplace is Ownable{
               );
     }
 
-    function getAllTokenOnSale() public view  returns(uint256[] memory listOfOffers){
+    function getAllTokenOnSale() public view returns(uint256[] memory listOfOffers){
       uint256 totalOffers = offers.length;
 
       if(totalOffers == 0){

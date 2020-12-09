@@ -264,6 +264,7 @@ contract Kittycontract is IERC721, Ownable {
     * Emits a {Transfer} event.
     */
    function transfer(address to, uint256 tokenId) external{
+       //address(0) is equal to the string 0x0000000000000000000000000000000000000000
        require(to != address(0));
        //address(this) is the contract address
        require(to != address(this));

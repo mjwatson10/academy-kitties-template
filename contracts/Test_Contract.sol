@@ -2,8 +2,9 @@ pragma solidity ^0.5.12;
 
 import "./KittyContract.sol";
 import "./Owner.sol";
+import "./KittyMarketplace.sol";
 
-contract Test is Kittycontract {
+contract Test is Kittycontract, KittyMarketplace {
 
   /* function testGen0(uint _genes) public returns(bool){
     gen0Counter = 100;
@@ -46,5 +47,9 @@ contract Test is Kittycontract {
 
       function isApprovedorOwner(address _spender, address _from, address _to, uint256 _tokenId) public view returns(bool){
         return _isApprovedorOwner(_spender, _from, _to, _tokenId);
+      }
+
+      function ownsKitty(address _address, uint256 _tokenId) public view returns (bool){
+        return _ownsKitty(_address, _tokenId);
       }
 }
