@@ -1,20 +1,10 @@
 pragma solidity ^0.5.12;
 
+//import "./KittyMarketplace.sol";
 import "./KittyContract.sol";
 import "./Owner.sol";
-import "./KittyMarketplace.sol";
 
-contract Test is Kittycontract, KittyMarketplace {
-
-  /* function testGen0(uint _genes) public returns(bool){
-    gen0Counter = 100;
-    createKittyGen0(_genes);
-    if(gen0Counter < CREATION_LIMIT_GEN0){
-      return false;
-    }else{
-      return true;
-    }
-  } */
+contract Test is Kittycontract {
 
     function createKitty(
             uint256 _momId,
@@ -49,7 +39,7 @@ contract Test is Kittycontract, KittyMarketplace {
         return _isApprovedorOwner(_spender, _from, _to, _tokenId);
       }
 
-      function ownsKitty(address _address, uint256 _tokenId) public view returns (bool){
+      /* function ownsKitty(address _address, uint256 _tokenId) public view returns (bool){
         return _ownsKitty(_address, _tokenId);
-      }
+      } */
 }

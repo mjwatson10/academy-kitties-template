@@ -193,11 +193,11 @@ const truffleAssert = require("truffle-assertions");
       });
 
 
-      it.only("should return _ownsKitty() function as TRUE", async function(){
-        kittyOwner = await kittyContractInstance._ownsKitty(user, 1);
-
-        assert.equal(kittyOwner, true);
-      });
+      // it.only("should return _ownsKitty() function as TRUE", async function(){
+      //   kittyOwner = await kittyContractInstance._ownsKitty(user, 1);
+      //
+      //   assert.equal(kittyOwner, true);
+      // });
 
       // it.only("should return _ownsKitty() function as FALSE", async function(){
       //
