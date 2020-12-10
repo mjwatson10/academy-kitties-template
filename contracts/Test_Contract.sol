@@ -1,6 +1,5 @@
 pragma solidity ^0.5.12;
 
-//import "./KittyMarketplace.sol";
 import "./KittyContract.sol";
 import "./Owner.sol";
 
@@ -39,7 +38,4 @@ contract Test is Kittycontract {
         return _isApprovedorOwner(_spender, _from, _to, _tokenId);
       }
 
-      /* function ownsKitty(address _address, uint256 _tokenId) public view returns (bool){
-        return _ownsKitty(_address, _tokenId);
-      } */
 }

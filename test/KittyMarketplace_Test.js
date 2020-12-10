@@ -1,6 +1,7 @@
 const KittyMarketplace = artifacts.require("KittyMarketplace");
 const KittyContract = artifacts.require("Kittycontract");
 const ProxyContract = artifacts.require("Test");
+const ProxyMarketplace = artifacts.require("MarketplaceTest");
 const truffleAssert = require("truffle-assertions");
 
   contract ("KittyMarketplace", async function(accounts){
@@ -12,6 +13,7 @@ const truffleAssert = require("truffle-assertions");
     beforeEach(async function(){
       kittyContractInstance = await ProxyContract.new();
       marketplaceInstance = await KittyMarketplace.new(kittyContractInstance.address);
+      proxyMarketplace = await ProxyMarketplace.new(kittyContractInstance.address);
       await kittyContractInstance.setApprovalForAll(marketplaceInstance.address, true);
     });
 
@@ -193,15 +195,17 @@ const truffleAssert = require("truffle-assertions");
       });
 
 
-      // it.only("should return _ownsKitty() function as TRUE", async function(){
-      //   kittyOwner = await kittyContractInstance._ownsKitty(user, 1);
-      //
-      //   assert.equal(kittyOwner, true);
-      // });
+      it("should return _ownsKitty() function as TRUE", async function(){
+        kittyOwner = await proxyMarketplace.ownsKitty(user, 1);
 
-      // it.only("should return _ownsKitty() function as FALSE", async function(){
-      //
-      // });
+        assert.equal(kittyOwner, true);
+      });
+
+      it("should return _ownsKitty() function as FALSE", async function(){
+        kittyOwner = await proxyMarketplace.ownsKitty(accounts[2], 1);
+
+        assert.equal(kittyOwner, false);
+      });
     });
 
   });
