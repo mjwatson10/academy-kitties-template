@@ -42,10 +42,18 @@ const truffleAssert = require("truffle-assertions");
       });
 
       it("should set offer price of kitty to sell", async function(){
-        await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
+        const offer = await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
         let getOffer = await marketplaceInstance.getOffer(1);
 
         assert.equal(priceToWei, getOffer.price);
+        assert.equal(user, getOffer.seller);
+        assert.equal(0, getOffer.index);
+        assert.equal(1, getOffer.tokenId);
+        assert.equal(true, getOffer.active);
+
+        await truffleAssert.eventEmitted(offer, 'MarketTransaction', (ev) => {
+          return ev.TxType == "Create offer" && ev.owner == user && ev.tokenId == 1;
+        });
       });
 
       it("should get all parameters of the getOffer() function", async function(){
@@ -90,8 +98,8 @@ const truffleAssert = require("truffle-assertions");
         await marketplaceInstance.setOffer(priceToWei, 2, {from: user});
         await marketplaceInstance.setOffer(priceToWei, 3, {from: accounts[3]});
 
-        kittyForSale = await marketplaceInstance.getAllTokenOnSale({from: user});
-        kittyThreeForSale = await marketplaceInstance.getAllTokenOnSale({from: accounts[3]});
+        const kittyForSale = await marketplaceInstance.getAllTokenOnSale({from: user});
+        const kittyThreeForSale = await marketplaceInstance.getAllTokenOnSale({from: accounts[3]});
 
         assert.equal(kittyOneTwoForSale[0], 1);
         assert.equal(kittyOneTwoForSale[1], 2);
@@ -104,7 +112,7 @@ const truffleAssert = require("truffle-assertions");
     });
 
 
-//buying testing
+//buying and removing offer testing
     describe("buying and removing offers", async function(){
       let priceToWei;
 
@@ -116,11 +124,15 @@ const truffleAssert = require("truffle-assertions");
       });
 
       it("should allow tokenId to be bought", async function(){
-        await marketplaceInstance.buyKitty(1, {from: accounts[2], value: priceToWei});
+        const bought = await marketplaceInstance.buyKitty(1, {from: accounts[2], value: priceToWei});
 
-        boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
+        const boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
 
         assert.strictEqual(boughtKitty[0].toString(10), "1");
+
+        await truffleAssert.eventEmitted(bought, 'MarketTransaction', (ev) => {
+          return ev.TxType == "Buy" && ev.owner == accounts[2] && ev.tokenId == 1;
+        });
       });
 
       it("should revert buyKitty() function because msg.value does not equal price of offer", async function(){
@@ -156,16 +168,20 @@ const truffleAssert = require("truffle-assertions");
 
         await marketplaceInstance.setOffer(priceToWei, 3, {from: user});
         await marketplaceInstance.buyKitty(3, {from: accounts[2], value: priceToWei});
-        boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
+        const boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
 
         assert.strictEqual(boughtKitty[0].toString(10), "3");
       });
 
       it("should remove offer marketplace", async function(){
         await truffleAssert.passes(marketplaceInstance.getOffer(1));
-        await marketplaceInstance.removeOffer(1, {from: user});
+        const removed = await marketplaceInstance.removeOffer(1, {from: user});
 
         await truffleAssert.fails(marketplaceInstance.getOffer(1));
+
+        await truffleAssert.eventEmitted(removed, 'MarketTransaction', (ev) => {
+          return ev.TxType == "Removed offer" && ev.owner == user && ev.tokenId == 1;
+        });
       });
 
       it("should only remove one offer from marketplace", async function(){
@@ -200,7 +216,7 @@ const truffleAssert = require("truffle-assertions");
         await truffleAssert.fails(marketplaceInstance.getOffer(1));
 
         await marketplaceInstance.buyKitty(2, {from: accounts[2], value: priceToWei});
-        boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
+        const boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
 
         assert.strictEqual(boughtKitty[0].toString(10), "2");
       });
@@ -212,6 +228,13 @@ const truffleAssert = require("truffle-assertions");
 
         await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
         await truffleAssert.passes(marketplaceInstance.getOffer(1));
+      });
+
+      it("should show that Offer.active is FALSE in offers array", async function(){
+        await marketplaceInstance.removeOffer(1, {from: user});
+        const isRemoved = await marketplaceInstance.offerIsRemovedFromArray(0);
+
+        assert.equal(isRemoved, false);
       });
 
       it("should subtract funds from balance from buyer", async function(){

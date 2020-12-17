@@ -11,4 +11,5 @@ contract MarketplaceTest is KittyMarketplace{
   function ownsKitty(address _address, uint256 _tokenId) public view returns (bool){
     return _ownsKitty(_address, _tokenId);
   }
+
 }
