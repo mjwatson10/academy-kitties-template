@@ -21,10 +21,12 @@ const truffleAssert = require("truffle-assertions");
 
 //init test
     describe("init", async function(){
-      it("should deploy KittyMarketplace contract", async function(){
-        await truffleAssert.passes(marketplaceInstance);
-      });
 
+      it("should deploy KittyMarketplace contract", async function(){
+        const instance = await KittyMarketplace.deployed();
+
+        assert.isOk(instance);
+      });
 
     });
 
@@ -43,7 +45,24 @@ const truffleAssert = require("truffle-assertions");
         await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
         let getOffer = await marketplaceInstance.getOffer(1);
 
-        await assert.equal(priceToWei, getOffer.price);
+        assert.equal(priceToWei, getOffer.price);
+      });
+
+      it("should get all parameters of the getOffer() function", async function(){
+        await kittyContractInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
+        await kittyContractInstance.createKitty(1, 1, 1, "39647694223415461127", accounts[3], {from: accounts[3]});
+        await kittyContractInstance.setApprovalForAll(marketplaceInstance.address, true, {from: accounts[3]});
+
+        await marketplaceInstance.setOffer(priceToWei, 2, {from: user});
+        await marketplaceInstance.setOffer(priceToWei, 3, {from: accounts[3]});
+        await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
+        let getOffer = await marketplaceInstance.getOffer(1);
+
+        assert.equal(priceToWei, getOffer.price);
+        assert.equal(user, getOffer.seller);
+        assert.equal("2", getOffer.index.toString(10));
+        assert.equal("1", getOffer.tokenId.toString(10));
+        assert.equal(true, getOffer.active);
       });
 
       it("should revert setOffer() function because seller is not owner", async function(){
@@ -62,12 +81,21 @@ const truffleAssert = require("truffle-assertions");
         await truffleAssert.fails(marketplaceInstance.setOffer(priceToWei, 2, {from: accounts[2]}));
       });
 
-      it("should get all tokens owner has put up for sale", async function(){
+      it("should get all tokens put up for sale", async function(){
+        await kittyContractInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
+        await kittyContractInstance.createKitty(1, 1, 1, "39647694223415461127", accounts[3], {from: accounts[3]});
+        await kittyContractInstance.setApprovalForAll(marketplaceInstance.address, true, {from: accounts[3]});
+
         await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
+        await marketplaceInstance.setOffer(priceToWei, 2, {from: user});
+        await marketplaceInstance.setOffer(priceToWei, 3, {from: accounts[3]});
 
         kittyForSale = await marketplaceInstance.getAllTokenOnSale({from: user});
+        kittyThreeForSale = await marketplaceInstance.getAllTokenOnSale({from: accounts[3]});
 
-        assert.equal(kittyForSale, 1);
+        assert.equal(kittyOneTwoForSale[0], 1);
+        assert.equal(kittyOneTwoForSale[1], 2);
+        assert.equal(kittyThreeForSale[2], 3);
       });
 
       it("should revert getOffer() function because tokenId is not for sale yet", async function(){
@@ -92,7 +120,7 @@ const truffleAssert = require("truffle-assertions");
 
         boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
 
-        assert.equal(boughtKitty, 1);
+        assert.strictEqual(boughtKitty[0].toString(10), "1");
       });
 
       it("should revert buyKitty() function because msg.value does not equal price of offer", async function(){
@@ -130,7 +158,7 @@ const truffleAssert = require("truffle-assertions");
         await marketplaceInstance.buyKitty(3, {from: accounts[2], value: priceToWei});
         boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
 
-        assert.equal(boughtKitty, 3);
+        assert.strictEqual(boughtKitty[0].toString(10), "3");
       });
 
       it("should remove offer marketplace", async function(){
@@ -174,7 +202,7 @@ const truffleAssert = require("truffle-assertions");
         await marketplaceInstance.buyKitty(2, {from: accounts[2], value: priceToWei});
         boughtKitty = await kittyContractInstance.getKittiesIDs(accounts[2]);
 
-        assert.equal(boughtKitty, 2);
+        assert.strictEqual(boughtKitty[0].toString(10), "2");
       });
 
       it("should allow a removed offer to be added back to the marketplace with a different offer", async function(){
@@ -184,6 +212,26 @@ const truffleAssert = require("truffle-assertions");
 
         await marketplaceInstance.setOffer(priceToWei, 1, {from: user});
         await truffleAssert.passes(marketplaceInstance.getOffer(1));
+      });
+
+      it("should subtract funds from balance from buyer", async function(){
+        let balance = await web3.eth.getBalance(accounts[2]);
+
+        await marketplaceInstance.buyKitty(1, {from: accounts[2], value: priceToWei});
+
+        let newBalance = await web3.eth.getBalance(accounts[2]);
+
+         assert.isBelow(parseInt(newBalance.toString(10)), parseInt(balance.toString(10)), "funds has been subract from buyer after kitty was bought");
+      });
+
+      it("should add funds to balance of seller", async function(){
+        let balance = await web3.eth.getBalance(user);
+
+        await marketplaceInstance.buyKitty(1, {from: accounts[2], value: priceToWei});
+
+        let newBalance = await web3.eth.getBalance(user);
+
+        assert.isAbove(parseInt(newBalance.toString(10)), parseInt(balance.toString(10)), "funds has been added to seller after kitty was bought");
       });
     });
 

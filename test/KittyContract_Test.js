@@ -20,8 +20,11 @@ const truffleAssert = require("truffle-assertions");
         });
 
         it("should show total supply", async function(){
+          await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+          await proxyInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
+
           const supply = await proxyInstance.totalSupply();
-          assert(supply.toString(0) === "1");
+          assert.equal(supply.toString(10), "3");
         });
 
         it("should return contract address as true", async function(){
@@ -36,11 +39,17 @@ const truffleAssert = require("truffle-assertions");
           assert.equal(contractTest, false);
         });
 
-        // it.only("should be ERC721 supported because _to address is NOT a contract address", async function(){
-        //   await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
-        //
-        //   let supported = await proxyInstance._checkERC721Support(user, accounts[2], 1, )
-        // });
+        it("should be ERC721 supported because _to address is NOT a contract address", async function(){
+          await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+
+          await truffleAssert.passes(proxyInstance.checkERC721Support(user, accounts[2], 1));
+        });
+
+        it("should NOT be ERC721 supported because _to address IS contract address", async function(){
+          await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+
+          await truffleAssert.fails(proxyInstance.checkERC721Support(user, proxyInstance.address, 1));
+        });
       });
 
 
@@ -50,7 +59,10 @@ const truffleAssert = require("truffle-assertions");
 
           const createZero = await proxyInstance.createKittyGen0("84336244549310576265");
           const getKitty = await proxyInstance.getKitty(1);
-          assert(getKitty.generation.toString(10) === "0")
+          assert.equal(getKitty.generation.toString(10), "0");
+          assert.equal(getKitty.momId.toString(10), "0");
+          assert.equal(getKitty.dadId.toString(10), "0");
+          assert.equal(getKitty.genes.toString(10), "84336244549310576265")
         });
 
         it("should not create Gen 0 kitty because sender is not contract owner", async function(){
@@ -123,6 +135,16 @@ const truffleAssert = require("truffle-assertions");
           assert.equal(newKitty.dadId.toString(10), "1")
         });
 
+        it("should create a kitty with an average generation of the parent kitties", async function(){
+          const dad = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+          const mom = await proxyInstance.createKitty(1, 1, 5, "69367694223415461144", user, {from: user});
+
+          const breed = await proxyInstance.breed(1, 2, {from: user});
+          const newKitty = await proxyInstance.getKitty(3);
+
+          assert.equal(newKitty.generation.toString(10), "3")
+        });
+
         it("should NOT breed because does not own dadId", async function(){
 
           const createMom = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", accounts[2], {from: accounts[2]});
@@ -193,19 +215,19 @@ const truffleAssert = require("truffle-assertions");
           const kitty = await proxyInstance.createKittyGen0("84336244549310576265");
           const address = accounts[2];
 
-          const transfer = await proxyInstance.transfer(accounts[2], 1);
+          await proxyInstance.transfer(accounts[2], 1);
           const kittyId = await proxyInstance.getKittiesIDs(accounts[2]);
 
-          assert(kittyId.toString(10) === "1");
+          assert.strictEqual(kittyId[0].toString(10), "1");
         });
 
         it("should transfer kitty to another user's address", async function(){
           await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
           await proxyInstance.transfer(accounts[2], 1, {from: user});
 
-          transferredKitty = await proxyInstance.getKittiesIDs(accounts[2]);
+          transKitty = await proxyInstance.getKittiesIDs(accounts[2]);
 
-          assert.equal(transferredKitty, 1);
+          assert.strictEqual(transKitty[0].toString(10), "1");
         });
 
         it("should revert transfer() function because to address is address(0)", async function(){
@@ -230,9 +252,9 @@ const truffleAssert = require("truffle-assertions");
           await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
           await proxyInstance.safeTransferFrom(user, accounts[2], 1, {from: user});
 
-          transferredKitty = await proxyInstance.getKittiesIDs(accounts[2]);
+          transKitty = await proxyInstance.getKittiesIDs(accounts[2]);
 
-          assert.equal(transferredKitty, 1);
+          assert.strictEqual(transKitty[0].toString(10), "1");
         });
 
         it("should revert safeTransfer because msg.sender is not approved to transfer token", async function(){
@@ -240,16 +262,25 @@ const truffleAssert = require("truffle-assertions");
 
           await truffleAssert.fails(proxyInstance.safeTransferFrom(user, accounts[2], 1, {from: accounts[2]}));
         });
+
+        it("should revert safeTransfer because _to is not ERC721 supported", async function(){
+          await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+
+          await truffleAssert.fails(proxyInstance.safeTransferFrom(user, proxyInstance.address, 1, {from: accounts[2]}));
+        });
       });
 
 
 //approval testing
       describe("approval", async function(){
-        it("should approve token on new address", async function(){
+        it("should approve token for transfer by new address", async function(){
+          await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+          await proxyInstance.approve(accounts[2], 1, {from: user});
 
-          await proxyInstance.createKittyGen0("84336244549310576265");
+          await proxyInstance.transferFrom(user, accounts[3], 1, {from: accounts[2]});
+          const kittyId = await proxyInstance.getKittiesIDs(accounts[3]);
 
-          await truffleAssert.passes(proxyInstance.approve(accounts[2], 1));
+          assert.strictEqual(kittyId[0].toString(10), "1");
         });
 
         it("should not approve token on new address because account trying to approve is not owner of token", async function(){
@@ -259,15 +290,18 @@ const truffleAssert = require("truffle-assertions");
           await truffleAssert.fails(proxyInstance.approve(accounts[2], 1, {from:accounts[3]}));
         });
 
-        it("should show approved for non owner address for all of the owner's kitties", async function(){
+        it("should show approved for non owner address for all of the owner's kitties which will allow transfers to be done by non owner", async function(){
 
           const kitty1 = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
           const kitty2 = await proxyInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
 
           await proxyInstance.setApprovalForAll(accounts[2], true, {from: user});
-          const approval = await proxyInstance.isApprovedForAll(user, accounts[2])
+          await proxyInstance.isApprovedForAll(user, accounts[2]);
 
-          assert.equal(approval, true);
+          await proxyInstance.transferFrom(user, accounts[3], 1, {from: accounts[2]});
+          transKitty = await proxyInstance.getKittiesIDs(accounts[3]);
+
+          assert.strictEqual(transKitty[0].toString(10), "1");
         });
 
         it("should show NOT approved non owner address for all of the owner's kitties", async function(){
@@ -282,12 +316,17 @@ const truffleAssert = require("truffle-assertions");
           assert.equal(approval, false);
         });
 
-        it("should pass to approve operator because operator is not sender", async function(){
+        it("should pass to approve operator for access to transfer kitties because operator is not sender", async function(){
 
           const kitty1 = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
           const kitty2 = await proxyInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});
 
           await truffleAssert.passes(proxyInstance.setApprovalForAll(accounts[2], true, {from: user}));
+
+          await proxyInstance.transferFrom(user, accounts[3], 1, {from: accounts[2]});
+          transKitty = await proxyInstance.getKittiesIDs(accounts[3]);
+
+          assert.strictEqual(transKitty[0].toString(10), "1");
         });
 
         it("should NOT pass to approve operator because operator is sender", async function(){
