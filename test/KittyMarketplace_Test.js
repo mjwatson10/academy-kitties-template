@@ -98,7 +98,7 @@ const truffleAssert = require("truffle-assertions");
         await marketplaceInstance.setOffer(priceToWei, 2, {from: user});
         await marketplaceInstance.setOffer(priceToWei, 3, {from: accounts[3]});
 
-        const kittyForSale = await marketplaceInstance.getAllTokenOnSale({from: user});
+        const kittyOneTwoForSale = await marketplaceInstance.getAllTokenOnSale({from: user});
         const kittyThreeForSale = await marketplaceInstance.getAllTokenOnSale({from: accounts[3]});
 
         assert.equal(kittyOneTwoForSale[0], 1);
