@@ -10,6 +10,10 @@ contract MarketplaceTest is KittyMarketplace{
 
   function ownsKitty(address _address, uint256 _tokenId) public view returns (bool){
     return _ownsKitty(_address, _tokenId);
-  }
+  }  
 
+  //checks to verify that offers array has changed the struct element Offer.active to false
+  function offerIsRemovedFromArray(uint256 _index) public view returns(bool){
+    return offers[_index].active;
+  }
 }

@@ -72,9 +72,16 @@ const truffleAssert = require("truffle-assertions");
 
         it("should create a kitty", async function(){
 
-          const createKitty = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
+          const result = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
           const getKitty = await proxyInstance.getKitty(1);
-          assert(getKitty.genes.toString(10) === "84336244549310576265")
+          const kittyGenes = getKitty.genes.toString(10);
+          const kittyDad = getKitty.dadId.toString(10);
+          const kittyMom = getKitty.momId.toString(10);
+          assert(getKitty.genes.toString(10) === "84336244549310576265");
+
+          await truffleAssert.eventEmitted(result, 'Birth', (ev) => {
+            return ev.owner == user && ev.kittenId == 1 && ev.momId == parseInt(kittyMom) && ev.dadId == parseInt(kittyDad) && ev.genes == parseInt(kittyGenes);
+          });
         });
 
         it("should get kitty genes from getKitty() function", async function(){
@@ -290,7 +297,7 @@ const truffleAssert = require("truffle-assertions");
           await truffleAssert.fails(proxyInstance.approve(accounts[2], 1, {from:accounts[3]}));
         });
 
-        it("should show approved for non owner address for all of the owner's kitties which will allow transfers to be done by non owner", async function(){
+        it("should show that owner is approving another address for access in transfering owner's kitties", async function(){
 
           const kitty1 = await proxyInstance.createKitty(1, 1, 1, "84336244549310576265", user, {from: user});
           const kitty2 = await proxyInstance.createKitty(1, 1, 1, "69367694223415461144", user, {from: user});

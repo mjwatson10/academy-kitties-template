@@ -12,8 +12,8 @@ const truffleAssert = require("truffle-assertions");
 
     beforeEach(async function(){
       kittyContractInstance = await ProxyContract.new();
-      marketplaceInstance = await KittyMarketplace.new(kittyContractInstance.address);
-      proxyMarketplace = await ProxyMarketplace.new(kittyContractInstance.address);
+      marketplaceInstance = await ProxyMarketplace.new(kittyContractInstance.address);
+      // proxyMarketplace = await ProxyMarketplace.new(kittyContractInstance.address);
       await kittyContractInstance.setApprovalForAll(marketplaceInstance.address, true);
     });
 
@@ -231,6 +231,7 @@ const truffleAssert = require("truffle-assertions");
       });
 
       it("should show that Offer.active is FALSE in offers array", async function(){
+        //await kittyContractInstance.setApprovalForAll(proxyMarketplace.address, true, {from: user});
         await marketplaceInstance.removeOffer(1, {from: user});
         const isRemoved = await marketplaceInstance.offerIsRemovedFromArray(0);
 
@@ -267,13 +268,13 @@ const truffleAssert = require("truffle-assertions");
 
 
       it("should return _ownsKitty() function as TRUE", async function(){
-        kittyOwner = await proxyMarketplace.ownsKitty(user, 1);
+        kittyOwner = await marketplaceInstance.ownsKitty(user, 1);
 
         assert.equal(kittyOwner, true);
       });
 
       it("should return _ownsKitty() function as FALSE", async function(){
-        kittyOwner = await proxyMarketplace.ownsKitty(accounts[2], 1);
+        kittyOwner = await marketplaceInstance.ownsKitty(accounts[2], 1);
 
         assert.equal(kittyOwner, false);
       });

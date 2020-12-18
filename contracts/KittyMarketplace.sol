@@ -115,11 +115,6 @@ contract KittyMarketplace is Ownable{
       emit MarketTransaction("Removed offer", msg.sender, _tokenId);
     }
 
-    //checks to verify that offers array has changed the struct element Offer.active to false
-    function offerIsRemovedFromArray(uint256 _index) public view returns(bool){
-      return offers[_index].active;
-    }
-
     /**
     * Executes the purchase of _tokenId.
     * Sends the funds to the seller and transfers the token using transferFrom in Kittycontract.
