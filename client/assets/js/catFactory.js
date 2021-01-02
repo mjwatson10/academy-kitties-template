@@ -1,3 +1,5 @@
+
+
 //Random color
 function getColor() {
     var randomColor = Math.floor(Math.random() * 16777215).toString(16);

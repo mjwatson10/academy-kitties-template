@@ -42,6 +42,8 @@ contract Kittycontract is IERC721, Ownable {
               uint256 genes
             );
 
+        event Transfer(address from, address to, uint256 tokenId);
+
 
 //struct
         struct Kitty {
@@ -132,7 +134,7 @@ contract Kittycontract is IERC721, Ownable {
             childGeneration = dadGeneration + 1;
         }
 
-        _createKitty(_momId, _dadId, childGeneration, newDna, msg.sender);
+        return _createKitty(_momId, _dadId, childGeneration, newDna, msg.sender);
     }
 
     function _mixDna(uint256 _dadDna, uint256 _momDna) internal returns(uint256){

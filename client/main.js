@@ -5,12 +5,12 @@ var web3 = new Web3(Web3.givenProvider);
 //KittyContract
 var instance;
 var user;
-var contractAddress = "0xF36dc5Bd4F9d36639268d2bdf3fB0d9653b2f5A1";
+var contractAddress = "0xE1Ed047dD6a32a70a1d406acC9F9496EaA9547f1";
 
 
 function connect(){
   //call for metamask enable function
-  return window.ethereum.enable().then(function(accounts){
+  return window.ethereum.enable().then(async function(accounts){
       instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
       user = accounts[0];
   })
@@ -19,7 +19,7 @@ function connect(){
 
 //KittyMarketplace
 var instanceMarket;
-var contractAddressMarket = "0xeAd0b9Cf450d0EbC2FceB758ac6C3f6DD0D46F43";
+var contractAddressMarket = "0x66167aFEb21b865dEA05539f9d4337cD4E029F59";
 
 
 function connectMarket(){

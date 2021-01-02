@@ -157,7 +157,14 @@ $(document).ready(async function(){
 
 //click event to run breedParents() functions, displays new kitten card
   $('#breed').click(async function(){
-    let _childId = await breedParents(dadId, momId);
+      await newChildBorn(dadId, momId);
+      $('#breed').attr('disabled', true);
+  });
+
+  async function newChildBorn(parentOne, parentTwo){
+    let _childId = await breedParents(parentOne, parentTwo);
+    console.log("childId: ", _childId);
+    console.log("Hello, Hello, Hello");
 
     const kitty = await instance.methods.getKitty(_childId).call({ from: user });
 
@@ -171,5 +178,5 @@ $(document).ready(async function(){
                        <div class="childGenes">${"Gen: " + kitty.generation}</div>
                     </div>`
               $('.childImg').append(displayChild);
-              await renderKitty(_dna, _childId);
-  });
+              renderKitty(_dna, _childId);
+  }

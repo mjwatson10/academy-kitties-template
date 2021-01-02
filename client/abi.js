@@ -2,6 +2,12 @@
 //abi is found and copied from Kittycontract.json which is in the build folder
 var abi = [
   {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -92,19 +98,19 @@ var abi = [
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
         "name": "from",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
         "name": "to",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
@@ -160,39 +166,13 @@ var abi = [
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "allOwnersKitties",
+    "inputs": [],
+    "name": "gen0Counter",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "genes",
+        "name": "",
         "type": "uint256"
-      },
-      {
-        "internalType": "uint64",
-        "name": "birthTime",
-        "type": "uint64"
-      },
-      {
-        "internalType": "uint32",
-        "name": "momId",
-        "type": "uint32"
-      },
-      {
-        "internalType": "uint32",
-        "name": "dadId",
-        "type": "uint32"
-      },
-      {
-        "internalType": "uint16",
-        "name": "generation",
-        "type": "uint16"
       }
     ],
     "payable": false,
@@ -202,12 +182,12 @@ var abi = [
   {
     "constant": true,
     "inputs": [],
-    "name": "gen0Counter",
+    "name": "getOwner",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "address",
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "payable": false,

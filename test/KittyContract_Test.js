@@ -14,6 +14,12 @@ const truffleAssert = require("truffle-assertions");
 
 //init test
       describe("init", async function(){
+        it.only("should get owner address", async function(){
+          const ownerAddress = await proxyInstance.getOwner();
+
+          assert.equal(accounts[0], ownerAddress);
+        });
+
         it("should show name", async function(){
           const name = await proxyInstance.name();
           assert(name === "CyberKitties");
