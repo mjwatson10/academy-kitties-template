@@ -1,9 +1,9 @@
 
-$(document).ready(function(){
+$(document).ready(async function(){
   //call for metamask enable function
-  window.ethereum.enable().then(function(accounts){
-      instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
-      user = accounts[0];
+  await window.ethereum.enable().then(async function(accounts){
+      const instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
+      const user = accounts[0];
 
       //birthing event
       instance.events.Birth().on('data', function(event){
@@ -27,5 +27,15 @@ $(document).ready(function(){
       })
       .on('error', console.error)
 
-  })
+  });
+
+  await isOwnerAddress();
 })
+
+async function isOwnerAddress(){
+  const ownerAddress = await instance.methods.getOwner().call({from: user});
+
+  if(user != ownerAddress){
+    window.location.replace("index.html");
+  }
+}

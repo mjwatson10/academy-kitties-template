@@ -16,6 +16,12 @@ function connect(){
   })
 }
 
+async function isOwnerAddress(){
+  if(user != ownerAddress){
+    window.location.replace("index.html");
+  }
+}
+
 
 //KittyMarketplace
 var instanceMarket;
