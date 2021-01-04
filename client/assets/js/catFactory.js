@@ -1,5 +1,4 @@
 
-
 //Random color
 function getColor() {
     var randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -346,3 +345,43 @@ function stripeType8(){
     $('.stripes-bottom-left').css({ "top": "32" }).css({ "left": "-16" })
     $('.stripes-bottom-right').css({ "top": "145" }).css({ "left": "108" })
 }
+
+//button functions
+function getRandomDNA(){
+  var randomDNA = {
+      "headcolor" : Math.floor(Math.random() * 89) + 10,
+      "legscolor" : Math.floor(Math.random() * 89) + 10,
+      "eyecolor" : Math.floor(Math.random() * 89) + 10,
+      "earcolor" : Math.floor(Math.random() * 89) + 10,
+      "pawcolor" : Math.floor(Math.random() * 89) + 10,
+      "bellycolor" :Math.floor(Math.random() * 89) + 10,
+      "eyesShape" : Math.floor(Math.random() * 9) + 1,
+      "decorationPattern" : Math.floor(Math.random() * 10) + 10,
+      "decorationTopcolor" : Math.floor(Math.random() * 89) + 10,
+      "decorationBottomcolor" : Math.floor(Math.random() * 89) + 10,
+      "animation" :  Math.floor(Math.random() * 6) + 1,
+      "lastNum" :  Math.floor(Math.random() * 10) + 1
+      }
+      return randomDNA;
+}
+
+
+$("#randomButton").click(function randomCat(){
+  const randomDNA = getRandomDNA();
+    renderCat(randomDNA)
+})
+
+$("#defaultButton").click(function defaultCat(){
+    renderCat(defaultDNA);
+})
+
+$("#createButton").click(function createKitty(){
+  var kittyDna = getDna();
+  instance.methods.createKittyGen0(kittyDna.toString(10)).send({}, function(error, txHash){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(txHash);
+    }
+  });
+});

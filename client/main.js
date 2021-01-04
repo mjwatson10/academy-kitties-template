@@ -1,11 +1,12 @@
 
+
 //Web3.givenProvider allows the use of whatever provider MetaMask is giving
 var web3 = new Web3(Web3.givenProvider);
 
 //KittyContract
 var instance;
 var user;
-var contractAddress = "0xE1Ed047dD6a32a70a1d406acC9F9496EaA9547f1";
+var contractAddress = "0xA4088bEA3f7437452C74381492E386ACa5f8c445";
 
 
 function connect(){
@@ -16,16 +17,10 @@ function connect(){
   })
 }
 
-async function isOwnerAddress(){
-  if(user != ownerAddress){
-    window.location.replace("index.html");
-  }
-}
-
 
 //KittyMarketplace
 var instanceMarket;
-var contractAddressMarket = "0x66167aFEb21b865dEA05539f9d4337cD4E029F59";
+var contractAddressMarket = "0x1CF7dcaB0019541648DdfD7ceCA76A2A52FddaBF";
 
 
 function connectMarket(){
@@ -36,6 +31,30 @@ function connectMarket(){
 
       console.log(instanceMarket);
   })
+}
+
+
+async function isOwnerAddress(){
+  const ownerAddress = await instance.methods.getOwner().call({from: user});
+
+  if(user != ownerAddress.toLowerCase()){
+    window.location.replace("index.html");
+  }
+}
+
+
+async function addFactoryBtn(){
+  const ownerAddress = await instance.methods.getOwner().call({from: user});
+
+  if(user === ownerAddress.toLowerCase()){
+    let factory = `<li class="nav-item">
+                        <a class="nav-link" href="Factory.html" id="myKitties">
+                          <span id="kitty-font">Kitty </span>
+                          <span id="cyber-font-nav">Factory</span>
+                        </a>
+                      </li>`
+    $(`.factoryBtn`).append(factory);
+  }
 }
 
 

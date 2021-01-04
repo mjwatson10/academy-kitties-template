@@ -30,7 +30,7 @@ $(document).ready(async function(){
   });
 
   await isOwnerAddress();
-})
+});
 
 async function isOwnerAddress(){
   const ownerAddress = await instance.methods.getOwner().call({from: user});
