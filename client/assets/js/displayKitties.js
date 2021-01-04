@@ -1,6 +1,5 @@
 $(document).ready(async function(){
   await connect();
-  await addFactoryBtn();
   await cardsData();
   await addSellOrCxlBtn();
 })
