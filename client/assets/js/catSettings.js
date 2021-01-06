@@ -23,6 +23,26 @@ $( document ).ready(async function() {
   await addFactoryBtn();
   await renderCat(defaultDNA);
   await homepageCat();
+  //birthing event
+  instance.events.Birth().on('data', function(event){
+
+    let owner = event.returnValues.owner;
+    let kittenId = event.returnValues.kittenId;
+    let momId = event.returnValues.momId;
+    let dadId = event.returnValues.dadId;
+    let genes = event.returnValues.genes;
+
+
+    $("#kittyCreation").css("display", "block");
+    $("#kittyCreation").text("Owner: " + owner
+                            + " || Kitten Id: " + kittenId
+                            + " || Mom Id: " + momId
+                            + " || Dad Id: " + dadId
+                            + " || Genes: " + genes);
+
+    alert("Congratulations!!! You own a new Kitty")
+  })
+  // .on('error', console.error)
 });
 
 function homepageCat(){

@@ -15,9 +15,8 @@ $(document).ready(async function(){
                             + " || Mom Id: " + momId
                             + " || Dad Id: " + dadId);
 
-    alert("Congratulations!!! You own a new Kitty")
-  })
-  .on('error', console.error)
+  });
+  // .on('error', console.error)
 })
 
 //State variables
@@ -137,11 +136,11 @@ $(document).ready(async function(){
 
     if (dadId != momId) {
       await instance.methods.breed(_daddy, _mommy).send({from: user}, function(error, txHash){
-        if(error){
-          console.log(error);
-        }else {
-          console.log(txHash);
-        }
+        // if(error){
+        //   console.log(error);
+        // }else {
+        //   console.log(txHash);
+        // }
       });
       let array = await getKittiesForOwner();
 
@@ -163,8 +162,6 @@ $(document).ready(async function(){
 
   async function newChildBorn(parentOne, parentTwo){
     let _childId = await breedParents(parentOne, parentTwo);
-    console.log("childId: ", _childId);
-    console.log("Hello, Hello, Hello");
 
     const kitty = await instance.methods.getKitty(_childId).call({ from: user });
 

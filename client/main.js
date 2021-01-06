@@ -14,7 +14,7 @@ function connect(){
   return window.ethereum.enable().then(async function(accounts){
       instance = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
       user = accounts[0];
-  })
+  });
 }
 
 
@@ -28,8 +28,6 @@ function connectMarket(){
   return window.ethereum.enable().then(function(accounts){
       instanceMarket = new web3.eth.Contract(abiMarketplace, contractAddressMarket, {from: accounts[0]})
       user = accounts[0];
-
-      console.log(instanceMarket);
   })
 }
 

@@ -48,7 +48,7 @@ async function sellOrCancel(_kittyId){
       $(`#sellOrCxl${_kittyId}`).append(cxlBtn);
     }
   } catch(err){
-    console.log(err);
+    // console.log(err);
     let sellBtn = `<button class="sell-my-kitty" id="sellKittyBtn${_kittyId}" data-toggle="modal" data-target="#sell-modal">Sell</button>`
     $(`#sellOrCxl${_kittyId}`).append(sellBtn);
   }
@@ -79,11 +79,11 @@ async function addSellOrCxlBtn(){
 //sends price being set for kitty being sold to contract
 async function sellKitty(price, id){
     await instanceMarket.methods.setOffer(price, id).send({from: user}, function(error, txHash){
-      if(error){
-        console.log(error);
-      }else {
-        console.log(txHash);
-      }
+      // if(error){
+      //   console.log(error);
+      // }else {
+      //   console.log(txHash);
+      // }
     })
 }
 
@@ -204,11 +204,11 @@ async function _addBuyOrCxlBtn(){
 async function buyAKitty(_kittyId, price){
   $(`#buyKitty${_kittyId}`).click(async function(){
     let buy = await instanceMarket.methods.buyKitty(_kittyId).send({from: user, value: price}, function(error, txHash){
-      if(error){
-        console.log(error);
-      }else {
-        console.log(txHash);
-      }
+      // if(error){
+      //   console.log(error);
+      // }else {
+      //   console.log(txHash);
+      // }
     });
     refresh();
   })
@@ -218,10 +218,10 @@ async function buyAKitty(_kittyId, price){
 //click event to remove kitty offer from marketplace
 async function removeOffer(_kittyId){
   await instanceMarket.methods.removeOffer(_kittyId).send({from: user}, function(error, txHash){
-    if(error){
-      console.log(error);
-    }else {
-      console.log(txHash);
-    }
+    // if(error){
+    //   console.log(error);
+    // }else {
+    //   console.log(txHash);
+    // }
   });
 }

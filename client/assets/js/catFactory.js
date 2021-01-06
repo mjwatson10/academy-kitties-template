@@ -378,10 +378,10 @@ $("#defaultButton").click(function defaultCat(){
 $("#createButton").click(function createKitty(){
   var kittyDna = getDna();
   instance.methods.createKittyGen0(kittyDna.toString(10)).send({}, function(error, txHash){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(txHash);
-    }
+    // if (error) {
+    //   console.log(error);
+    // } else {
+    //   console.log(txHash);
+    // }
   });
 });
