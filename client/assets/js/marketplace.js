@@ -1,7 +1,6 @@
 $(document).ready(async function(){
   await connect();
   await connectMarket();
-  await marketplaceOp();
 });
 
 

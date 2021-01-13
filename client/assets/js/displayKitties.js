@@ -1,8 +1,9 @@
 $(document).ready(async function(){
   await connect();
   await cardsData();
+  await marketplaceOp();
   await addSellOrCxlBtn();
-})
+});
 
 
 //gets all kitties owned by user by calling getKittiesIDs from contract
