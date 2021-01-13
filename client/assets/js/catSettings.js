@@ -42,7 +42,7 @@ $( document ).ready(async function() {
 
     alert("Congratulations!!! You own a new Kitty")
   })
-  // .on('error', console.error)
+  .on('error', console.error)
 });
 
 function homepageCat(){
