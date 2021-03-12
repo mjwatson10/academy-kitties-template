@@ -35,9 +35,9 @@ function connectMarket(){
 async function isOwnerAddress(){
   const ownerAddress = await instance.methods.getOwner().call({from: user});
 
-  if(user != ownerAddress.toLowerCase()){
-    window.location.replace("index.html");
-  }
+  // if(user != ownerAddress.toLowerCase()){
+  //   window.location.replace("index.html");
+  // }
 }
 
 
