@@ -6,7 +6,7 @@ var web3 = new Web3(Web3.givenProvider);
 //KittyContract
 var instance;
 var user;
-var contractAddress = "0x7CA2dE097bb7B396B6CA2FCD9054B43cbe7caF5f";
+var contractAddress = "0x7912C4FAa42b8C0A28B418D173cf773dD1959345";
 
 
 function connect(){
@@ -20,7 +20,7 @@ function connect(){
 
 //KittyMarketplace
 var instanceMarket;
-var contractAddressMarket = "0x3Fb501D58EcB03E59f7C779c6Cd9840eeE8Af5B4";
+var contractAddressMarket = "0x3673A8f2b1AFad4D12F06a2Ec7c528b4eB060793";
 
 
 function connectMarket(){

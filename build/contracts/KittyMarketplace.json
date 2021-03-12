@@ -10099,6 +10099,38 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0xd99e4fad9ad6313b1feb588fa8e605e3a9873172f2024330c35dd2b4041a4386": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "TxType",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "MarketTransaction",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x3673A8f2b1AFad4D12F06a2Ec7c528b4eB060793",
+      "transactionHash": "0xa98519539df6c98a16f7a3fbec99e0805be41fdaa7106b7f50fc47ee874b09a0"
+    },
     "5777": {
       "events": {
         "0xd99e4fad9ad6313b1feb588fa8e605e3a9873172f2024330c35dd2b4041a4386": {
@@ -10128,12 +10160,12 @@
         }
       },
       "links": {},
-      "address": "0x3Fb501D58EcB03E59f7C779c6Cd9840eeE8Af5B4",
-      "transactionHash": "0xef76dfb9a1534e44387dcc8d13293e237d258d105259ce3ea362fb9e49be0cd6"
+      "address": "0xd6d0D0048Ff4DbA8B45e61b51911db434Ac9E897",
+      "transactionHash": "0x7ea8cba82a7acffca74096996a869e5a92879bd0b118340417f1c83c514dfa3e"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2021-01-13T23:43:14.880Z",
+  "updatedAt": "2021-03-12T06:29:56.339Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
