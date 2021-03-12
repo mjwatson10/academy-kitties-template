@@ -35,16 +35,16 @@ function connectMarket(){
 async function isOwnerAddress(){
   const ownerAddress = await instance.methods.getOwner().call({from: user});
 
-  // if(user != ownerAddress.toLowerCase()){
-  //   window.location.replace("index.html");
-  // }
+  if(user != ownerAddress.toLowerCase()){
+    window.location.replace("index.html");
+  }
 }
 
 
 async function addFactoryBtn(){
-  // const ownerAddress = await instance.methods.getOwner().call({from: user});
+  const ownerAddress = await instance.methods.getOwner().call({from: user});
 
-  // if(user === ownerAddress.toLowerCase()){
+  if(user === ownerAddress.toLowerCase()){
     let factory = `<li class="nav-item">
                         <a class="nav-link" href="Factory.html" id="myKitties">
                           <span id="kitty-font">Kitty </span>
@@ -52,7 +52,7 @@ async function addFactoryBtn(){
                         </a>
                       </li>`
     $(`.factoryBtn`).append(factory);
-  // }
+  }
 }
 
 
